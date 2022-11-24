@@ -1,5 +1,6 @@
 <?php
     include("sources/PHP/altas.php");
+    include("sources/PHP/consultas.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,8 +16,8 @@
 
 </head>
 <body>
-    <?php 
-        crearDireccion(6,"Prueba",601,1409,"Av. Las Américas","20164","Aguascalientes","Aguascalientes",1,"524494122838");
+    <?php
+        print_r(login("Geras1","12345"));
     ?>
 </body>
 </html>

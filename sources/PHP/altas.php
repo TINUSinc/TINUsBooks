@@ -64,7 +64,7 @@
 
     function crearCategoria($Nomrbre_cat, $Descripcion_Cat){
         global $conexion;
-        $query = 'INSERT INTO categoria (Monto_Compra, Costo_Envio) VALUES
+        $query = 'INSERT INTO categoria (Nom_Cat, Descripcion_Cat) VALUES
                   ("'.$Nomrbre_cat.'","'.$Descripcion_Cat.'");';
         if($conexion->query($query) === TRUE){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -79,7 +79,7 @@
 
     function crearProucto($Nombre_Prod, $Descripcion_Prod, $Precio_Prod, $Existencias_Prod, $Categoria_Prod, $Descuento_Prod){
         global $conexion;
-        $query = 'INSERT INTO producto (Nombre_Pord, Descripcion_Prod, Precio_Prod,
+        $query = 'INSERT INTO producto (Nombre_Prod, Descripcion_Prod, Precio_Prod,
                   Existencias_Prod, CategoriaId_Cat, Descuento_Prod) VALUES
                   ("'.$Nombre_Prod.'","'.$Descripcion_Prod.'",'.$Precio_Prod.','
                   .$Existencias_Prod.','.$Categoria_Prod.','.$Descuento_Prod.');';
@@ -94,18 +94,36 @@
         }
     }
 
-    function crearCarrito($Id_Usr, $Id_Prod, $Cantidad_Prod){
+    function agregarCarrito($Id_Usr, $Id_Prod, $Cantidad_Prod){
         global $conexion;
-        $query = 'INSERT INTO carrito (UsuarioID_Usr, ProductoID_Prod, cant_Prod) 
-                  VALUES ('.$Id_Usr.','.$Id_Prod.','.$Cantidad_Prod.');';
-        if($conexion->query($query) === TRUE){
-            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Se añadio el producto al carrito
-                  </div>';
+        $query = 'SELECT cant_Prod FROM carrito WHERE UsuarioID_Usr='.$Id_Usr.' AND ProductoID_Prod='.$Id_Prod.';';
+        $datos = $conexion->query($query);
+        if($datos->num_rows){
+            $fila = $datos->fetch_assoc();
+            $cantidad = $fila["cant_Prod"];
+            $cantidad += $Cantidad_Prod;
+            $query = 'UPDATE carrito SET cant_Prod='.$cantidad.' WHERE UsuarioID_Usr='.$Id_Usr.' AND ProductoID_Prod='.$Id_Prod.';';
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se añadio el producto al carrito
+                    </div>';
+            }else{
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Error al añadir el producto al carrito
+                    </div>';
+            }
         }else{
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Error al añadir el producto al carrito
-                  </div>';
+            $query = 'INSERT INTO carrito (UsuarioID_Usr, ProductoID_Prod, cant_Prod) 
+                  VALUES ('.$Id_Usr.','.$Id_Prod.','.$Cantidad_Prod.');';
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se añadio el producto al carrito
+                    </div>';
+            }else{
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Error al añadir el producto al carrito
+                    </div>';
+            }
         }
     }
 
@@ -116,7 +134,7 @@
         $fila = $datos->fetch_assoc();
         $numImg = $fila["COUNT(*)"] + 1;
         $query = 'INSERT INTO img_producto (Direccion_Img, ProductoId_Prod, Num_Img) 
-                  VALUES ('.$direccion_Img.','.$Id_Prod.','.$numImg.');';
+                  VALUES ("'.$direccion_Img.'",'.$Id_Prod.','.$numImg.');';
         if($conexion->query($query) === TRUE){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Se añadio la imagen
@@ -143,4 +161,11 @@
                   </div>';
         }
     }
+
+    function crearCompra($idUsuario, $alias_dir, $cupon){
+        global $conexion;
+        $query = '';
+    }
+
+
 ?>
