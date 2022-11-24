@@ -1,7 +1,15 @@
 <?php 
     include("conexion.php");
-
     function login($cuentaUsr, $Contra_usr){
+        /**
+         * Si el usuario existe retorna un array asociativo de
+         * toda la información de la tabla en el usuario.
+         * Los nombres del array asociativo son los mismo que los
+         * de la tabla, es decir 
+         * array[ID_Usr], retorna el id del usuario
+         * array[Correo_usr], retorna el correo del usuario
+         * y de esta forma con los demás parametros.
+         */
         global $conexion;
         $query = 'SELECT * FROM usuario WHERE Cuenta_usr="'.$cuentaUsr.'" AND Contrasena_usr="'.MD5($Contra_usr).'";';
         $datos = $conexion->query($query);
