@@ -1,5 +1,7 @@
 <?php
   date_default_timezone_set('America/Mexico_City');
+  include_once("sources/PHP/altas.php");
+  include_once("sources/PHP/consultas.php");
 
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
     $username = $_POST["usuario"];
@@ -30,13 +32,13 @@
     $contrasena = $_POST["contra"];
     $nombre = $_POST["nombre"];
     $correo = $_POST["correo"];
-    $usr = new Usuario($nombre,$correo,$username,$contrasena);
+    $usr = new Usuario($username,$correo,$contrasena,$nombre);
 
     if(session_status()==PHP_SESSION_ACTIVE){
       session_unset();
       session_destroy();
     }
-    if(writeUsuario($usr)){
+    if(crearUsuario($usr)){
       session_start();
       $_SESSION["usuario"] = $usr;
       echo "
