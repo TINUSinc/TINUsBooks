@@ -1,7 +1,6 @@
 <?php
   date_default_timezone_set('America/Mexico_City');
-  include_once("sources/PHP/altas.php");
-  include_once("/sources/PHP/usuarios/manejoUsuarios.php");
+
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
@@ -31,7 +30,8 @@
     $contrasena = $_POST["contra"];
     $nombre = $_POST["nombre"];
     $correo = $_POST["correo"];
-    $usr = new Usuario($username,$correo,$contrasena,$nombre);
+    $usr = new Usuario($nombre,$correo,$username,$contrasena);
+
     if(session_status()==PHP_SESSION_ACTIVE){
       session_unset();
       session_destroy();
@@ -104,42 +104,7 @@
                   if(empty($_SESSION)){
                     echo "Inciar sesión/Registrarse";
                   }else{
-                    $saludo = "";
-                    switch (date("H")) {
-                      case 20:
-                      case 21:
-                      case 22:
-                      case 23:
-                      case 0:
-                      case 1:
-                      case 2:
-                      case 3:
-                      case 4:
-                      case 5:
-                        $saludo = "Buenas noches";
-                        break;
-                      case 6:
-                      case 7:
-                      case 8:
-                      case 9:
-                      case 10:
-                      case 11:
-                      case 12:
-                        $saludo = "Buenos días";
-                        break;
-                      case 13:
-                      case 14:
-                      case 15:
-                      case 16:
-                      case 17:
-                      case 18:
-                      case 19:
-                        $saludo = "Buenas tardes";
-                        break;
-                      default:
-                        $saludo = "Indeterminado";
-                        break;
-                    }
+                    $saludo = "Bienvenido";
                     $nom = $_SESSION['usuario']->getNombre(); echo "$saludo, $nom";
                   }?>
               </button>
