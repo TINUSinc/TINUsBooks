@@ -1,6 +1,7 @@
 <?php
   date_default_timezone_set('America/Mexico_City');
-
+  include_once("sources/PHP/altas.php");
+  include_once("/sources/PHP/usuarios/manejoUsuarios.php");
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
@@ -30,8 +31,7 @@
     $contrasena = $_POST["contra"];
     $nombre = $_POST["nombre"];
     $correo = $_POST["correo"];
-    $usr = new Usuario($nombre,$correo,$username,$contrasena);
-    
+    $usr = new Usuario($username,$correo,$contrasena,$nombre);
     if(session_status()==PHP_SESSION_ACTIVE){
       session_unset();
       session_destroy();
@@ -209,6 +209,14 @@
                             </div>
                             <div class="col-9">
                               <input type="password" id="contra" class="form-control" name="contra" required>
+                            </div>
+                          </div>
+                          <div class="row align-items-center mx-1 my-4">
+                            <div class="col-3">
+                              <label for="contra2" class="col-form-label text-black">Confirme la contraseña:</label>
+                            </div>
+                            <div class="col-9">
+                              <input type="password" id="contra" class="form-control" name="contra2" required>
                             </div>
                           </div>
                           <div class="row align-items-center mx-1 my-4">
