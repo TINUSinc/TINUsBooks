@@ -158,7 +158,7 @@
                               <label for="usuario" class="col-form-label text-black">Usuario:</label>
                             </div>
                             <div class="col-9">
-                              <input type="text" id="usuario" class="form-control" name="usuario" required>
+                              <input type="text" id="usuario" class="form-control" name="usuario" value="$_COOKIE['usuario']" required>
                             </div>
                           </div>
                           <div class="row align-items-center mx-4 my-4">
