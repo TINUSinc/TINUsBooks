@@ -5,6 +5,9 @@
     $bd='tinusbooks';
     $conexion = new mysqli($servidor,$cuenta,$password,$bd);
     if($conexion->connect_errno):
+    include_once("altas.php");
+    include_once("bajas.php");
+    include_once("consultas.php");
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -19,4 +22,4 @@
             </div>
         </body>
         </html>
-    <?endif?>
+<?endif?>
