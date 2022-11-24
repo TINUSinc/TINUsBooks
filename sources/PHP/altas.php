@@ -101,4 +101,21 @@
         }
     }
 
+    function crearImagenCarrito($Id_Prod, $direccion_Img){
+        $query = 'SELECT COUNT(*) FROM img_producto WHERE ProductoId_Prod ='.$Id_Prod.';';
+        if(($datos = $conexion->query($query)) === TRUE){
+            echo $datos;
+        }
+        $query = 'INSERT INTO img_producto (Direccion_Img, ProductoId_Prod, Num_Img) 
+                  VALUES ('.$direccion_Img.','.$Id_Prod.','.$numImg.');';
+        if($conexion->query($query) === TRUE){
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Se añadio el producto al carrito
+                  </div>';
+        }else{
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Error al añadir el producto al carrito
+                  </div>';
+        }
+    }
 ?>
