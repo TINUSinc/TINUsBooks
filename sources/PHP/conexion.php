@@ -7,6 +7,6 @@
     if($conexion->connect_errno):
 ?>
 <div class="alert alert-danger" role="alert">
-Error al conctar con la base de datos: <?php echo $conexion->connect_error?>
+Error al conectar con la base de datos: <?php echo $conexion->connect_error?>
 </div>
 <?php endif?>

@@ -1,6 +1,5 @@
 <?php 
     include_once("conexion.php");
-
     if(isset($_POST["idProd"])){
         $producto = getProducto($_POST["idProd"]);
         echo json_encode($producto);
@@ -34,6 +33,29 @@
         }
         return 0;
     }
+    
+    function bloquear($usr){
+        global $conexion;
+        $query = 'UPDATE usuario SET Bloqueo=1 WHERE Cuenta_Usr="'.$usr.'";';
+        $res = $conexion->query($query);
+        return 0;
+    }
+    function getBloquear($usr){
+        global $conexion;
+        $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
+        $res = $conexion->query($query);
+            $res = $res->fetch_assoc();
+            $id = $res["Bloqueo"];
+            return $id;
+    }
+    function setUsuario($cuentaUsr,$contra){
+        $query = 'MD5('.$contra.')';
+        $cifrado = $conexion->query($query);
+        $query = 'SELECT * FROM usuario WHERE Cuenta_use ="'.$cuentaUsr.'";';
+        $respuestaUsr = $conexion->query($query);
+        if($cifrado = $respuestaUsr["contrasena"])
+        return $respuestaUsr;
+    }
 
     function getCategorias(){
         //Estructura que retorna:
@@ -65,7 +87,7 @@
         }
         return $retornar;
     }
-
+    
     function getImagenesProd($Id_Prod){
         /**
          * Estructura:

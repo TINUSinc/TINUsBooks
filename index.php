@@ -1,4 +1,5 @@
 <?php
+    include 'sources/header.php';
     include("sources/PHP/altas.php");
     include("sources/PHP/consultas.php");
     include("sources/PHP/bajas.php");
