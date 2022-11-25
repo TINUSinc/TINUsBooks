@@ -1,5 +1,5 @@
 <?php 
-    include("conexion.php");
+    include_once("conexion.php");
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de

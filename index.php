@@ -1,6 +1,8 @@
 <?php
     include("sources/PHP/altas.php");
     include("sources/PHP/consultas.php");
+    include("sources/PHP/bajas.php");
+    include("sources/PHP/actualizaciones.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +19,7 @@
 </head>
 <body>
     <?php
-        
+        borrarProducto(9);
     ?>
 </body>
 </html>
