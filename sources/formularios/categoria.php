@@ -31,7 +31,7 @@
         
         <div class="text-center mt-5">
             <h1 class="h2 mb-3 font-weight-normal">Registro de categorias</h1>
-            <form style="max-width:300px;margin:auto;">
+            <form style="max-width:300px;margin:auto;" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div class="form-group">
                     <select name="categoria" id="categoria" tittle="Elige una categoria de la lista" required>
                         <option value=0>Nueva Categoria</option>
