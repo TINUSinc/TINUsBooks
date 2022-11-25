@@ -1,5 +1,5 @@
 <?php
-    include("sources/header.php");
+    include_once("sources/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,6 @@
 
 </head>
 <body>
-    <a href="/sources/Administracion/adminPage.php"></a>
+    <a href="/sources/Administracion/adminPage.php">Administracion</a>
 </body>
 </html>

@@ -1,10 +1,10 @@
 <?php
-  include("sources/PHP/altas.php");
-  include("sources/PHP/consultas.php");
-  include("sources/PHP/bajas.php");
-  include("sources/PHP/actualizaciones.php");
-  session_start();
   date_default_timezone_set('America/Mexico_City');
+  include 'PHP/altas.php';
+  include 'PHP/consultas.php';
+  include 'PHP/bajas.php';
+  include 'PHP/actualizaciones.php';
+  session_start();
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST" && getBloquear($_POST["usuario"])==0){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
