@@ -162,7 +162,7 @@
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Error al añadir la imagen
+                    Error al añadir la imagen'.$e.'
                   </div>';
         }
     }

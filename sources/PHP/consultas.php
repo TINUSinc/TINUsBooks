@@ -10,6 +10,10 @@
         echo json_encode(getCategoria($_POST["idCat"]));
     }
 
+    if(isset($_POST["idProdImg"])){
+        echo json_encode(getImagenesProd($_POST["idProdImg"]));
+    }
+
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de
