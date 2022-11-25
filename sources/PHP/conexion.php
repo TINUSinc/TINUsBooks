@@ -1,8 +1,8 @@
 <?php 
-    $servidor='localhost';
+    $servidor='localhost:33065';
     $cuenta='root';
     $password='';
-    $bd='tinustest';
+    $bd='tinusbooks';
     $conexion = new mysqli($servidor,$cuenta,$password,$bd);
     if($conexion->connect_errno):
 ?>
