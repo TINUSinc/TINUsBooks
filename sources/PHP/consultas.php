@@ -59,23 +59,110 @@
 
     function getProductos(){
         global $conexion;
-        $query = 'SELECT * FROM producto';
+        $query = 'SELECT * FROM producto, categoria WHERE producto.CategoriaId_Cat=categoria.ID_Cat;';
         $datos = $conexion->query($query);
-        $categorias = getCategorias();
         $retornar = array();
         while($fila = $datos->fetch_assoc()){
-            $fila["CategoriaNom_Cat"] = $categorias[$fila["CategoriaId_Cat"]];
             $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
             $retornar[$fila["ID_Prod"]] = $fila;
         }
         return $retornar;
     }
 
-    function getUsuario($Id_Usr){
+    function getProductosCategoria($idCategoria){
         global $conexion;
-        $query = 'SELECT * FROM usuario WHERE ID_Usr='.$Id_Usr.';';
+        $query = 'SELECT * FROM producto, categoria WHERE CategoriaId_Cat='.$idCategoria.' AND producto.CategoriaId_Cat=categoria.ID_Cat;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
+            $retornar[$fila["ID_Prod"]] = $fila;
+        }
+        return $retornar;
+    }
+
+    function encontrarProducto($Nombre_Prod){
+        global $conexion;
+        $query = 'SELECT * FROM producto, categoria WHERE Nombre_Prod LIKE "%'.$Nombre_Prod.'%" AND producto.CategoriaId_Cat=categoria.ID_Cat;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
+    }
+
+    function getUsuario($idUsuario){
+        global $conexion;
+        $query = 'SELECT * FROM usuario WHERE ID_Usr='.$idUsuario.';';
         $datos = $conexion->query($query);
         $datos = $datos->fetch_assoc();
         return $datos;
     }
+
+    function getPaises(){
+        global $conexion;
+        $query = 'SELECT * FROM pais;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$fila["ID_Pais"]] = $fila;
+        }
+        return $retornar;
+    }
+
+    function getDirecciones($idUsuario){
+        global $conexion;
+        $query = 'SELECT * FROM usr_direccion, pais WHERE UsuarioId_Usr='.$idUsuario.' AND usr_direccion.ID_Pais=pais.ID_Pais;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
+    }
+
+    function getVentasMes($mes, $año){
+        /**
+         * Retorna las ventas en el mes y año seleccionado.
+         * -Si en el mes no hay ventas, retorna 0
+         * -Si en el mes hay ventas retorna un array con array de la siguiente forma:
+         * $array[numeroDeConsulta]["Nom_Cat_Prod"] indica el nombre de la categoria
+         * $array[numeroDeConsulta]["venta"] indica la cnatidad vendida de la categoria
+         * se recomienda usar un foreach para recorrerlo, de forma que quede:
+         * foreach($array as $numConsulta){
+         *  $numConsulta["Nom_Cat_Prod"]; //Indica la categoria
+         *  $numConsulta["venta"]; //Indica la cantidad vendida
+         * }
+         * 
+         */
+        global $conexion;
+        $fechaInicio = date("Y-m-d", mktime(0,0,0,$mes,1,$año));
+        $fechaFinal = date("Y-m-d", mktime(0,0,0,($mes+1),0,$año));
+        $query = 'SELECT Precio_Prod, Cant_Prod, Descuento_Prod, Nom_Cat_Prod FROM detalle_compra D, compra C WHERE C.Fecha_Compra>="'.$fechaInicio.'" AND C.Fecha_Compra<="'.$fechaFinal.'" AND C.Id_Compra=D.idCompra_Compra ;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        $calculo = array();
+        $cont = 0;
+        if($datos->num_rows){
+            while($fila = $datos->fetch_assoc()){
+                if(!isset($calculo[$fila["Nom_Cat_Prod"]])) $calculo[$fila["Nom_Cat_Prod"]] = 0;
+                $calculo[$fila["Nom_Cat_Prod"]] += ($fila["Precio_Prod"] * $fila["Cant_Prod"])-($fila["Precio_Prod"] * $fila["Cant_Prod"] * $fila["Descuento_Prod"] * 0.01);
+            }
+            $query = 'SELECT DISTINCT Nom_Cat_Prod FROM detalle_compra';
+            $datos = $conexion->query($query);
+            while($fila = $datos->fetch_assoc()){
+                $fila["venta"] = $calculo[$fila["Nom_Cat_Prod"]];
+                $retornar[$cont] = $fila;
+                $cont++;
+            }
+            return $retornar;
+        }
+        return 0;
+    }  
 ?>

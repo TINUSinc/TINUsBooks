@@ -17,7 +17,7 @@
 </head>
 <body>
     <?php
-        print_r(login("Geras1","12345"));
+        
     ?>
 </body>
 </html>
