@@ -1,9 +1,10 @@
 <?php
+  session_start();
   date_default_timezone_set('America/Mexico_City');
   include_once("sources/PHP/altas.php");
   include_once("sources/PHP/consultas.php");
   include_once("sources/PHP/usuarios/usuario.php");
-  if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
+  if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST" && getBloquear($_POST["usuario"])==0){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
     $usr = login($username,$contrasena);
@@ -16,19 +17,33 @@
       $_SESSION["usuario"] = $usr;
       if(!empty($_POST["cookieUSR"])){
         setcookie ("usuario",$_POST["usuario"],time()+3600);
-    }
-    else{
-        setcookie("usuario","");
-    }
+      }
+      else{
+          setcookie("usuario","");
+      }
     }else{
-      echo "
-        <div class='container-fluid'>
-            <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
-                Compruebe sus datos e intetelo de nuevo.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>
-        </div>
-      ";
+      if($_SESSION["intentos"]<3){
+        $_SESSION["intentos"]+=1;
+        echo "
+          <div class='container-fluid'>
+              <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                  Compruebe sus datos e intetelo de nuevo.".$_SESSION["intentos"]."
+                  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+              </div>
+          </div>
+        ";
+      }
+      else{
+        bloquear($username);
+        echo "
+          <div class='container-fluid'>
+              <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                  Maximos intentos alcanzados, cuenta bloqueada.
+                  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+              </div>
+          </div>
+        ";
+      }
     }
   }elseif(isset($_POST["registro"]) && !isset($_POST["sesion"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     $username = $_POST["usuario"];
@@ -63,6 +78,15 @@
         </div>
       ";
     }
+  }elseif( getBloquear($_POST["usuario"])==1){
+    echo "
+        <div class='container-fluid'>
+            <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                CUENTA BLOQUEADA, <a href='#'>Recuperar</a>
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        </div>
+      ";
   }
 ?>
 <!DOCTYPE html>
@@ -104,10 +128,10 @@
               </li>
             </ul>
             <div class="btn-group">
-              <button type="button" class="btn btn-secondary <?php if(!empty($_SESSION)){echo "disabled";}?>" 
+              <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
                       data-bs-toggle="modal" data-bs-target="#modalIniciar">
                 <?php 
-                  if(empty($_SESSION)){
+                  if(!isset($_SESSION["usuario"])){
                     echo "Inciar sesión/Registrarse";
                   }else{
                     $saludo = "Bienvenido";
@@ -219,16 +243,16 @@
               <span class="visually-hidden">Toggle Dropdown</span>
               </button>
               <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start ">
-                <li><a class="dropdown-item <?php if(empty($_SESSION)){echo "disabled";}?>" href="/sources/pagUsuarios.php">Perfil</a></li>
+                <li><a class="dropdown-item <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/pagUsuarios.php">Perfil</a></li>
                 <?php 
                   if(!empty($_SESSION) && isset($_SESSION['usuario'])):
                 ?>
                 <?php if($_SESSION['usuario']['Admin'] == 1): ?>
-                <li><a class="dropdown-item <?php if(empty($_SESSION)){echo "disabled";}?>" href="/sources/pagAdminExamenes.php">Examenes Usuarios</a></li>
+                <li><a class="dropdown-item <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/pagAdminExamenes.php">Examenes Usuarios</a></li>
                 <?php endif ?>
                 <?php endif ?>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item <?php if(empty($_SESSION)){echo "disabled";}?>" href="/sources/php/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
+                <li><a class="dropdown-item <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/php/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
               </ul>
             </div>
           </div>

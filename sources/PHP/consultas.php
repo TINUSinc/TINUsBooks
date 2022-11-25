@@ -20,6 +20,20 @@
         }
         return 0;
     }
+    function bloquear($usr){
+        global $conexion;
+        $query = 'UPDATE usuario SET Bloqueo=1 WHERE Cuenta_Usr="'.$usr.'";';
+        $res = $conexion->query($query);
+        return 0;
+    }
+    function getBloquear($usr){
+        global $conexion;
+        $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
+        $res = $conexion->query($query);
+            $res = $res->fetch_assoc();
+            $id = $res["Bloqueo"];
+            return $id;
+    }
     function setUsuario($cuentaUsr,$contra){
         $query = 'MD5('.$contra.')';
         $cifrado = $conexion->query($query);
