@@ -6,7 +6,7 @@
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
-    $usr = crearUsuario($username,$contrasena);
+    $usr = setUsuario($username,$contrasena);
     if(!empty($usr)){
       if(session_status()==PHP_SESSION_ACTIVE){
         session_unset();
@@ -30,15 +30,16 @@
   }elseif(isset($_POST["registro"]) && !isset($_POST["sesion"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
+    $confirmacion = $_POST["contra2"];
     $nombre = $_POST["nombre"];
     $correo = $_POST["correo"];
-    $usr = new Usuario($username,$correo,$contrasena,$nombre);
+    $usr = new Usuario($username,$correo,$contrasena, $confirmacion,$nombre);
 
     if(session_status()==PHP_SESSION_ACTIVE){
       session_unset();
       session_destroy();
     }
-    if(crearUsuario($username,$correo,$contrasena,$nombre)){
+    if(crearUsuario($username,$correo,$contrasena,$confirmacion,$nombre)){
       session_start();
       $_SESSION["usuario"] = $usr;
       echo "

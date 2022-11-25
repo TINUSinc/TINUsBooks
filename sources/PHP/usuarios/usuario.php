@@ -17,7 +17,10 @@
         public function getUsuario(){
             return $this->usuario;
         }
-
+        public function getNombre(){
+            return $this->nombre;
+        }
+        
     }
     
 ?>
