@@ -1,5 +1,18 @@
 <?php 
     include_once("conexion.php");
+    if(isset($_POST["idProd"])){
+        $producto = getProducto($_POST["idProd"]);
+        echo json_encode($producto);
+    }
+
+    if(isset($_POST["idCat"])){
+        echo json_encode(getCategoria($_POST["idCat"]));
+    }
+
+    if(isset($_POST["idProdImg"])){
+        echo json_encode(getImagenesProd($_POST["idProdImg"]));
+    }
+
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de
@@ -20,6 +33,7 @@
         }
         return 0;
     }
+    
     function bloquear($usr){
         global $conexion;
         $query = 'UPDATE usuario SET Bloqueo=1 WHERE Cuenta_Usr="'.$usr.'";';
@@ -42,6 +56,7 @@
         if($cifrado = $respuestaUsr["contrasena"])
         return $respuestaUsr;
     }
+
     function getCategorias(){
         //Estructura que retorna:
         /**
@@ -55,12 +70,24 @@
         $count = 0;
         $retornar = array();
         while($fila = $datos->fetch_assoc()){
-            $retornar[$fila["ID_cat"]] = $fila["Nom_Cat"];
+            $retornar[$count] = $fila;
             $count++;
         }
         return $retornar;
     }
 
+    function getCategoria($idCategoria){
+        global $conexion;
+        $query = 'SELECT * FROM categoria WHERE ID_Cat='.$idCategoria.';';
+        $datos = $conexion->query($query);
+        $count = 0;
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $retornar = $fila;
+        }
+        return $retornar;
+    }
+    
     function getImagenesProd($Id_Prod){
         /**
          * Estructura:
@@ -86,6 +113,18 @@
         while($fila = $datos->fetch_assoc()){
             $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
             $retornar[$fila["ID_Prod"]] = $fila;
+        }
+        return $retornar;
+    }
+
+    function getProducto($idProducto){
+        global $conexion;
+        $query = 'SELECT * FROM producto, categoria WHERE producto.CategoriaId_Cat=categoria.ID_Cat AND producto.ID_Prod='.$idProducto.';';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
+            $retornar = $fila;
         }
         return $retornar;
     }

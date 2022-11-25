@@ -95,7 +95,7 @@
         $query = 'INSERT INTO producto (Nombre_Prod, Descripcion_Prod, Precio_Prod,
                   Existencias_Prod, CategoriaId_Cat, Descuento_Prod) VALUES
                   ("'.$Nombre_Prod.'","'.$Descripcion_Prod.'",'.$Precio_Prod.','
-                  .$Existencias_Prod.','.$Categoria_Prod.','.$Descuento_Prod.');';
+                  .$Existencias_Prod.','.$Categoria_Prod.','.$Descuento_Prod.');';        
         try{
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
