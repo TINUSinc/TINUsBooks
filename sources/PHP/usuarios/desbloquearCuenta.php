@@ -1,6 +1,6 @@
 <?php
-include_once("sources/PHP/consultas.php");
-include_once("sources/header.php");
+include_once("/sources/PHP/consultas.php");
+include_once("/sources/header.php");
 ?>
 
 <!DOCTYPE html>

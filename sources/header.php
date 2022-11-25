@@ -1,9 +1,9 @@
 <?php
   session_start();
   date_default_timezone_set('America/Mexico_City');
-  include_once("sources/PHP/altas.php");
-  include_once("sources/PHP/consultas.php");
-  include_once("sources/PHP/usuarios/usuario.php");
+  include_once 'sources/PHP/altas.php';
+  include_once 'sources/PHP/consultas.php';
+  include_once 'sources/PHP/usuarios/usuario.php';
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST" && getBloquear($_POST["usuario"])==0){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
@@ -78,15 +78,17 @@
         </div>
       ";
     }
-  }elseif( getBloquear($_POST["usuario"])==1){
-    echo "
+  }else{
+    if( getBloquear($_POST["usuario"])==1){
+        echo "
         <div class='container-fluid'>
             <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
-                CUENTA BLOQUEADA, <a href='PHP/usuarios/desbloquearCuenta.php'>Recuperar</a>
+                CUENTA BLOQUEADA, <a href='sources/PHP/usuarios/desbloquearCuenta.php'>Recuperar</a>
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
         </div>
-      ";
+        ";
+    }
   }
 ?>
 <!DOCTYPE html>
