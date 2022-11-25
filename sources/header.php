@@ -6,7 +6,7 @@
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
-    $usr = getUsuario($username,$contrasena);
+    $usr = crearUsuario($username,$contrasena);
     if(!empty($usr)){
       if(session_status()==PHP_SESSION_ACTIVE){
         session_unset();
