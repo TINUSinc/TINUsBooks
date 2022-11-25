@@ -18,4 +18,21 @@
                   </div>';
         }
     }
+
+    function modificarCategoria($IdCat, $NomCat, $Descripcion_Cat){
+        global $conexion;
+        $query = 'UPDATE categoria SET Nom_Cat="'.$NomCat.'", 
+                  Descripcion_Cat="'.$Descripcion_Cat.'" WHERE ID_Cat='.$IdCat.';';
+        try{
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se modifico la catrgoria
+                      </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Error al modificar la categoria
+                  </div>';
+        }
+    }
 ?>

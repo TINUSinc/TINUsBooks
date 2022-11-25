@@ -6,6 +6,10 @@
         echo json_encode($producto);
     }
 
+    if(isset($_POST["idCat"])){
+        echo json_encode(getCategoria($_POST["idCat"]));
+    }
+
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de
@@ -42,6 +46,18 @@
         while($fila = $datos->fetch_assoc()){
             $retornar[$count] = $fila;
             $count++;
+        }
+        return $retornar;
+    }
+
+    function getCategoria($idCategoria){
+        global $conexion;
+        $query = 'SELECT * FROM categoria WHERE ID_Cat='.$idCategoria.';';
+        $datos = $conexion->query($query);
+        $count = 0;
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $retornar = $fila;
         }
         return $retornar;
     }

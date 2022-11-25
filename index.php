@@ -21,5 +21,8 @@
     <a href="sources/formularios/productos.php">Pagina de productos</a>
     <br>
     <a href="sources/formularios/categoria.php">Pagina de categoria</a>
+    <?php 
+        print_r(getCategoria(1));
+    ?>
 </body>
 </html>
