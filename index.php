@@ -18,8 +18,8 @@
 
 </head>
 <body>
-    <?php
-        borrarProducto(9);
-    ?>
+    <a href="sources/formularios/productos.php">Pagina de productos</a>
+    <br>
+    <a href="sources/formularios/categoria.php">Pagina de categoria</a>
 </body>
 </html>

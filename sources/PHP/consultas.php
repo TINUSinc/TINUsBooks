@@ -1,5 +1,11 @@
 <?php 
     include_once("conexion.php");
+
+    if(isset($_POST["idProd"])){
+        $producto = getProducto($_POST["idProd"]);
+        echo json_encode($producto);
+    }
+
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de
@@ -34,7 +40,7 @@
         $count = 0;
         $retornar = array();
         while($fila = $datos->fetch_assoc()){
-            $retornar[$fila["ID_cat"]] = $fila["Nom_Cat"];
+            $retornar[$count] = $fila;
             $count++;
         }
         return $retornar;
@@ -65,6 +71,18 @@
         while($fila = $datos->fetch_assoc()){
             $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
             $retornar[$fila["ID_Prod"]] = $fila;
+        }
+        return $retornar;
+    }
+
+    function getProducto($idProducto){
+        global $conexion;
+        $query = 'SELECT * FROM producto, categoria WHERE producto.CategoriaId_Cat=categoria.ID_Cat AND producto.ID_Prod='.$idProducto.';';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $fila["Imagenes"] = getImagenesProd($fila["ID_Prod"]);
+            $retornar = $fila;
         }
         return $retornar;
     }
