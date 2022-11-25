@@ -1,5 +1,5 @@
 var producto = document.querySelector('#producto');
-var nombre = document.getElementById("nombre");
+var nombre = document.getElementById("nombreProd");
 var precio = document.getElementById("precio");
 var descripcion = document.getElementById("descripcion");
 var existencias = document.getElementById("existencias");
@@ -12,6 +12,7 @@ producto.addEventListener("change", function(){
         $.post("../PHP/consultas.php",{"idProd":seleccion},"json")
         .done(function(data,textstatus,jqXHR){
             var datos = JSON.parse(data);
+            console.log(datos);
             nombre.value = datos.Nombre_Prod;
             precio.value = datos.Precio_Prod;
             descripcion.value = datos.Descripcion_Prod;
@@ -32,8 +33,8 @@ producto.addEventListener("change", function(){
                 if(datos.length === 0){
                     carrousel.innerHTML = "<div class='carousel-item active'><img src='/media/productos/No image.jpg' class='d-block w-100'></div>";
                 }
-
             });
+            
         })
         .fail(function(jqXHR, textStatus, errorThrown){
             console.log("Solicitud fallada");

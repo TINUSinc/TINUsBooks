@@ -1,11 +1,8 @@
 <?php
-    include("../PHP/altas.php");
-    include("../PHP/consultas.php");
-    include("../PHP/bajas.php");
-    include("../PHP/actualizaciones.php");
+    include '../Administracion/adminNavBar.php';
     if(isset($_POST["peticionProducto"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
         if(!$_POST["producto"]){
-            crearProucto($_POST["nombre"],$_POST["descripcion"],$_POST["precio"],$_POST["existencias"],$_POST["categoria"],$_POST["descuento"]);
+            crearProucto($_POST["nombreProd"],$_POST["descripcion"],$_POST["precio"],$_POST["existencias"],$_POST["categoria"],$_POST["descuento"]);
             $productos = encontrarProducto($_POST["nombre"]);
             $producto = $productos[0];
             $target = "../../media/productos/";
@@ -20,8 +17,8 @@
                 }
             }
         }else{
-            modificarProducto($_POST["producto"],$_POST["nombre"],$_POST["descripcion"],$_POST["precio"],$_POST["existencias"],$_POST["categoria"],$_POST["descuento"]);
-            $productos = encontrarProducto($_POST["nombre"]);
+            modificarProducto($_POST["producto"],$_POST["nombreProd"],$_POST["descripcion"],$_POST["precio"],$_POST["existencias"],$_POST["categoria"],$_POST["descuento"]);
+            $productos = encontrarProducto($_POST["nombreProd"]);
             $producto = $productos[0];
             $target = "../../media/productos/";
             if(!empty($_FILES["imagen"]["name"][0])){
@@ -80,7 +77,7 @@
                                 ?>
                             </select>
                             <br>
-                            <input required type="text" class="mt-2 form-control" placeholder="Nombre del producto" id="nombre" name="nombre">
+                            <input required type="text" class="mt-2 form-control" placeholder="Nombre del producto" id="nombreProd" name="nombreProd">
                             <input required type="number" step="any" class="mt-2 form-control" placeholder="Precio" id="precio" name="precio">
                             <label for="categoria">Elige una categoria</label>
                             <br>

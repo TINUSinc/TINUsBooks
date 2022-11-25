@@ -15,6 +15,6 @@
 
 </head>
 <body>
-    <a href="/sources/Administracion/adminPage.php">Administracion</a>
+    <a href="/sources/Administracion/adminNavBar.php">Administracion</a>
 </body>
 </html>

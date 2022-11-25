@@ -10,11 +10,13 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se modifico el producto
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Error al modificar el producto
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
     }
@@ -27,11 +29,13 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se modifico la catrgoria
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Error al modificar la categoria
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
     }

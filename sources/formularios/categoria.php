@@ -1,8 +1,5 @@
 <?php 
-    include("../PHP/altas.php");
-    include("../PHP/consultas.php");
-    include("../PHP/bajas.php");
-    include("../PHP/actualizaciones.php");
+    include '../Administracion/adminNavBar.php';
     if(isset($_POST["peticionCategoria"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
         if(!$_POST["categoria"]){
             crearCategoria($_POST["nombre"],$_POST["descripcion"]);
@@ -43,7 +40,7 @@
                         ?>
                     </select>
                     <br>
-                    <input required type="text" class="form-control" placeholder="Nombre de la categoria" name="nombre" id="nombre">
+                    <input required type="text" class="form-control" placeholder="Nombre de la categoria" name="nombre" id="nomCat">
                     <input required type="text" class="mt-2 form-control" placeholder="Tipo de categoria" name="descripcion" id="descripcion">
                     <div class="mt-3 d-grid gap-2">
                         <button class="btn btn-dark btn-lg" name="peticionCategoria">Enviar</button>
