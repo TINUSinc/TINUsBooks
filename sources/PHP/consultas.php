@@ -49,6 +49,7 @@
             return $id;
     }
     function setUsuario($cuentaUsr,$contra){
+        global $conexion;
         $query = 'MD5('.$contra.')';
         $cifrado = $conexion->query($query);
         $query = 'SELECT * FROM usuario WHERE Cuenta_use ="'.$cuentaUsr.'";';

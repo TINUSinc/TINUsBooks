@@ -2,7 +2,7 @@
     $servidor='localhost';
     $cuenta='root';
     $password='';
-    $bd='tinustest';
+    $bd='tinusbooks';
     $conexion = new mysqli($servidor,$cuenta,$password,$bd);
     if($conexion->connect_errno):
 ?>

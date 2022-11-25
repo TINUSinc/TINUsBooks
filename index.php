@@ -1,9 +1,5 @@
 <?php
-    include 'sources/header.php';
-    include("sources/PHP/altas.php");
-    include("sources/PHP/consultas.php");
-    include("sources/PHP/bajas.php");
-    include("sources/PHP/actualizaciones.php");
+    include("sources/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,10 +15,6 @@
 
 </head>
 <body>
-    <a href="sources/formularios/productos.php">Pagina de productos</a>
-    <br>
-    <a href="sources/formularios/categoria.php">Pagina de categoria</a>
-    <br>
-    <a href="sources/Administracion/adminPage.php">Pagina de administracion</a>
+    
 </body>
 </html>
