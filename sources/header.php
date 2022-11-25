@@ -82,7 +82,7 @@
     echo "
         <div class='container-fluid'>
             <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
-                CUENTA BLOQUEADA, <a href='#'>Recuperar</a>
+                CUENTA BLOQUEADA, <a href='PHP/usuarios/desbloquearCuenta.php'>Recuperar</a>
                 <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
         </div>
