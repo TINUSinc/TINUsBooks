@@ -6,7 +6,7 @@
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST"){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
-    $usr = setUsuario($username,$contrasena);
+    $usr = login($username,$contrasena);
     if(!empty($usr)){
       if(session_status()==PHP_SESSION_ACTIVE){
         session_unset();
@@ -14,9 +14,12 @@
       }
       session_start();
       $_SESSION["usuario"] = $usr;
-      if(isset($_POST["cookieUSR"])){
-        $_COOKIE["usuario"] = $usr;
-      }
+      if(!empty($_POST["cookieUSR"])){
+        setcookie ("usuario",$_POST["usuario"],time()+3600);
+    }
+    else{
+        setcookie("usuario","");
+    }
     }else{
       echo "
         <div class='container-fluid'>
@@ -108,7 +111,7 @@
                     echo "Inciar sesión/Registrarse";
                   }else{
                     $saludo = "Bienvenido";
-                    $nom = $_SESSION['usuario']->getNombre(); echo "$saludo, $nom";
+                    $nom = $_SESSION['usuario']['Nombre_Usr']; echo "$saludo, $nom";
                   }?>
               </button>
               <div class="modal fade" id="modalIniciar" tabindex="-1" aria-labelledby="modalIniciar" aria-hidden="true">
@@ -126,7 +129,7 @@
                               <label for="usuario" class="col-form-label text-black">Usuario:</label>
                             </div>
                             <div class="col-9">
-                              <input type="text" id="usuario" class="form-control" name="usuario" value="<?php if(!empty($_COOKIE['usuario']))echo $_COOKIE['usuario']?>" required>
+                              <input type="text" id="usuario" class="form-control" name="usuario" value="<?php if(!empty($_COOKIE['usuario']))echo $_COOKIE['usuario'];?>" required>
                             </div>
                           </div>
                           <div class="row align-items-center mx-4 my-4">
@@ -139,7 +142,7 @@
                           </div>
                           <div class="input-group mb-3">
                               <div class="input-group-text">
-                                <input class="form-check-input mt-0" type="checkbox" name="cookieUSR" id="cookieUSR">
+                                <input class="form-check-input mt-0" type="checkbox" name="cookieUSR" id="cookieUSR" <?php if(!empty($_COOKIE['usuario'])){ echo 'checked';}?>>
                               </div>
                               <label for="cookie" class="form-control">¿Desea guardar su usuario para despues?</label>
                             </div>
@@ -220,7 +223,7 @@
                 <?php 
                   if(!empty($_SESSION) && isset($_SESSION['usuario'])):
                 ?>
-                <?php if($_SESSION['usuario']->getAdmin()): ?>
+                <?php if($_SESSION['usuario']['Admin'] == 1): ?>
                 <li><a class="dropdown-item <?php if(empty($_SESSION)){echo "disabled";}?>" href="/sources/pagAdminExamenes.php">Examenes Usuarios</a></li>
                 <?php endif ?>
                 <?php endif ?>
