@@ -9,4 +9,6 @@
         }
         return $random_string;
     }
+
+    $captcha = generate_string();
 ?>
