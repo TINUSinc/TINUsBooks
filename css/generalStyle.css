@@ -8,6 +8,7 @@ Manny*/
 }
 
 #image_captcha {
+    background-color: teal;
     width: 152px;
     padding: 2px;
     font-weight: 400;
