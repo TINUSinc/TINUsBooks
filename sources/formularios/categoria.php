@@ -11,7 +11,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
         <title>Categoria</title>
         <meta name="viewport" content="width=device-width">
