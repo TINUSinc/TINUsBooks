@@ -31,6 +31,13 @@
                     $cont++;
                 }
             }
+            if(isset($_POST["nuevoNombreImagen"]) && isset($_POST["imagenesSubidas"]) && $_POST["imagenesSubidas"]!=0){
+                $anteriorNombre = $_POST["imagenesSubidas"];
+                $nuevoNombre = $_POST["nuevoNombreImagen"];
+                if(modificarImagen($producto["ID_Prod"],$anteriorNombre,$nuevoNombre)){
+                    rename($target.$anteriorNombre,$target.$nuevoNombre);
+                }
+            }
         }
     }
     if(isset($_POST["eliminacionProducto"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -48,6 +55,7 @@
     <head>
         <title>Productos</title>
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/css/admin-productos.css">
         <script src="../../js/productos.js" defer></script>
     </head>
     <body>
@@ -70,8 +78,14 @@
                                 ?>
                             </select>
                             <br>
-                            <input required type="text" class="mt-2 form-control" placeholder="Nombre del producto" id="nombreProd" name="nombreProd">
-                            <input required type="number" step="any" class="mt-2 form-control" placeholder="Precio" id="precio" name="precio">
+                            <div class="form-floating mb-3">
+                                <input required type="text" class="form-control" placeholder="Nombre del producto" id="nombreProd" name="nombreProd">
+                                <label for="nombreProd">Nombre del producto</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input required type="number" step="any" class="mt-2 form-control" placeholder="Precio" id="precio" name="precio">
+                                <label for="precio">Precio</label>
+                            </div>
                             <label for="categoria">Elige una categoria</label>
                             <br>
                             <select class="form-select" required name="categoria" id="categoria" title="Elige una categoria de la lista">
@@ -82,15 +96,34 @@
                                     }
                                 ?>
                             </select>
-                            <textarea required class="mt-2 form-control" name="descripcion" rows="5" cols="60" placeholder="Descripcion" id="descripcion"></textarea> 
-                            <input required type="number" class="mt-2 form-control" placeholder="Existencias" name="existencias" id="existencias">
-                            <input required type="number" class="mt-2 form-control" placeholder="Descuento" name="descuento" max="99" min="0" id="descuento">
+                            <div class="form-floating mb-3">
+                                <textarea required class="mt-2 form-control" name="descripcion" style="height: 100px;" cols="60" placeholder="Descripcion" id="descripcion"></textarea> 
+                                <label for="descripcion">Descripcion</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input required type="number" class="form-control" placeholder="Existencias" name="existencias" id="existencias">
+                                <label for="existencias">Existencias</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input required type="number" class="form-control" placeholder="Descuento" name="descuento" max="99" min="0" id="descuento">
+                                <label for="descuento">Descuento</label>
+                            </div>
+                            <br>
+                            <label for="imagenesSubidas">Imagen</label>
+                            <select placeholder="Imagenes" class="form-select" name="imagenesSubidas" id="imagenesSubidas" title="Imagenes subidas">
+                                <option value="0" disabled selected>Sin Imagenes</option>
+                            </select>
+                            <div class="form-floating mb-3">
+                                <input disabled type="text" class="mt-2 form-control" id="nuevoNombreImagen" placeholder="Nuevo nombre" name="nuevoNombreImagen">
+                                <label for="nuevoNombreImagen">Nuevo nombre</label>
+                            </div>
+                            <label for="imagen">Subir imagen</label>
                             <input type="file" class="mt-2 form-control" multiple accept=".png, .jpg" name="imagen[]" id="imagen" value="Selecciona imagenes">
                             <div class="mt-3 d-grid gap-2">
-                                <button class="btn btn-dark btn-lg" name="peticionProducto">Enviar</button>
+                                <button id="btnEnviar" class="btn btn-dark btn-lg" name="peticionProducto">Crear</button>
                             </div>
                             <div class="mt-3 d-grid gap-2">
-                                <button class="btn btn-danger btn-lg" name="eliminacionProducto">Eliminar</button>
+                                <button id="btnEliminar" class="btn btn-danger btn-lg" name="eliminacionProducto" disabled>Eliminar</button>
                             </div>
                             <br>
                         </div>
@@ -98,7 +131,7 @@
                 </div>
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <h3>Imagenes</h3>
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" >
                         <div class="carousel-inner" id="carrousel">
                         <div class='carousel-item active'><img src='/media/productos/No image.jpg' class='d-block w-100'></div>
                         </div>
