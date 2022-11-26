@@ -16,9 +16,10 @@
       $_SESSION["usuario"] = $usr;
       if(!empty($_POST["cookieUSR"])){
         setcookie ("usuario",$_POST["usuario"],time()+3600);
-    }
-    else{
+        setcookie("contrasena",$_POST["contra"],time()+3600);
+    }else{
         setcookie("usuario","");
+        setcookie("contrasena","");
     }
     }else{
       echo "
@@ -137,7 +138,7 @@
                               <label for="contra" class="col-form-label text-black">Contraseña:</label>
                             </div>
                             <div class="col-9">
-                              <input type="password" id="contra" class="form-control" name="contra" required>
+                              <input type="password" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contrasena']))echo $_COOKIE['contrasena'];?> required>
                             </div>
                           </div>
                           <div class="input-group mb-3">
