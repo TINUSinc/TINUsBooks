@@ -1,4 +1,6 @@
-<?php
+
+//Usar esta configuracion para el servidor 000webhost
+/*<?php
     $servidor = "localhost";
     $bd ="id19819763_tinusbooks";
     $cuenta = "id19819763_username";
@@ -24,4 +26,17 @@
         '> </p>";
     }
 
+?>*/
+//Usar esta configuracion para el localhost personal
+<?php 
+    $servidor='localhost';
+    $cuenta='root';
+    $password='';
+    $bd='tinusbooks';
+    $conexion = new mysqli($servidor,$cuenta,$password,$bd);
+    if($conexion->connect_errno):
 ?>
+<div class="alert alert-danger" role="alert">
+Error al conectar con la base de datos: <?php echo $conexion->connect_error?>
+</div>
+<?php endif?>
