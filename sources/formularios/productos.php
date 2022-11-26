@@ -34,8 +34,9 @@
             if(isset($_POST["nuevoNombreImagen"]) && isset($_POST["imagenesSubidas"]) && $_POST["imagenesSubidas"]!=0){
                 $anteriorNombre = $_POST["imagenesSubidas"];
                 $nuevoNombre = $_POST["nuevoNombreImagen"];
-                rename($target.$anteriorNombre,$target.$nuevoNombre);
-                modificarImagen($producto["ID_Prod"],$anteriorNombre,$nuevoNombre);
+                if(modificarImagen($producto["ID_Prod"],$anteriorNombre,$nuevoNombre)){
+                    rename($target.$anteriorNombre,$target.$nuevoNombre);
+                }
             }
         }
     }
@@ -113,7 +114,7 @@
                                 <option value="0" disabled selected>Sin Imagenes</option>
                             </select>
                             <div class="form-floating mb-3">
-                                <input type="text" class="mt-2 form-control" id="nuevoNombreImagen" placeholder="Nuevo nombre" name="nuevoNombreImagen">
+                                <input disabled type="text" class="mt-2 form-control" id="nuevoNombreImagen" placeholder="Nuevo nombre" name="nuevoNombreImagen">
                                 <label for="nuevoNombreImagen">Nuevo nombre</label>
                             </div>
                             <label for="imagen">Subir imagen</label>

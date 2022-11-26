@@ -30,13 +30,15 @@
                         Se modifico el nombre de la imagen
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
+                return true;
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Error al modificar el nombre de la imagen '.$e.'
+                    Error al modificar el nombre de la imagen
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
+        return false;
     }
 
     function modificarCategoria($IdCat, $NomCat, $Descripcion_Cat){
