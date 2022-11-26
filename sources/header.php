@@ -279,7 +279,7 @@
               <?php endif ?>
               <?php endif ?>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/php/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
+              <li><a class="dropdown-item" <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
             </ul>
           </div>
         </div>
