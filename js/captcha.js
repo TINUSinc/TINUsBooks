@@ -18,12 +18,10 @@ function generate() {
 function printmsg() {
     // Check whether the input is equal
     // to generated captcha or not
-    if (document.getElementById("").value == captcha.innerHTML) {
-        var s = (document.getElementById("key").innerHTML = "Matched");
-        generate();
+    if (document.getElementById("submit_captcha").value == captcha.innerHTML) {
+        return true;
     } else {
-        var s = (document.getElementById("key").innerHTML = "not Matched");
-        generate();
+        return false;
     }
 }
 
