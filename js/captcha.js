@@ -26,3 +26,30 @@ function printmsg() {
         generate();
     }
 }
+
+//Forma alternativa (Semi-funciona)
+/*
+var captcha;
+function generate() {
+    document.getElementById("submit_captcha").value = "";
+
+    $.post("sources/PHP/generar_captcha.php", {}, "json").
+    done(function (data, textStatus, jqXHR) {
+        var string = data;
+        captcha = document.getElementById("image_captcha");
+        captcha.innerHTML = string;
+    });
+}
+
+function printmsg() {
+    // Check whether the input is equal
+    // to generated captcha or not
+    if (document.getElementById("").value == captcha.innerHTML) {
+        var s = (document.getElementById("key").innerHTML = "Matched");
+        generate();
+    } else {
+        var s = (document.getElementById("key").innerHTML = "not Matched");
+        generate();
+    }
+}
+*/
