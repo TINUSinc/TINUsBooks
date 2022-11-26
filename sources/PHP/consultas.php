@@ -37,16 +37,19 @@
     function bloquear($usr){
         global $conexion;
         $query = 'UPDATE usuario SET Bloqueo=1 WHERE Cuenta_Usr="'.$usr.'";';
-        $res = $conexion->query($query);
-        return 0;
+        $conexion->query($query);
     }
     function getBloquear($usr){
         global $conexion;
         $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
-            $res = $res->fetch_assoc();
+        $res = $res->fetch_assoc();
+        if(!empty($res)){
             $id = $res["Bloqueo"];
-            return $id;
+        }else{
+            $id=0;
+        }
+        return $id;
     }
     function setUsuario($cuentaUsr,$contra){
         global $conexion;
@@ -162,6 +165,14 @@
         $datos = $conexion->query($query);
         $datos = $datos->fetch_assoc();
         return $datos;
+    }
+
+    function getUsuarioNom($cuentaUsr){
+        global $conexion;
+        $query = 'SELECT COUNT(*) FROM usuario WHERE Cuenta_usr="'.$cuentaUsr.'";';
+        $datos = $conexion->query($query);
+        $datos = $datos->fetch_assoc();
+        return $datos["COUNT(*)"];
     }
 
     function getPaises(){
