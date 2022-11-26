@@ -131,7 +131,7 @@
               <a class="nav-link text-white" href="#">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Acerda De</a>
+              <a class="nav-link text-white" href="#">Acerca De</a>
             </li>
           </ul>
           <div class="btn-group">
