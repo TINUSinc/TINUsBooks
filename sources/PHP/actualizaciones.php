@@ -64,9 +64,9 @@
             }
         }elseif($contrasena1 == $contrasena2){
             if(MD5($administrador) == MD5("FullTINU247")){
-                $query = 'UPDATE usuario SET Admin=1, Nombre_Usr="'.$nombreUsr.'", Correo_usr="'.$correo.'", Contrasena_usr="'.MD5($contraNueva).'" WHERE Cuenta_usr="'.$cuentaUsr.'";';
+                $query = 'UPDATE usuario SET Admin=1, Nombre_Usr="'.$nombreUsr.'", Correo_usr="'.$correo.'", Contrasena_usr="'.MD5($contrasena1).'" WHERE Cuenta_usr="'.$cuentaUsr.'";';
             }else{
-                $query = 'UPDATE usuario SET Nombre_Usr="'.$nombreUsr.'", Correo_usr="'.$correo.'", Contrasena_usr="'.MD5($contraNueva).' WHERE Cuenta_usr="'.$cuentaUsr.'";';
+                $query = 'UPDATE usuario SET Nombre_Usr="'.$nombreUsr.'", Correo_usr="'.$correo.'", Contrasena_usr="'.MD5($contrasena1).'" WHERE Cuenta_usr="'.$cuentaUsr.'";';
             }
             try{
                 if($conexion->query($query) === TRUE){
@@ -77,10 +77,15 @@
                 }
             }catch(Exception $e){
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        Error al modificar el usuario
+                        Error al modificar el usuario '.$e.'
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
+        }else{
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        Error al modificar el usuario, compruebe los datos
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
         }
     }
     function desbloquearCuenta($cuentaUsuario){
