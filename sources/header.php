@@ -1,9 +1,11 @@
 <?php
   session_start();
   date_default_timezone_set('America/Mexico_City');
-  include_once 'sources/PHP/altas.php';
-  include_once 'sources/PHP/consultas.php';
-  include_once 'sources/PHP/usuarios/usuario.php';
+  include_once 'PHP/altas.php';
+  include_once 'PHP/consultas.php';
+  include_once 'PHP/usuarios/usuario.php';
+  include("PHP/generar_captcha.php");
+
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST" && getBloquear($_POST["usuario"])==0){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
@@ -46,6 +48,7 @@
       }
     }
   }elseif(isset($_POST["registro"]) && !isset($_POST["sesion"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
+
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
     $confirmacion = $_POST["contra2"];
@@ -97,15 +100,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/generalStyle.css">
+
     <!-- CSS only -->
     <link rel="shortcut icon" href="/media/TICERIco.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/headerStyle.css">
+    <link rel="stylesheet" href="css/headerStyle.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous" defer></script>
     
+    <script src="js/captcha.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
+
+    <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
-<body>
+<body onload="generate()">
     <nav class="navbar navbar-expand-md navbar-dark text-black">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
@@ -232,7 +242,28 @@
                               <input type="email" id="correo" class="form-control" name="correo" required>
                             </div>
                           </div>
-                        </div>
+
+
+
+
+
+                          <div id="captcha_container">
+
+                            <div id="user-input">
+                                <input type="text" id="submit_captcha" placeholder="Captcha code" />
+                            </div>
+
+                            <div onclick="generate()">
+                                <i class="fas fa-sync"></i>
+                            </div>
+
+                            <div id="image_captcha" selectable="False"> </div>
+                            </div>
+                          </div>
+
+
+
+
                       </div>
                       <div class="modal-footer">
                         <button type="submit" class="btn btn-primary" name="registro">Registrarse</button>
