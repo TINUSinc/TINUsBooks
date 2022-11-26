@@ -9,6 +9,4 @@
         }
         return $random_string;
     }
-
-    echo generate_string();
 ?>
