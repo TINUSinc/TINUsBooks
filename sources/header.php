@@ -129,7 +129,7 @@
 
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
-<body onload="generate()">
+<body onload="generate(), generate2()">
     <nav class="navbar navbar-expand-md navbar-dark text-black">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"></a>
@@ -189,7 +189,27 @@
                           <div class="col-9">
                             <input type="password" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contra']))echo $_COOKIE['contra'];?>" required>
                           </div>
+                        </div> 
+                        <div class="row algin-items-center">
+                          
+                          <div id="captcha_container2">
+
+                            <div id="user-input2">
+                                <input type="text" id="submit_captcha2" placeholder="Captcha code" />
+                            </div>
+
+                            <div onclick="generate2()">
+                                <i class="fas fa-sync"></i>
+                            </div>
+
+                            <div id="image_captcha2" selectable="False" class="test"> </div>
+                          </div>
+                            <br><br>
+                            <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
+                            <br><br>
+                            <p id="mensaje_captcha2"></p>
                         </div>
+
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                               <input class="form-check-input mt-0" type="checkbox" name="cookieUSR" id="cookieUSR" <?php if(!empty($_COOKIE['usuario'])){ echo 'checked';}?>>
@@ -200,7 +220,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-target="#modalRegistro" data-bs-toggle="modal">Registrarse</button>
-                      <button type="submit" class="btn btn-primary" name="sesion" >Inciar sesión</button>
+                      <button disabled type="submit" class="btn btn-primary" name="sesion" id="button-login">Iniciar sesión</button>
                     </div>
                   </form>
                 </div>
@@ -272,7 +292,7 @@
                             <div id="image_captcha" selectable="False"> </div>
                           </div>
                           <br><br>
-                          <div id="btn_captcha" onclick="printmsg()" selectable="False" >Verificar Captcha</div>
+                          <div id="btn_captcha2" onclick="printmsg()" selectable="False" class="btn btn-light">Verificar Captcha</div>
                           <br><br>
                           <p id="mensaje_captcha"></p>
                         </div>

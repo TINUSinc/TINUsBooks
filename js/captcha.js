@@ -14,7 +14,21 @@ function generate() {
     captcha = document.getElementById("image_captcha");
     captcha.innerHTML = string;
 }
+function generate2() {
+    document.getElementById("submit_captcha2").value = "";
 
+    const randomchar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    var string = "";
+
+
+    for (let i = 0; i < 8; i++) {
+        string += randomchar.charAt(Math.random() * randomchar.length)
+    }
+
+    captcha = document.getElementById("image_captcha2");
+    captcha.innerHTML = string;
+}
 function printmsg() {
     // Check whether the input is equal
     // to generated captcha or not
@@ -26,6 +40,19 @@ function printmsg() {
         generate();
     }
 }
+
+function printmsg2() {
+    // Check whether the input is equal
+    // to generated captcha or not
+    if (document.getElementById("submit_captcha2").value == captcha.innerHTML) {
+        document.getElementById("mensaje_captcha2").innerHTML = "Captcha correcto";
+        document.getElementById("button-login").removeAttribute("disabled");
+    }else{
+        document.getElementById("mensaje_captcha2").innerHTML = "Captcha incorrecto, intentalo de nuevo";
+        generate2();
+    }
+}
+  
 
 //Forma alternativa (Semi-funciona)
 /*
