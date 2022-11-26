@@ -19,9 +19,11 @@ function printmsg() {
     // Check whether the input is equal
     // to generated captcha or not
     if (document.getElementById("submit_captcha").value == captcha.innerHTML) {
-        return true;
-    } else {
-        return false;
+        document.getElementById("mensaje_captcha").innerHTML = "Captcha correcto";
+        document.getElementById("boton_registro").removeAttribute("disabled");
+    }else{
+        document.getElementById("mensaje_captcha").innerHTML = "Captcha incorrecto, intentalo de nuevo";
+        generate();
     }
 }
 
