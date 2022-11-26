@@ -60,8 +60,10 @@
     if(!getUsuarioNom($username)){
       crearUsuario($username,$correo,$contrasena,$confirmacion,$nombre);
       $usr = login($username,$contrasena);
-      session_start();
-      $_SESSION["usuario"] = $usr;
+      if($usr != 0){
+        session_start();
+        $_SESSION["usuario"] = $usr;
+      }
     }else{
       echo "
           <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
@@ -272,14 +274,14 @@
               <span class="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start">
-              <li><a class="dropdown-item" <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
+              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
               <?php if(isset($_SESSION['usuario'])): ?>
               <?php if($_SESSION['usuario']['Admin'] == 1): ?>
-              <li><a class="dropdown-item" <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
+              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
               <?php endif ?>
               <?php endif ?>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
+              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
             </ul>
           </div>
         </div>

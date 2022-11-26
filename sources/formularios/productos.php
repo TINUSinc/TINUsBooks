@@ -3,7 +3,7 @@
     if(isset($_POST["peticionProducto"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
         if(!$_POST["producto"]){
             crearProucto($_POST["nombreProd"],$_POST["descripcion"],$_POST["precio"],$_POST["existencias"],$_POST["categoria"],$_POST["descuento"]);
-            $productos = encontrarProducto($_POST["nombre"]);
+            $productos = encontrarProducto($_POST["nombreProd"]);
             $producto = $productos[0];
             $target = "../../media/productos/";
             if(!empty($_FILES["imagen"]["name"][0])){

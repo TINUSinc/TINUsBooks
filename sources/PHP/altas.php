@@ -20,6 +20,11 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
+        }else{
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Las contraseñas no coinciden, intente registrarse de nuevo.
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
         }
     }
 
@@ -178,7 +183,7 @@
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Error al añadir la imagen
+                    Error al añadir la imagen '.$e.'
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
