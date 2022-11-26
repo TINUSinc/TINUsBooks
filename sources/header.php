@@ -37,13 +37,27 @@
         ";
       }
       else{
-        bloquear($username);
-        echo "
-            <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
-                Maximos intentos alcanzados, cuenta bloqueada.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>
-        ";
+        if(getUsuarioNom($username)){
+          bloquear($username);
+          echo "
+              <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                  Maximos intentos alcanzados, cuenta bloqueada.
+                  <form action='".$_SERVER["PHP_SELF"]."' method='POST'>
+                    <input class='btn btn-danger' type='submit' name='restaurar' value='Restaurar'></input>
+                    <input type='hidden' value='".$_POST["usuario"]."' name='usuario'></input>
+                  </form>
+                  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+              </div>
+          ";
+        }else{
+          echo "
+              <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                  No se encuentra esa cuenta de usuario, revise los datos o regístrese
+                  <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+              </div>
+          ";
+        }
+        
       }
     }
   }elseif(isset($_POST["registro"]) && !isset($_POST["sesion"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
@@ -289,7 +303,7 @@
     </nav>
     <?php if(isset($_POST["restaurar"])):?>
       <script>
-          swal("Contrasena restaurada", "Se ha desbloqueado su cuenta y se le ha mandado un correo con una contrasena provisional", "success", {
+          swal("Contrasena restaurada", "Se ha desbloqueado su cuenta y se le ha mandado un correo con una contraseña provisional", "success", {
             button: "Aceptar",
           });
       </script>
