@@ -253,8 +253,12 @@
                             </div>
 
                             <div id="image_captcha" selectable="False"> </div>
-                            </div>
                           </div>
+                          <br><br>
+                          <div id="btn_captcha" onclick="printmsg()" selectable="False" >Verificar Captcha</div>
+                          <br><br>
+                          <p id="mensaje_captcha"></p>
+                        </div>
 
 
 
@@ -262,7 +266,7 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-primary" name="registro">Registrarse</button>
+                      <button disabled id="boton_registro" type="submit" class="btn btn-primary" name="registro">Registrarse</button>
                     </div>
                   </form>
                 </div>

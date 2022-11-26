@@ -20,6 +20,7 @@ Manny*/
     font-size: x-large;
     border: rgb(28, 84, 207) 2px solid;
     margin-left: 10px;
+    
 }
 
 #captcha_container div {
@@ -32,5 +33,10 @@ Manny*/
 #hidden_string {
     display: none;
 }
+
+#btn_captcha {
+    width:fit-content;
+}
+
 /*Manny
 //--------------------------Fin de css para el captcha ----------------------------------------------*/
