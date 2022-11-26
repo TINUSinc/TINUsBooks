@@ -25,6 +25,7 @@
       }
       else{
           setcookie("usuario","");
+          setcookie ("contra","");
       }
     }else{
       if($_SESSION["intentos"]<2 && getUsuarioNom($username)){
