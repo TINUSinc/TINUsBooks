@@ -11,11 +11,13 @@
                 if($conexion->query($query) === TRUE){
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                             Se creo correctamente el usuario
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                 }
             }catch(Exception $e){
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Error al crear el usuario
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
         }
@@ -29,11 +31,13 @@
             if($conexion->query($query) === TRUE){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Se añadio el país
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Error, no se añadio el país
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
         
@@ -47,11 +51,13 @@
             if($conexion->query($query) === TRUE){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Se creo el cupón
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Error al añadir el cupón
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
     }
@@ -64,6 +70,7 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se creo el costo de envio
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
             }
         }catch(Exception $e){
@@ -81,11 +88,13 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se añadio la categoria
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Error al añadir la categoria
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
     }
@@ -100,11 +109,13 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se añadio el producto
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                       </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Error al añadir el producto
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
     }
@@ -122,11 +133,13 @@
                 if($conexion->query($query) === TRUE){
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                             Se añadio el producto al carrito
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                 }
             }catch(Exception $e){
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Error al añadir el producto al carrito
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
         }else{
@@ -136,11 +149,13 @@
                 if($conexion->query($query) === TRUE){
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                             Se añadio el producto al carrito
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>';
                 }
             }catch(Exception $e){
                 echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Error al añadir el producto al carrito
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
         }
@@ -158,11 +173,13 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se añadio la imagen
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                     Error al añadir la imagen
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   </div>';
         }
     }
@@ -176,11 +193,13 @@
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                         Se añadio la dirección
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-            Error al añadir la direccion
+                Error al añadir la direccion
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
         }        
     }
