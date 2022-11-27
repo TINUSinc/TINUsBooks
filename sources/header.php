@@ -161,43 +161,31 @@
                   </div>
                   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <div class="modal-body">
-                      <div class="container-fluid">
-                        <div class="row align-items-center mx-4 my-4">
-                          <div class="col-3">
-                            <label for="usuario" class="col-form-label text-black">Usuario:</label>
-                          </div>
-                          <div class="col-9">
-                            <input type="text" id="usuario" class="form-control" name="usuario" value="<?php if(!empty($_COOKIE['usuario']))echo $_COOKIE['usuario'];?>" required>
-                          </div>
+                      <div class="form-group">
+                        <div class="form-floating mb-3">
+                          <input type="text" placeholder="Usuario" id="usuario" class="form-control" name="usuario" value="<?php if(!empty($_COOKIE['usuario']))echo $_COOKIE['usuario'];?>" required>
+                          <label for="usuario">Usuario</label>
                         </div>
-                        <div class="row align-items-center mx-4 my-4">
-                          <div class="col-3">
-                            <label for="contra" class="col-form-label text-black">Contraseña:</label>
-                          </div>
-                          <div class="col-9">
-                            <input type="password" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contra']))echo $_COOKIE['contra'];?>" required>
-                          </div>
-                        </div> 
+                        <div class="form-floating mb-3">
+                          <input type="password" placeholder="Contraseña" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contra']))echo $_COOKIE['contra'];?>" required>
+                          <label for="contra">Contraseña</label>
+                        </div>
                         <div class="row algin-items-center">
-                          
                           <div id="captcha_container2">
-
-                            <div id="user-input2">
-                                <input type="text" id="submit_captcha2" placeholder="Captcha code" />
+                            <div class="form-floating mb-3" id="user-input2">
+                              <input type="text" class="form-control" id="submit_captcha2" placeholder="Captcha code">
+                              <label for="submit_captcha2">Captcha code</label>
                             </div>
-
                             <div onclick="generate2()" id="recharge2">
-                                <i class="fas fa-sync"></i>
+                              <i class="fas fa-sync"></i>
                             </div>
-
-                            <div id="image_captcha2" selectable="False" class="test"> </div>
+                            <div id="image_captcha2" selectable="False" class="test"></div>
                           </div>
-                            <br><br>
+                          <div class="row justify-content-center text-center">
                             <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
-                            <br><br>
                             <p id="mensaje_captcha2"></p>
+                          </div>
                         </div>
-
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                               <input class="form-check-input mt-0" type="checkbox" name="cookieUSR" id="cookieUSR" <?php if(!empty($_COOKIE['usuario'])){ echo 'checked';}?>>
@@ -223,75 +211,45 @@
                   </div>
                   <form autocomplete="off" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                     <div class="modal-body">
-                      <div class="container-fluid">
-                        <div class="row align-items-center mx-1 my-4">
-                          <div class="col-3">
-                            <label for="usuario" class="col-form-label text-black">Crea un usuario:</label>
-                          </div>
-                          <div class="col-9">
-                            <input type="text" id="usuario" class="form-control" name="usuario" required>
-                          </div>
+                      <div class="form-group">
+                        <div class="form-floating mb-3">
+                          <input type="text" placeholder="Crea un usuario" id="usuario" class="form-control" name="usuario" required>
+                          <label for="usuario" class="col-form-label text-black">Crea un usuario</label>
                         </div>
-                        <div class="row align-items-center mx-1 my-4">
-                          <div class="col-3">
-                            <label for="contra" class="col-form-label text-black">Crea una contraseña:</label>
-                          </div>
-                          <div class="col-9">
-                            <input type="password" id="contra" class="form-control" name="contra" required>
-                          </div>
+                        <div class="form-floating mb-3">
+                          <input type="password" placeholder="Crea una contraseña" id="contra" class="form-control" name="contra" required>
+                          <label for="contra" class="col-form-label text-black">Crea una contraseña</label>
                         </div>
-                        <div class="row align-items-center mx-1 my-4">
-                          <div class="col-3">
-                            <label for="contra2" class="col-form-label text-black">Confirme la contraseña:</label>
-                          </div>
-                          <div class="col-9">
-                            <input type="password" id="contra" class="form-control" name="contra2" required>
-                          </div>
+                        <div class="form-floating mb-3">
+                          <input type="password" placeholder="Confirme la contraseña" id="contra" class="form-control" name="contra2" required>
+                          <label for="contra2" class="col-form-label text-black">Confirme la contraseña</label>
                         </div>
-                        <div class="row align-items-center mx-1 my-4">
-                          <div class="col-3">
-                            <label for="nombre" class="col-form-label text-black">Nombre completo:</label>
-                          </div>
-                          <div class="col-9">
-                            <input type="text" id="nombre" class="form-control" name="nombre" required>
-                          </div>
+                        <div class="form-floating mb-3">
+                          <input type="text" placeholder="Nombre completo" id="nombre" class="form-control" name="nombre" required>
+                          <label for="nombre" class="col-form-label text-black">Nombre completo</label>
                         </div>
-                        <div class="row align-items-center mx-1 my-4">
-                          <div class="col-3">
-                            <label for="correo" class="col-form-label text-black">Correo electrónico:</label>
+                        <div class="form-floating mb-3">
+                          <input type="email" placeholder="Correo electrónico" id="correo" class="form-control" name="correo" required>
+                          <label for="correo" class="col-form-label text-black">Correo electrónico</label>
+                        </div>
+                        <div id="captcha_container">
+                          <div class="form-floating mb-3" id="user-input">
+                              <input type="text" class="form-control" id="submit_captcha" placeholder="Captcha code">
+                              <label for="submit_captcha">Captcha code</label>
                           </div>
-                          <div class="col-9">
-                            <input type="email" id="correo" class="form-control" name="correo" required>
+                          <div onclick="generate()" id="recharge">
+                              <i class="fas fa-sync"></i>
                           </div>
-
-
-
-
-                          <div id="captcha_container">
-
-                            <div id="user-input">
-                                <input type="text" id="submit_captcha" placeholder="Captcha code" />
-                            </div>
-
-                            <div onclick="generate()" id="recharge">
-                                <i class="fas fa-sync"></i>
-                            </div>
-
-                            <div id="image_captcha" selectable="False"> </div>
-                          </div>
-                          <br><br>
+                          <div id="image_captcha" selectable="False"> </div>
+                        </div>
+                        <div class="row justify-content-center text-center">
                           <div id="btn_captcha2" onclick="printmsg()" selectable="False" class="btn btn-light">Verificar Captcha</div>
-                          <br><br>
                           <p id="mensaje_captcha"></p>
                         </div>
-
-
-
-
                       </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button disabled id="boton_registro" type="submit" class="btn btn-primary" name="registro">Registrarse</button>
+                      <div class="modal-footer">
+                        <button disabled id="boton_registro" type="submit" class="btn btn-primary" name="registro">Registrarse</button>
+                      </div>
                     </div>
                   </form>
                 </div>
