@@ -20,8 +20,8 @@
       session_start();
       $_SESSION["usuario"] = $usr;
       if(!empty($_POST["cookieUSR"])){
-        setcookie ("usuario",$username,time()+3600);
-        setcookie ("contra",$contrasena,time()+3600);
+        setcookie ("usuario",$username,time()+3600,'/');
+        setcookie ("contra",$contrasena,time()+3600,'/');
       }
       else{
           setcookie("usuario","");
