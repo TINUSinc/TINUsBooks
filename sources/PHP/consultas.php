@@ -57,6 +57,7 @@
         $cifrado = $conexion->query($query);
         $query = 'SELECT * FROM usuario WHERE Cuenta_use ="'.$cuentaUsr.'";';
         $respuestaUsr = $conexion->query($query);
+        $respuestaUsr = $respuestaUsr->fetch_assoc();
         if($cifrado = $respuestaUsr["contrasena"])
         return $respuestaUsr;
     }
