@@ -1,4 +1,15 @@
 <?php
+  session_start();
+  if(isset($_POST["sesion"]) && isset($_POST["cookieUSR"])){
+    if(!empty($_POST["cookieUSR"])){
+      setcookie ("usuario",$_POST["usuario"],time()+3600,'/');
+      setcookie ("contra",$_POST["contra"],time()+3600,'/');
+    }
+    else{
+        setcookie("usuario","");
+        setcookie ("contra","");
+    }
+}
   date_default_timezone_set('America/Mexico_City');
   include 'PHP/altas.php';
   include 'PHP/consultas.php';
@@ -6,27 +17,13 @@
   include 'PHP/actualizaciones.php';
   include 'PHP/mail/info.php';
   include("PHP/generar_captcha.php");
-  session_start();
   if(!isset($_SESSION["intentos"])) $_SESSION["intentos"] = 0;
   if(isset($_POST["sesion"]) && !isset($_POST["registro"]) && $_SERVER["REQUEST_METHOD"] == "POST" && getBloquear($_POST["usuario"])==0){ 
     $username = $_POST["usuario"];
     $contrasena = $_POST["contra"];
     $usr = login($username,$contrasena);
     if(!empty($usr)){
-      if(session_status()==PHP_SESSION_ACTIVE){
-        session_unset();
-        session_destroy();
-      }
-      session_start();
       $_SESSION["usuario"] = $usr;
-      if(!empty($_POST["cookieUSR"])){
-        setcookie ("usuario",$username,time()+3600,'/');
-        setcookie ("contra",$contrasena,time()+3600,'/');
-      }
-      else{
-          setcookie("usuario","");
-          setcookie ("contra","");
-      }
     }else{
       if($_SESSION["intentos"]<2 && getUsuarioNom($username)){
         $_SESSION["intentos"]+=1;
@@ -68,15 +65,10 @@
     $confirmacion = $_POST["contra2"];
     $nombre = $_POST["nombre"];
     $correo = $_POST["correo"];
-    if(session_status()==PHP_SESSION_ACTIVE){
-      session_unset();
-      session_destroy();
-    }
     if(!getUsuarioNom($username)){
       crearUsuario($username,$correo,$contrasena,$confirmacion,$nombre);
       $usr = login($username,$contrasena);
       if($usr != 0){
-        session_start();
         $_SESSION["usuario"] = $usr;
       }
     }else{

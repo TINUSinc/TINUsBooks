@@ -14,6 +14,8 @@
             }
             $query = 'DELETE FROM img_producto WHERE ProductoId_Prod='.$idProducto.';';
             $conexion->query($query);
+            $query = 'DELETE FROM carrito WHERE ProductoID_Prod='.$idProducto.';';
+            $conexion->query($query);
             $query = 'DELETE FROM producto WHERE ID_Prod='.$idProducto.';';
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">

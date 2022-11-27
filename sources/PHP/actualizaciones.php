@@ -149,23 +149,5 @@
         }
         return $random_string;
     }
-    function getProd($usr){
-        global $conexion;
-        $query = 'SELECT * FROM carrito WHERE UsuarioID_Usr="'.$usr["ID_Usr"].'";';
-        $res = $conexion->query($query);
-        return $res;
-    }
-    function getNameProd($idProd){
-        global $conexion;
-        $query = 'SELECT Nombre_Prod FROM producto WHERE ID_Prod="'.$idProd.'";';
-        $res = $conexion->query($query);
-        return $res["Nombre_Prod"];
-    }
-    function getDescProd($idProd){
-        global $conexion;
-        $query = 'SELECT Descripcion_Prod FROM producto WHERE ID_Prod="'.$idProd.'";';
-        $res = $conexion->query($query);
-        return $res["Descripcion_Prod"];
-    }
     
 ?>
