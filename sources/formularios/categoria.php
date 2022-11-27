@@ -32,8 +32,14 @@
                             ?>
                         </select>
                         <br>
-                        <input required type="text" class="form-control" placeholder="Nombre de la categoria" name="nombre" id="nomCat">
-                        <input required type="text" class="mt-2 form-control" placeholder="Tipo de categoria" name="descripcion" id="descripcion">
+                        <div class="form-floating mb-3">
+                            <input required type="text" class="form-control" placeholder="Nombre de la categoria" name="nombre" id="nomCat">
+                            <label for="nomCat">Nombre de la categoria</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input required type="text" class="mt-2 form-control" placeholder="Descripcion de la categoria" name="descripcion" id="descripcion">
+                            <label for="descripcion">Descripcion de la categoria</label>
+                        </div>
                         <div class="mt-3 d-grid gap-2">
                             <button class="btn btn-dark btn-lg" name="peticionCategoria">Enviar</button>
                         </div>
