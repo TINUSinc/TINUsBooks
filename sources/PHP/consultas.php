@@ -81,6 +81,25 @@
         return $retornar;
     }
 
+    function getCarrito($idUsr){
+        //Estructura que retorna:
+        /**
+         * Arreglo
+         * Array[ID_Cat] obtiene el nombre de la categoria
+         * Se recomienda recuperar los datos mediante un for each
+         */
+        global $conexion;
+        $query = 'SELECT * FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
+        $datos = $conexion->query($query);
+        $count = 0;
+        $retornar = array();
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$count] = $fila;
+            $count++;
+        }
+        return $retornar;
+    }
+
     function getCategoria($idCategoria){
         global $conexion;
         $query = 'SELECT * FROM categoria WHERE ID_Cat='.$idCategoria.';';

@@ -25,10 +25,6 @@ h1 {
   box-shadow: 0 8px 16px 0 rgb(172, 18, 18);
 }
 
-.card-img-top{
-  
-}
-
 .card a {
   color: initial;
 }
@@ -42,30 +38,14 @@ h1 {
 }
 
 /*styles de efecto hover en imagen*/
-figure{
-  margin: 0;
-  padding: 0;
-  box-sizing:border-box;
-}
 
-figure{
-  width: 350px;
-  height: 250px;
-  overflow: hidden;
+.imagen{
   cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 1px 5px 25px rgba(0,0,0,0.5);
-  margin: none;
-}
-
-figure img{
-  width: auto;
-  height: 100%;
   transition:1.0s;
   will-change: transform;
 }
 
-figure img:hover{
+.imagen:hover{
   transform: translateX(-30%);
   filter: brightness(80%);
 }
