@@ -22,47 +22,45 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <?php 
         $productos=getProductos();
-        foreach($productos as $producto){
-          if(isset($_SESSION["usuario"])){
-              echo '
-              <div class="col">
-                <div class="card">
-                  <img class="card-img-top imagen" src="/media/productos/'.$producto["Imagenes"][1].'" alt="'.$producto["Imagenes"][1].'">
-                  <div class="card-body">
-                    <h5 class="card-title">'.$producto["Nombre_Prod"].'</h5>
-                    <p class="card-text descripcion">'.$producto["Descripcion_Prod"].'</p>
-                    <form method="POST" action="'.$_SERVER["PHP_SELF"].'">
-                      <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
-                      <button style="color: rgb(172, 18, 18);" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
-                    </form>
-                    <br>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-boxes-stacked"></i>'.$producto["Existencias_Prod"].'<i class="fa fa-tags"></i>$'.$producto["Precio_Prod"].'<i class="fa fa-bolt"></i>'.$producto["Descuento_Prod"].'%</small></p>
-                  </div>
-                </div>
-              </div>
-            ';
-          }else{
-            echo '
-              <div class="col">
-                <div class="card">
-                  <img class="card-img-top imagen" src="/media/productos/'.$producto["Imagenes"][1].'" alt="'.$producto["Imagenes"][1].'">
-                  <div class="card-body">
-                    <h5 class="card-title">'.$producto["Nombre_Prod"].'</h5>
-                    <p class="card-text descripcion">'.$producto["Descripcion_Prod"].'</p>
-                    <button class="btn btn-light" style="color: rgb(172, 18, 18);" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
-                    <br>
-                    <br>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-boxes-stacked"></i>'.$producto["Existencias_Prod"].'<i class="fa fa-tags"></i>$'.$producto["Precio_Prod"].'<i class="fa fa-bolt"></i>'.$producto["Descuento_Prod"].'%</small></p>
-                  </div>
-                </div>
-              </div>
-            ';
+        $band = false;
+        foreach($productos as $producto):
+          if(!$band && $producto["Descuento_Prod"]==0 && rand(1,3) == 3){
+            $cantidad = rand(55,80);
+            $producto["Descuento_Prod"]=$cantidad;
+            $band= true;
           }
-          
-        }
-      ?>
+          ?>
+          <div class="col">
+            <div class="card">
+              <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="'.$producto["Imagenes"][1].'">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
+                <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
+                <?php if(isset($_SESSION["usuario"])){
+                  echo '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">
+                          <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
+                          <button style="color: rgb(172, 18, 18);" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
+                        </form>';
+                }else{
+                  echo '<button class="btn btn-light" style="color: rgb(172, 18, 18);" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>';
+                }
+                ?> 
+                <br>
+                <p class="card-text">
+                  <small class="text-muted">
+                    <i class="fa-solid fa-boxes-stacked"></i><span><?php echo $producto["Existencias_Prod"] ?></span>
+                    <i class="fa fa-tags"></i><span style="<?php if($producto["Descuento_Prod"]>0){echo "text-decoration: line-through;";}?>">$<?php echo $producto["Precio_Prod"]?></span>
+                    <i class="fa fa-bolt"></i><span><?php echo $producto["Descuento_Prod"]?>%</span>
+                    <?php if($producto["Descuento_Prod"]>0):?>
+                      <i class="fa-solid fa-percent"></i><span>$<?php echo number_format($producto["Precio_Prod"]-($producto["Precio_Prod"]*$producto["Descuento_Prod"]*0.01),2)?></span>
+                    <?php endif?>
+                  </small>
+                </p>
+              </div>
+            </div>
+          </div>
+        <?php endforeach?>
     </div>
-    
   </div>
 </div>
 

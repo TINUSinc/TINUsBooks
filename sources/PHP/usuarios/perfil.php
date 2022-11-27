@@ -48,7 +48,7 @@
                             <input type="password" class="form-control" id="contra1Cambio" 
                             name="contra1Cambio" placeholder="Modificar la contraseña">
                             <label for="contra2Cambio" class="form-label">Verificar contraseña</label>
-                            <input type="text" class="form-control" id="contra2Cambio" 
+                            <input type="password" class="form-control" id="contra2Cambio" 
                             name="contra2Cambio" placeholder="Verifique la nueva contraseña">
                             <label for="admin" class="form-label">Administrador</label>
                             <input type="password" id="admin" class="form-control" <?php if($_SESSION['usuario']['Admin']==1){echo "disabled";}?>

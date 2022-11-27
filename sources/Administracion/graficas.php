@@ -1,45 +1,5 @@
 <?php
-    include_once("conexion.php");                                   
-
-function getVentasMes($mes, $año){
-    /**
-     * Retorna las ventas en el mes y año seleccionado.
-     * -Si en el mes no hay ventas, retorna 0
-     * -Si en el mes hay ventas retorna un array con array de la siguiente forma:
-     * $array[numeroDeConsulta]["Nom_Cat_Prod"] indica el nombre de la categoria
-     * $array[numeroDeConsulta]["venta"] indica la cnatidad vendida de la categoria
-     * se recomienda usar un foreach para recorrerlo, de forma que quede:
-     * foreach($array as $numConsulta){
-     *  $numConsulta["Nom_Cat_Prod"]; //Indica la categoria
-     *  $numConsulta["venta"]; //Indica la cantidad vendida
-     * }
-     * 
-     */
-    global $conexion;
-    $fechaInicio = date("Y-m-d", mktime(0,0,0,$mes,1,$año));
-    $fechaFinal = date("Y-m-d", mktime(0,0,0,($mes+1),0,$año));
-    $query = 'SELECT Precio_Prod, Cant_Prod, Descuento_Prod, Nom_Cat_Prod FROM detalle_compra D, compra C WHERE C.Fecha_Compra>="'.$fechaInicio.'" AND C.Fecha_Compra<="'.$fechaFinal.'" AND C.Id_Compra=D.idCompra_Compra ;';
-    $datos = $conexion->query($query);
-    $retornar = array();
-    $calculo = array();
-    $cont = 0;
-    if($datos->num_rows){
-        while($fila = $datos->fetch_assoc()){
-            if(!isset($calculo[$fila["Nom_Cat_Prod"]])) $calculo[$fila["Nom_Cat_Prod"]] = 0;
-            $calculo[$fila["Nom_Cat_Prod"]] += ($fila["Precio_Prod"] * $fila["Cant_Prod"])-($fila["Precio_Prod"] * $fila["Cant_Prod"] * $fila["Descuento_Prod"] * 0.01);
-        }
-        $query = 'SELECT DISTINCT Nom_Cat_Prod FROM detalle_compra';
-        $datos = $conexion->query($query);
-        while($fila = $datos->fetch_assoc()){
-            $fila["venta"] = $calculo[$fila["Nom_Cat_Prod"]];
-            $retornar[$cont] = $fila;
-            $cont++;
-        }
-        return $retornar;
-    }
-    return 0;
-}
-
+    include("adminNavBar.php");
 ?>
 
 <html>
@@ -49,6 +9,7 @@ function getVentasMes($mes, $año){
 </head>
 
 <body>
+   
    <form method="post" action="graficas.php">
     <select name="mes">
         <?php
