@@ -1,13 +1,13 @@
 /*--------------------------Inicio de css para el captcha ----------------------------------------------
 Manny*/
-#captcha_container {
+#captcha_container2,#captcha_container {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-content: center;
 }
 
-#image_captcha {
+#image_captcha2,#image_captcha {
     background-color: teal;
     width: 152px;
     padding: 2px;
@@ -22,8 +22,22 @@ Manny*/
     margin-left: 10px;
     
 }
+.test{
+    background-color: teal;
+    width: 152px;
+    padding: 2px;
+    font-weight: 400;
+    padding-bottom: 50px;
+    height: 70px;
+    user-select: none;
+    text-decoration: line-through;
+    font-style: italic;
+    font-size: x-large;
+    border: rgb(28, 84, 207) 2px solid;
+    margin-left: 10px;
+}
 
-#captcha_container div {
+#captcha_container div,#captcha_container2 div {
     display: flex;
     justify-content: center;
     align-self: center;
@@ -34,10 +48,11 @@ Manny*/
     display: none;
 }
 
-#btn_captcha {
+#btn_captcha,#btn_captcha2 {
     width:fit-content;
     cursor:pointer;
 }
+
 
 /*Manny
 //--------------------------Fin de css para el captcha ----------------------------------------------*/

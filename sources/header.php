@@ -123,13 +123,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous" defer></script>
     <script src="https://kit.fontawesome.com/fdab67893f.js" crossorigin="anonymous" defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
     <script src="/js/captcha.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
 
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
-<body onload="generate()">
+<body onload="generate(), generate2()">
     <nav class="navbar navbar-expand-md navbar-dark text-black">
       <div class="container-fluid">
         <a class="navbar-brand" href="/"></a>
@@ -145,7 +144,7 @@
               <a class="nav-link text-white" href="/sources/Paginas/productos.php">Productos</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Contacto</a>
+              <a class="nav-link text-white" href="sources/PHP/pagar.php">Contacto</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">Acerca De</a>
@@ -189,7 +188,27 @@
                           <div class="col-9">
                             <input type="password" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contra']))echo $_COOKIE['contra'];?>" required>
                           </div>
+                        </div> 
+                        <div class="row algin-items-center">
+                          
+                          <div id="captcha_container2">
+
+                            <div id="user-input2">
+                                <input type="text" id="submit_captcha2" placeholder="Captcha code" />
+                            </div>
+
+                            <div onclick="generate2()" id="recharge2">
+                                <i class="fas fa-sync"></i>
+                            </div>
+
+                            <div id="image_captcha2" selectable="False" class="test"> </div>
+                          </div>
+                            <br><br>
+                            <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
+                            <br><br>
+                            <p id="mensaje_captcha2"></p>
                         </div>
+
                         <div class="input-group mb-3">
                             <div class="input-group-text">
                               <input class="form-check-input mt-0" type="checkbox" name="cookieUSR" id="cookieUSR" <?php if(!empty($_COOKIE['usuario'])){ echo 'checked';}?>>
@@ -200,7 +219,7 @@
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-target="#modalRegistro" data-bs-toggle="modal">Registrarse</button>
-                      <button type="submit" class="btn btn-primary" name="sesion" >Inciar sesión</button>
+                      <button disabled type="submit" class="btn btn-primary" name="sesion" id="button-login">Iniciar sesión</button>
                     </div>
                   </form>
                 </div>
@@ -265,14 +284,14 @@
                                 <input type="text" id="submit_captcha" placeholder="Captcha code" />
                             </div>
 
-                            <div onclick="generate()">
+                            <div onclick="generate()" id="recharge">
                                 <i class="fas fa-sync"></i>
                             </div>
 
                             <div id="image_captcha" selectable="False"> </div>
                           </div>
                           <br><br>
-                          <div id="btn_captcha" onclick="printmsg()" selectable="False" >Verificar Captcha</div>
+                          <div id="btn_captcha2" onclick="printmsg()" selectable="False" class="btn btn-light">Verificar Captcha</div>
                           <br><br>
                           <p id="mensaje_captcha"></p>
                         </div>
