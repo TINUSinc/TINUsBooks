@@ -51,6 +51,7 @@
                     <p class="card-text descripcion">'.$producto["Descripcion_Prod"].'</p>
                     <button class="btn btn-light" style="color: rgb(172, 18, 18);" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
                     <br>
+                    <br>
                     <p class="card-text"><small class="text-muted"><i class="fa-solid fa-boxes-stacked"></i>'.$producto["Existencias_Prod"].'<i class="fa fa-tags"></i>$'.$producto["Precio_Prod"].'<i class="fa fa-bolt"></i>'.$producto["Descuento_Prod"].'%</small></p>
                   </div>
                 </div>
