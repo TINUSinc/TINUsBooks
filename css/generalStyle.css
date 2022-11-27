@@ -50,6 +50,7 @@ Manny*/
 
 #btn_captcha,#btn_captcha2 {
     width:fit-content;
+    cursor:pointer;
 }
 
 

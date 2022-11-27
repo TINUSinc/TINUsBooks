@@ -4,6 +4,14 @@
     function borrarProducto($idProducto) {
         global $conexion;
         try{
+            $query = 'SELECT Direccion_Img FROM img_producto WHERE ProductoId_Prod='.$idProducto.';';
+            $imagenes = $conexion->query($query);
+            $target = "../../media/productos/";
+            while($fila = $imagenes->fetch_assoc()){
+                if(file_exists(($target.$fila["Direccion_Img"]))){
+                    unlink(($target.$fila["Direccion_Img"]));
+                }
+            }
             $query = 'DELETE FROM img_producto WHERE ProductoId_Prod='.$idProducto.';';
             $conexion->query($query);
             $query = 'DELETE FROM producto WHERE ID_Prod='.$idProducto.';';

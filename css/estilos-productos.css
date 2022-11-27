@@ -1,0 +1,51 @@
+/*styles de efecto hover la card*/
+body {
+  background: #232321;
+}
+
+h1 {
+  color: #fff;
+  padding: 10px 0;
+}
+
+.descripcion{
+  width: 40ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border: none;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgb(172, 18, 18);
+}
+
+.card a {
+  color: initial;
+}
+
+.card a:hover {
+  text-decoration: initial;
+}
+
+.card .text-muted i {
+  margin: 0 10px;
+}
+
+/*styles de efecto hover en imagen*/
+
+.imagen{
+  cursor: pointer;
+  transition:1.0s;
+  will-change: transform;
+}
+
+.imagen:hover{
+  transform: translateX(-30%);
+  filter: brightness(80%);
+}

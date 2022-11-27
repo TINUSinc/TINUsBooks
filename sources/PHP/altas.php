@@ -1,6 +1,7 @@
 <?php
     include_once("conexion.php");
     //Funciones a las que se manden los parametros de las altas
+
     function crearUsuario($cuentaUsr, $correoUsr, $Contra_usr1, $Contra_usr2, $Nombre_usr){
         global $conexion;
         $query = 'INSERT INTO usuario (Cuenta_usr, Correo_usr, 

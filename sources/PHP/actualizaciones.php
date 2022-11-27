@@ -21,6 +21,26 @@
         }
     }
 
+    function modificarImagen($idProd, $direccionImagen, $nuevaDireccion){
+        global $conexion;
+        $query = 'UPDATE img_producto SET Direccion_Img="'.$nuevaDireccion.'" WHERE ProductoId_Prod='.$idProd.' AND Direccion_Img="'.$direccionImagen.'";';
+        try{
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se modifico el nombre de la imagen
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+                return true;
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Error al modificar el nombre de la imagen
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+        return false;
+    }
+
     function modificarCategoria($IdCat, $NomCat, $Descripcion_Cat){
         global $conexion;
         $query = 'UPDATE categoria SET Nom_Cat="'.$NomCat.'", 
