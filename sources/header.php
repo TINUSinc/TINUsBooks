@@ -124,7 +124,7 @@
     
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
-    <script src="js/captcha.js"></script>
+    <script src="../js/captcha.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
 
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
@@ -145,7 +145,7 @@
               <a class="nav-link text-white" href="#">Productos</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Contacto</a>
+              <a class="nav-link text-white" href="sources/PHP/pagar.php">Contacto</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">Acerca De</a>
@@ -198,7 +198,7 @@
                                 <input type="text" id="submit_captcha2" placeholder="Captcha code" />
                             </div>
 
-                            <div onclick="generate2()">
+                            <div onclick="generate2()" id="recharge2">
                                 <i class="fas fa-sync"></i>
                             </div>
 
@@ -285,7 +285,7 @@
                                 <input type="text" id="submit_captcha" placeholder="Captcha code" />
                             </div>
 
-                            <div onclick="generate()">
+                            <div onclick="generate()" id="recharge">
                                 <i class="fas fa-sync"></i>
                             </div>
 

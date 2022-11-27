@@ -35,6 +35,8 @@ function printmsg() {
     if (document.getElementById("submit_captcha").value == captcha.innerHTML) {
         document.getElementById("mensaje_captcha").innerHTML = "Captcha correcto";
         document.getElementById("boton_registro").removeAttribute("disabled");
+        document.getElementById("user-input").addAttribute("disabled");
+        document.getElementById("recharge").addAttribute("disabled");
     }else{
         document.getElementById("mensaje_captcha").innerHTML = "Captcha incorrecto, intentalo de nuevo";
         generate();
@@ -47,6 +49,8 @@ function printmsg2() {
     if (document.getElementById("submit_captcha2").value == captcha.innerHTML) {
         document.getElementById("mensaje_captcha2").innerHTML = "Captcha correcto";
         document.getElementById("button-login").removeAttribute("disabled");
+        document.getElementById("user-input2").addAttribute("disabled");
+        document.getElementById("recharge2").addAttribute("disabled");
     }else{
         document.getElementById("mensaje_captcha2").innerHTML = "Captcha incorrecto, intentalo de nuevo";
         generate2();
