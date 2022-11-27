@@ -19,7 +19,7 @@
     <h1>Productos</h1>
   </div>
   <div class="container">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-4">
       <?php 
         $productos=getProductos();
         $band = false;
@@ -29,7 +29,7 @@
             $producto["Descuento_Prod"]=$cantidad;
             $band= true;
           }
-          ?>
+      ?>
           <div class="col">
             <div class="card">
               <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="'.$producto["Imagenes"][1].'">
@@ -37,12 +37,20 @@
                 <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
                 <?php if(isset($_SESSION["usuario"])){
-                  echo '<form method="POST" action="'.$_SERVER["PHP_SELF"].'">
+                  echo '
+                      <form method="POST" action="'.$_SERVER["PHP_SELF"].'">
+                        <div class="row justify-content-center">
                           <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
-                          <button style="color: rgb(172, 18, 18);" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
-                        </form>';
+                          <button style="color: rgb(172, 18, 18); width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
+                        </div>
+                      </form>
+                      ';
                 }else{
-                  echo '<button class="btn btn-light" style="color: rgb(172, 18, 18);" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>';
+                  echo '
+                    <div class="row justify-content-center">
+                      <button class="btn btn-light" style="color: rgb(172, 18, 18); width: 200px" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
+                    </div>
+                  ';
                 }
                 ?> 
                 <br>

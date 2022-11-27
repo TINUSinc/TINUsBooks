@@ -7,12 +7,12 @@
             $producto = $productos[0];
             $target = "../../media/productos/";
             if(!empty($_FILES["imagen"]["name"][0])){
-                foreach($_FILES["imagen"]["full_path"] as $info){
+                foreach($_FILES["imagen"]["name"] as $info){
                     crearImagenProducto($producto["ID_Prod"],$info);
                 }
                 $cont = 0;
                 foreach($_FILES["imagen"]["tmp_name"] as $tmp){
-                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["full_path"][$cont]);
+                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["name"][$cont]);
                     $cont++;
                 }
             }
@@ -22,16 +22,16 @@
             $producto = $productos[0];
             $target = "../../media/productos/";
             if(!empty($_FILES["imagen"]["name"][0])){
-                foreach($_FILES["imagen"]["full_path"] as $info){
+                foreach($_FILES["imagen"]["name"] as $info){
                     crearImagenProducto($producto["ID_Prod"],$info);
                 }
                 $cont = 0;
                 foreach($_FILES["imagen"]["tmp_name"] as $tmp){
-                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["full_path"][$cont]);
+                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["name"][$cont]);
                     $cont++;
                 }
             }
-            if(isset($_POST["nuevoNombreImagen"]) && isset($_POST["imagenesSubidas"]) && $_POST["imagenesSubidas"]!=0){
+            if(!empty($_POST["nuevoNombreImagen"]) && isset($_POST["imagenesSubidas"])){
                 $anteriorNombre = $_POST["imagenesSubidas"];
                 $nuevoNombre = $_POST["nuevoNombreImagen"];
                 if(modificarImagen($producto["ID_Prod"],$anteriorNombre,$nuevoNombre)){
