@@ -144,7 +144,7 @@
               <a class="nav-link text-white" href="/sources/Paginas/productos.php">Productos</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="sources/PHP/pagar.php">Contacto</a>
+              <a class="nav-link text-white" href="/sources/Paginas/pagar.php">Contacto</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="#">Acerca De</a>

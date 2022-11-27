@@ -45,7 +45,7 @@
             echo '
               <div class="col">
                 <div class="card">
-                  <img class="card-img-top" src="/media/productos/'.$producto["Imagenes"][1].'" alt="'.$producto["Imagenes"][1].'">
+                  <img class="card-img-top imagen" src="/media/productos/'.$producto["Imagenes"][1].'" alt="'.$producto["Imagenes"][1].'">
                   <div class="card-body">
                     <h5 class="card-title">'.$producto["Nombre_Prod"].'</h5>
                     <p class="card-text descripcion">'.$producto["Descripcion_Prod"].'</p>
