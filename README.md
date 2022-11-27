@@ -11,6 +11,3 @@
 # media para imagenes, sonidos, videos y eso
 # js para todo lo de JavaScript que se ocupe
 # Creo que es todo por ahora :D
-
-
-# si estas leyendo es porque ya trabajas sobre la rama dev

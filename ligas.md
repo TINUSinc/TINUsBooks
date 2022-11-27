@@ -1,1 +1,0 @@
-https://salvadorhm.blogspot.com/2014/07/cifrar-campos-en-mysql.html
