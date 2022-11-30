@@ -37,11 +37,15 @@
                 <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
                 <?php if(isset($_SESSION["usuario"])){
+                  $disponibilidad = "";
+                  if($producto["Existencias_Prod"] == 0){
+                    $disponibilidad = "disabled";
+                  }
                   echo '
                       <form method="POST" action="'.$_SERVER["PHP_SELF"].'">
                         <div class="row justify-content-center">
                           <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
-                          <button style="color: rgb(172, 18, 18); width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
+                          <button '.$disponibilidad.' style="color: rgb(172, 18, 18); width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
                         </div>
                       </form>
                       ';

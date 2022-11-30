@@ -11,6 +11,11 @@ include("../header.php");
         <link rel="stylesheet" href="../../css/disenopag.css">
     </head>
     <body>
+        <?php
+            if(isset($_SESSION["usuario"])){
+                modificarCarrito($_SESSION["usuario"]["ID_Usr"]);
+            }
+        ?>
         <div class="container">
             <div class="tarjeta">
                 <?php

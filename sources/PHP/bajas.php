@@ -31,5 +31,33 @@
         }
     }
 
+    function borrarProdCarrito($idUsr, $idProd){
+        global $conexion;
+        try{
+            $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.' AND ProdcutoID_Prod='.$idProd.';';
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Se elimino el producto del carrito
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Error al eliminar el producto del carrito
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+        }
+    }
+
+    function borrarCarrito($idUsr){
+        global $conexion;
+        try{
+            $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
+            $conexion->query($query);
+        }catch(Exception $e){
+            
+        }
+    }
+
 
 ?>

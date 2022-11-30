@@ -21,6 +21,16 @@
         }
     }
 
+    function modificarCantProd($idProd, $nuevaCant){
+        global $conexion;
+        $query = 'UPDATE producto SET Existencias_Prod='.$nuevaCant.' WHERE ID_Prod='.$idProd.';';
+        try{
+            $conexion->query($query);
+        }catch(Exception $e){
+            
+        }
+    }
+
     function modificarImagen($idProd, $direccionImagen, $nuevaDireccion){
         global $conexion;
         $query = 'UPDATE img_producto SET Direccion_Img="'.$nuevaDireccion.'" WHERE ProductoId_Prod='.$idProd.' AND Direccion_Img="'.$direccionImagen.'";';
@@ -138,6 +148,25 @@
             <h4>Contraseña: <span style='color=blue;'>".$contraNueva."</span></h4>
             ";
         crearEmail($asunto, $mensaje, $destinatario);
+    }
+
+    function modificarCarrito($idUsr){
+        global $conexion;
+        $carrito = getCarrito($idUsr);
+        foreach ($carrito as $producto){
+            $infoProd = getProducto($producto["ProductoID_Prod"]);
+            if($producto["cant_Prod"]>$infoProd["Existencias_Prod"]){
+                $query = 'UPDATE carrito SET cant_Prod='.$infoProd["Existencias_Prod"].' WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
+                try{
+                    if($conexion->query($query) === TRUE){
+                        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                Debido a disponibilidad, se limito la cantidad de "'.$infoProd["Nombre_Prod"].'" en su carrito
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
+                    }
+                }catch(Exception $e){}
+            }
+        }
     }
     function generarContrasena() {
         $permitted_chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
