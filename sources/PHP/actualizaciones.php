@@ -156,7 +156,11 @@
         foreach ($carrito as $producto){
             $infoProd = getProducto($producto["ProductoID_Prod"]);
             if($producto["cant_Prod"]>$infoProd["Existencias_Prod"]){
-                $query = 'UPDATE carrito SET cant_Prod='.$infoProd["Existencias_Prod"].' WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
+                if($infoProd["Existencias_Prod"] == 0){
+                    $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
+                }else{
+                    $query = 'UPDATE carrito SET cant_Prod='.$infoProd["Existencias_Prod"].' WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
+                }
                 try{
                     if($conexion->query($query) === TRUE){
                         echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">

@@ -10,6 +10,6 @@
     <title>Pruebas</title>
 </head>
 <body>
-    
+    <?php crearCompra(6,getDireccion(6,"Casa"),"");?>
 </body>
 </html>

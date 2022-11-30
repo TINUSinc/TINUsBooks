@@ -14,13 +14,23 @@ include("../header.php");
         <?php
             if(isset($_SESSION["usuario"])){
                 modificarCarrito($_SESSION["usuario"]["ID_Usr"]);
+            }else{
+                echo "
+                    <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                        Inicie sesión para poder ver su carrito.
+                        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>
+                    "; 
             }
         ?>
-        <div class="container">
+        <?php if(isset($_SESSION["usuario"])): 
+            $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
+            if(!empty($carrito)):
+            ?>
+            
+            <div class="container">
             <div class="tarjeta">
                 <?php
-                    if(isset($_SESSION["usuario"])):
-                    $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
                     foreach($carrito as $producto):
                         $infoProd = getProducto($producto["ProductoID_Prod"]);
                         $imgProd = getImagenesProd($producto["ProductoID_Prod"]);
@@ -28,10 +38,10 @@ include("../header.php");
                     ?>
                         <div class="card mb-3">
                             <div class="row g-0 align-items-center">
-                                <div class="col-1 d-flex justify-content-center">
+                                <div class="col-4 col-md-2 col-lg-2 col-xl-2 col-xxl-1 d-flex justify-content-center">
                                     <img src="/media/productos/<?php echo $imgProd;?>" class="img-fluid rounded-start" alt="...">
                                 </div>
-                                <div class="col-10">
+                                <div class="col-8 col-md-10 col-lg-10 col-xl-10 col-xxl-11">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $infoProd["Nombre_Prod"];?></h5>
                                         <p class="card-text"><?php echo $infoProd["Descripcion_Prod"];?></p>
@@ -40,15 +50,16 @@ include("../header.php");
                                 </div>
                             </div>
                         </div>
-                <?php endforeach;?>
-                <?php else: 
-                    echo "
-                    <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
-                        Inicie sesión para poder ver su carrito.
-                    </div>
-                    "; 
-                endif;
-                ?>
+                    <?php endforeach;
+                        else:
+                        echo "
+                            <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+                                No hay productos en su carrito
+                                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>
+                            "; 
+                        endif;
+                    endif;?>
             </div>
         </div>
     </body>

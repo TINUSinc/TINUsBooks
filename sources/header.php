@@ -213,7 +213,7 @@
                     <div class="input-group-text">
                       <input class="form-check-input mt-0" type="checkbox" name="cookieUSR" id="cookieUSR" <?php if(!empty($_COOKIE['usuario'])){ echo 'checked';}?>>
                     </div>
-                    <label for="cookie" class="form-control">¿Desea guardar sus credenciales para despues?</label>
+                    <label for="cookieUSR" class="form-control">¿Desea guardar sus credenciales para despues?</label>
                   </div>
               </div>
             </div>
