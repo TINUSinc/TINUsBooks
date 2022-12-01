@@ -97,7 +97,9 @@
             $retornar[$count] = $fila;
             $count++;
         }
-        return $retornar;
+        echo $quer;
+        print_r($retornar);
+        //return $retornar;
     }
 
     function getCategoria($idCategoria){
