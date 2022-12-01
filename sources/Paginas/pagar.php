@@ -13,7 +13,7 @@ include("../header.php");
     <body>
         <?php
             if(isset($_SESSION["usuario"])){
-                modificarCarrito($_SESSION["usuario"]["ID_Usr"]);
+                revisarCarrito($_SESSION["usuario"]["ID_Usr"]);
             }else{
                 echo "
                     <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>

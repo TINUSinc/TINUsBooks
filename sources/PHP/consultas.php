@@ -43,23 +43,11 @@
         global $conexion;
         $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
-        $res = $res->fetch_assoc();
-        if(!empty($res)){
-            $id = $res["Bloqueo"];
-        }else{
-            $id=0;
-        }
-        return $id;
-    }
-    function setUsuario($cuentaUsr,$contra){
-        global $conexion;
-        $query = 'MD5('.$contra.')';
-        $cifrado = $conexion->query($query);
-        $query = 'SELECT * FROM usuario WHERE Cuenta_use ="'.$cuentaUsr.'";';
-        $respuestaUsr = $conexion->query($query);
-        $respuestaUsr = $respuestaUsr->fetch_assoc();
-        if($cifrado = $respuestaUsr["contrasena"])
-        return $respuestaUsr;
+        print_r($res);
+        /**Deshabilitar la linea de abajo en el webhost */
+        $res = $res->fetch_column(0);
+        /**La linea de arriba es la que se debe de deshabilitar */
+        //return $res;
     }
 
     function getCategorias(){
@@ -115,6 +103,18 @@
         $retornar["total"] = $total;
         $retornar["totalDesc"] = round($totalDesc,2);
         $retornar["desc"] = $desc;
+        return $retornar;
+    }
+
+    function getTotalProdCarrito($idUsr){
+        //Retorna el total de productos que tiene un usuario en el carrito
+        global $conexion;
+        $query = 'SELECT * FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
+        $datos = $conexion->query($query);
+        $retornar = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar += $fila["cant_Prod"];
+        }
         return $retornar;
     }
 
@@ -322,6 +322,56 @@
             $retornar[$cont] = $fila;
             $cont++;
         }
+        return $retornar;
+    }
+
+    function getCompra($idCompra){
+        global $conexion;
+        $idUltimaCompra = 0;
+        $query = 'SELECT * FROM compra WHERE Id_Compra='.$idCompra.';';
+        $datos = $conexion->query($query);
+        $fila = $datos->fetch_assoc();
+        return $fila;
+    }
+
+    function getDetallesCompra($idCompra){
+        global $conexion;
+        $query = 'SELECT * FROM detalle_compra WHERE idCompra_Compra='.$idCompra.';';
+        $datos = $conexion->query($query);
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
+    }
+
+    function getUltimoDetalleCompra($idUsr){
+        global $conexion;
+        $query = 'SELECT MAX(Id_Compra) FROM compra WHERE UsuarioId_Usr='.$idUsr.';';
+        $datos = $conexion->query($query);
+        $idUltimaCompra = $datos->fetch_assoc();
+        $idUltimaCompra = $idUltimaCompra["MAX(Id_Compra)"];
+        $infoUltimaCompra = getCompra($idUltimaCompra);
+        $detallesCompra = getDetallesCompra($idUltimaCompra);
+        $retornar = array();
+        $retornar["infoCompra"] = $infoUltimaCompra;
+        $retornar["detalles"] = $detallesCompra;
+        /*
+        Para la compra obtener su información
+        $retornar["infoCompra"]["Fecha_Compra"]
+        $retornar["infoCompra"]["Costo_Envio"]
+        $retornar["infoCompra"]["Impuesto_Pais"]
+            se pueden obtener toda la informacion de la compra
+        Para cada detalle de compra obtener su informacion
+        foreach($retornar["detalles"] as $detalle){
+            $detalle["Nombre_Prod"]
+            $detalle["Nom_Cat_Prod"]
+            $detalle["Precio_Prod"]
+            $detalle["Cant_Prod"]
+            $detalle["Descuento_Prod"]
+        }
+        */
         return $retornar;
     }
 ?>

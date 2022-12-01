@@ -142,7 +142,7 @@
             <h1>Terminar el desbloqueo de su cuenta</h1>
             <p>Hola ".$usuario["Nombre_Usr"].", para poder regresar al uso de su cuenta
                   es necesario que utilice la contraseña que le proporcionaremos a continuación
-                  y es recomendable que la cambie inmediamente, gracias, buen dia y perdón por las molestias
+                  y es recomendable que la cambie inmediamente en su perfil, buen dia.
             </p>
             <h5>Saludos cordiales, TINUSBOOKS</h5>
             <h4>Contraseña: <span style='color=blue;'>".$contraNueva."</span></h4>
@@ -150,7 +150,23 @@
         crearEmail($asunto, $mensaje, $destinatario);
     }
 
-    function modificarCarrito($idUsr){
+    function modificarCarrito($idUsr, $idProd, $cantidad){
+        //Se espera que la cantidad recibida por la función se la cantidad de productos que se quieren tener
+        global $conexion;
+        $producto = getProducto($idProd);
+        if($producto["Existencias_Prod"] < $cantidad){ 
+            $cantidad = $producto["Existencias_Prod"];
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Debido a disponibilidad, se limito la cantidad de "'.$producto["Nombre_Prod"].'" en su carrito
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>';
+        }
+        $query = 'UPDATE carrito SET cant_Prod='.$cantidad.' WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$idProd.';';
+        try{
+            $conexion->query($query);
+        }catch(Exception $e){}
+    }
+    function revisarCarrito($idUsr){
         global $conexion;
         $carrito = getCarrito($idUsr);
         foreach ($carrito as $producto){
@@ -161,14 +177,7 @@
                 }else{
                     $query = 'UPDATE carrito SET cant_Prod='.$infoProd["Existencias_Prod"].' WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
                 }
-                try{
-                    if($conexion->query($query) === TRUE){
-                        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                Debido a disponibilidad, se limito la cantidad de "'.$infoProd["Nombre_Prod"].'" en su carrito
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>';
-                    }
-                }catch(Exception $e){}
+                
             }
         }
     }
