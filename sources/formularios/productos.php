@@ -31,7 +31,7 @@
                     $cont++;
                 }
             }
-            if(isset($_POST["nuevoNombreImagen"]) && isset($_POST["imagenesSubidas"]) && $_POST["imagenesSubidas"]!=0){
+            if(!empty($_POST["nuevoNombreImagen"]) && !empty($_POST["imagenesSubidas"]) && $_POST["imagenesSubidas"]!=0){
                 $anteriorNombre = $_POST["imagenesSubidas"];
                 $nuevoNombre = $_POST["nuevoNombreImagen"];
                 if(modificarImagen($producto["ID_Prod"],$anteriorNombre,$nuevoNombre)){

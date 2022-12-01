@@ -13,3 +13,6 @@
     
 </body>
 </html>
+<?php
+    include_once("sources/PHP/footer.php");
+?>
