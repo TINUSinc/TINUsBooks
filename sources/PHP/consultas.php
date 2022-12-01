@@ -43,11 +43,10 @@
         global $conexion;
         $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
-        print_r($res);
         /**Deshabilitar la linea de abajo en el webhost */
         $res = $res->fetch_column(0);
         /**La linea de arriba es la que se debe de deshabilitar */
-        //return $res;
+        return $res;
     }
 
     function getCategorias(){

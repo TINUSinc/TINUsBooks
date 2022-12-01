@@ -23,8 +23,6 @@ h2 {
   max-width: 65vw;
   margin: 48px auto;
   display: block;
-  border-radius: 10px;
-  border: 1px solid black;
   overflow: hidden;
 }
 .contenido {
