@@ -22,7 +22,7 @@
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-4">
       <?php 
         $productos=getProductos();
-        $band = false;
+        $band = false;               
         foreach($productos as $producto):
           if(!$band && $producto["Descuento_Prod"]==0 && rand(1,3) == 3){
             $cantidad = rand(55,80);
