@@ -19,7 +19,7 @@
     <h1>Productos</h1>
   </div>
   <div class="container">
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-4">
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-4">
       <?php 
         $productos=getProductos();
         $band = false;
@@ -37,11 +37,17 @@
                 <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
                 <?php if(isset($_SESSION["usuario"])){
+                  $disponibilidad = "";
+                  $texto=" Agregar al carrito";
+                  if($producto["Existencias_Prod"] == 0){
+                    $disponibilidad = "disabled";
+                    $texto = " Sin inventario";
+                  }
                   echo '
                       <form method="POST" action="'.$_SERVER["PHP_SELF"].'">
                         <div class="row justify-content-center">
                           <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
-                          <button style="color: rgb(172, 18, 18); width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>
+                          <button '.$disponibilidad.' style="color: rgb(172, 18, 18); width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i>'.$texto.'</button>
                         </div>
                       </form>
                       ';
@@ -58,8 +64,8 @@
                   <small class="text-muted">
                     <i class="fa-solid fa-boxes-stacked"></i><span><?php echo $producto["Existencias_Prod"] ?></span>
                     <i class="fa fa-tags"></i><span style="<?php if($producto["Descuento_Prod"]>0){echo "text-decoration: line-through;";}?>">$<?php echo $producto["Precio_Prod"]?></span>
-                    <i class="fa fa-bolt"></i><span><?php echo $producto["Descuento_Prod"]?>%</span>
                     <?php if($producto["Descuento_Prod"]>0):?>
+                      <i class="fa fa-bolt"></i><span><?php echo $producto["Descuento_Prod"]?>%</span>
                       <i class="fa-solid fa-percent"></i><span>$<?php echo number_format($producto["Precio_Prod"]-($producto["Precio_Prod"]*$producto["Descuento_Prod"]*0.01),2)?></span>
                     <?php endif?>
                   </small>

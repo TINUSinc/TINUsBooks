@@ -7,7 +7,7 @@ function generate() {
     var string = "";
 
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 4; i++) {
         string += randomchar.charAt(Math.random() * randomchar.length)
     }
 
@@ -22,7 +22,7 @@ function generate2() {
     var string = "";
 
 
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < 4; i++) {
         string += randomchar.charAt(Math.random() * randomchar.length)
     }
 
