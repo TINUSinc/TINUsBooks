@@ -32,7 +32,7 @@
       ?>
           <div class="col">
             <div class="card">
-              <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="'.$producto["Imagenes"][1].'">
+              <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
               <div class="card-body">
                 <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
