@@ -55,12 +55,12 @@ Manny*/
 }
 
 #linkCarrito{
-    min-width: 7ch;
+    min-width: 10ch;
 }
 
 @media screen and (max-width: 767px) {
     #linkCarrito{
-        min-width: 7ch;
+        min-width: 10ch;
     }
 }
 /*Manny
