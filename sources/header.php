@@ -134,37 +134,44 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/sources/Paginas/productos.php">Productos</a> 
             </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/sources/Paginas/pagar.php">Carrito</a>
-            </li>
           </ul>
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
-                    data-bs-toggle="modal" data-bs-target="#modalIniciar">
-              <?php 
-                if(!isset($_SESSION["usuario"])){
-                  echo "Inciar sesión/Registrarse";
-                }else{
-                  $saludo = "Bienvenido";
-                  $nom = $_SESSION['usuario']['Nombre_Usr']; 
-                  echo "$saludo, $nom";
-                }
-              ?>
-            </button>
-            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start">
-              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
-              <?php if(isset($_SESSION['usuario'])): ?>
-              <?php if($_SESSION['usuario']['Admin'] == 1): ?>
-              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
-              <?php endif ?>
-              <?php endif ?>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
-            </ul>
+
+          <div class="row align-items-center form-group col-1">
+            <div class="form-floating col-10">
+             <a class="nav-link text-white" href="/sources/Paginas/pagar.php"><i class="fa-solid fa-cart-shopping"></i></a>
           </div>
+            
+          </div>
+          <div class="btn-group">
+              <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
+                      data-bs-toggle="modal" data-bs-target="#modalIniciar">
+                <?php 
+                  if(!isset($_SESSION["usuario"])){
+                    echo "Inciar sesión/Registrarse";
+                  }else{
+                    $saludo = "Bienvenido";
+                    $nom = $_SESSION['usuario']['Nombre_Usr']; 
+                    echo "$saludo, $nom";
+                  }
+                ?>
+              </button>
+              <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start">
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
+                <?php if(isset($_SESSION['usuario'])): ?>
+                <?php if($_SESSION['usuario']['Admin'] == 1): ?>
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
+                <?php endif ?>
+                <?php endif ?>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
+              </ul>
+            </div>
+
+          
+
         </div>
       </div>
     </nav>
@@ -173,7 +180,7 @@
           swal("Contrasena restaurada", "Se ha desbloqueado su cuenta y se le ha mandado un correo con una contraseña provisional", "success", {
             button: "Aceptar",
           });
-      </script>
+      </scr>
     <?php endif;?>
     <div class="modal fade" id="modalIniciar" tabindex="-1" aria-labelledby="modalIniciar" aria-hidden="true">
       <div class="modal-dialog">
