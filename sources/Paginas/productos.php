@@ -32,10 +32,11 @@
       ?>
           <div class="col">
             <div class="card">
-              <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="'.$producto["Imagenes"][1].'">
+              <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
               
-              <!--<button class="card-img-top imagen" class="card-img-top imagen" style="background: url('/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="'.$producto["Imagenes"][1].') no-repeat;"></button>
-              --><div class="card-body">
+              <!--<button class="card-img-top imagen" class="card-img-top imagen" style="background: url('/media/productos/<?php //echo $producto["Imagenes"][1]?>" alt="'.$producto["Imagenes"][1].') no-repeat;"></button>
+              -->
+              <div class="card-body">
                 <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
                 <?php if(isset($_SESSION["usuario"])){
@@ -79,7 +80,11 @@
     </div>
   </div>
 </div>
-
+<?php if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])): ?>
+  <script>
+    document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
+  </script>
+<?php endif ?>
   
 </body>
 </html>

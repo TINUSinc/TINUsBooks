@@ -51,7 +51,11 @@
         </div>
 
     </div>
-
+<?php if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])): ?>
+    <script>
+        document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
+    </script>
+<?php endif ?>
 
 </body>
 
