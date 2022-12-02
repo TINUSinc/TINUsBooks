@@ -114,6 +114,7 @@
         while($fila = $datos->fetch_assoc()){
             $retornar += $fila["cant_Prod"];
         }
+        
         return $retornar;
     }
 
