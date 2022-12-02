@@ -143,9 +143,9 @@
           </ul>
           <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
             <div class="mx-0 mx-md-3 mb-3 mb-md-0">
-              <a class="nav-link text-white" style="min-width: 39px;" href="/sources/Paginas/pagar.php">
-                <i style="display: inline;" class="fa-solid fa-cart-shopping" id="carrito"></i>
-                <p style="display: inline;"><i><small><?php if (isset($_SESSION["usuario"])) {echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]);}?></small></i></p>
+              <a class="nav-link text-white" href="/sources/Paginas/pagar.php">
+                <i style="display: inline;" class="fa-solid fa-cart-shopping"></i>
+                <p style="display: inline;"><i><small id="carritoCant"><?php if (isset($_SESSION["usuario"])) {echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]);}?></small></i></p>
               </a>
             </div>
           </div>
