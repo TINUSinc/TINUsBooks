@@ -135,12 +135,10 @@
               <a class="nav-link text-white" href="/sources/Paginas/productos.php">Productos</a> 
             </li>
           </ul>
-
-          <div class="row align-items-center form-group col-1">
-            <div class="form-floating col-10">
-             <a class="nav-link text-white" href="/sources/Paginas/pagar.php"><i class="fa-solid fa-cart-shopping"></i></a>
-          </div>
-            
+          <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
+            <div class="mx-0 mx-md-3 mb-3 mb-md-0">
+             <a class="nav-link text-white" style="text-align: left;" href="/sources/Paginas/pagar.php"> <i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
           </div>
           <div class="btn-group">
               <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
@@ -169,9 +167,6 @@
                 <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
               </ul>
             </div>
-
-          
-
         </div>
       </div>
     </nav>
