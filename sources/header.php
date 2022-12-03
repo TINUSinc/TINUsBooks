@@ -116,7 +116,6 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/captcha.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
-
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body onload="generate(), generate2()">
@@ -138,7 +137,7 @@
               <a class="nav-link text-white" href="#">Contacto</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Acerca De</a> 
+              <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
             </li>
           </ul>
           <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
