@@ -1,6 +1,6 @@
 /*inician los estilos del carrusel de inicio*/
 body{
-    background: url(../media/indexmedia/fondo.jpeg);
+    background: url(../media/indexmedia/fondo.jpg);
 }
 section {
   width: 100%;
@@ -143,6 +143,18 @@ section {
 }
 /*terminan estilos de carrusel de inicio*/
 
+/*seccion imagenes hover */
+.zoom {
+    transition: transform .2s; 
+}
+ 
+.zoom:hover {
+    transform: scale(1.5); 
+}
+.zoom {
+    transition: transform .2s; 
+}
+
 /*inician estilos de carrusel de productos*/
 
 .container2{
@@ -173,8 +185,7 @@ h2::after {
 	bottom: -20px;
 }
 .carousel {
-	border-radius: 100px;
-    background: url(../media/indexmedia/fondoanimacion.jpeg);
+	background-color: transparent;
 }
 .carousel .carousel-item {
 	min-height: 330px;

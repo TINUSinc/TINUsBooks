@@ -371,10 +371,19 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 		</div>
 	</div>
 </div>
+
 <!-- Termina arrusel de productos  --> 
+<section class="descuento">
+    <img class="zoom"src="media/indexmedia/linear1.jpg" alt="">
+    <h2 style="font: size 50px;">Explora</h2>
+</section>
+<section class="descuento">
+    <img class="zoom" src="media/indexmedia/linear2.jpg" alt="">
+    <h2 style="font-size:50px; text-shadow: 2cm">Tus nuevos generos favoritos</h2>
+</section>
 
 <!--  cards stickers -->
-<h2>Fomentemos la lectura</h2>
+<h2 style="color: white;">Fomentemos la lectura</h2>
 <div class="containercards bootstrap snippets bootdeys">
 <div class="row" style="align-content: center; padding-left: 70px"><div class="col-md-4 col-sm-6 content-cards">
         <div class="cards-big-shadow">
@@ -445,7 +454,6 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Termina barra descuento  --> 
 
 <!-- Mapa --> 
-<h2>Encuentranos en: </h2>
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.233231530003!2d-102.29467398539583!3d21.887092785539757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee6733bab0cb%3A0x64f5f203073c9e2a!2sCalle%20Gral.%20Ignacio%20Zaragoza%2C%20Zona%20Centro%2C%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1670296660311!5m2!1ses-419!2smx" width="1500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <!-- Termina mapa -->
 
