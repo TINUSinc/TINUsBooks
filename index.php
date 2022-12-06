@@ -1,6 +1,3 @@
-<?php
-    include_once("sources/header.php");
-?>
 
 <!DOCTYPE html>
 <html lang="en">
