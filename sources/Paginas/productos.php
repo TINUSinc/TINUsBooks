@@ -22,7 +22,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-end text-center">
       <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET">
         <select class="form-select" name="categoria" id="categoria" tittle="Elige una categoria de la lista" required>
-          <option value="0">Todas</option>
+          <option value="0">Todas las categorías</option>
           <?php
               $categorias = getCategorias();
               foreach($categorias as $categoria){
