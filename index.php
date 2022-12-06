@@ -381,62 +381,32 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
     <img class="zoom" src="media/indexmedia/linear2.jpg" alt="">
     <h2 style="font-size:50px; text-shadow: 2cm">Tus nuevos generos favoritos</h2>
 </section>
-
-<!--  cards stickers -->
-<h2 style="color: white;">Fomentemos la lectura</h2>
-<div class="containercards bootstrap snippets bootdeys">
-<div class="row" style="align-content: center; padding-left: 70px"><div class="col-md-4 col-sm-6 content-cards">
-        <div class="cards-big-shadow">
-            <div class="cards cards-just-text" data-background="color" data-color="blue" data-radius="none">
-                <div class="content">
-                    <h6 class="category">Beneficios</h6>
-                    <h4 class="title">¿Por qué Leer?</h4>
-                    <p class="description">La lectura permite escapar de las tensiones cotidianas, bajar el estrés, desarrollar habilidades cognitivas, activa la memoria a corto y largo plazo y nos ayuda a expandir nuestro vocabulario</p>
-                </div>
-            </div> <!-- end card -->
-        </div>
-    </div>
-    
-    <div class="col-md-4 col-sm-6 content-cards">
-        <div class="cards-big-shadow">
-            <div class="cards cards-just-text" data-background="color" data-color="green" data-radius="none">
-                <div class="content">
-                    <h6 class="category">Nuestros principios</h6>
-                    <h4 class="title">Sobre la calidad de TINU's</h4>
-                    <p class="description"> Creemos que ofrecer un servicio de calidad no es algo que debe ser visto solo como una estrategia o área de la empresa, sino como una cultura organizacional.</p>
-                </div>
-            </div> <!-- end card -->
-        </div>
-    </div>
-    
-    <div class="col-md-4 col-sm-6 content-cards">
-        <div class="cards-big-shadow">
-            <div class="cards cards-just-text" data-background="color" data-color="yellow" data-radius="none">
-                <div class="content">
-                    <h6 class="category">Accesibilidad</h6>
-                    <h4 class="title">Libros al alcance de todos</h4>
-                    <p class="description">Nuestros precios son forjados en criterios objetivos que no solo atienden al balance de ganancias sino a una proyección mejorable del valor en términos equitativos.</p>
-                </div>
-            </div> <!-- end card -->
-        </div>
-    </div>
-</div>
-</div>
+<!-- Cuadro de texto e imagen  --> 
+<section class="cuadro">
+	<img src="media/indexmedia/lector1.jpg" style="float:left; padding-right: 10px;" width="240" height="240" alt="Foto de Ejemplo"/>
+	<div id="cuadrotexto">
+		<h3> Nuestros origenes </h3>
+		<p> Nuestro nombre es TINU's Books y somos una tienda online que marca tendencias, ofreciendo productos de primer nivel y un servicio al cliente excepcional que los compradores podrán obtener desde la comodidad de su hogar. Somos un negocio compuesto por personas innovadoras que siempre miran a futuro. Tenemos el impulso y los medios para actualizar y mejorar constantemente la experiencia de tu compra en línea. </p>
+		<p> Nuestra tienda virtual es sinónimo de calidad, por lo que te garantizamos contar con la mayor variedad de mercancía así como de productos temporales o de edición limitada que se adaptan a cualquier presupuesto. Echa un vistazo y empieza a comprar hoy mismo. </p>
+	</div>
+</section>
 
 <!-- Animacion 3d de origenes  --> 
 <section class="origenes">
     <div class="container">
 	<div class="front side">
 		<div class="content">
-			<h1>Nuestros orígenes</h1>
-			<p>Nuestro nombre es TINU's Books y somos una tienda online que marca tendencias, ofreciendo productos de primer nivel y un servicio al cliente excepcional que los compradores podrán obtener desde la comodidad de su hogar. Somos un negocio compuesto por personas innovadoras que siempre miran a futuro. Tenemos el impulso y los medios para actualizar y mejorar constantemente la experiencia de tu compra en línea.
-			</p>
+			<h1> Fomentamos la lectura </h1>
+			<p>Los libros son un recurso imprescindible para nuestro proceso formativo, les permiten imaginar, descubrir, viajar y conocer sobre el mundo que los rodea.
+			. Explora todo tipo de generos, disfrutando de una calidad y un precio accesible.</p>
+			<p></p>
 		</div>
 	</div>
 	<div class="back side">
 		<div class="content">
-			<h1>Sobre nuestros productos</h1>
-			<p>Nuestra tienda virtual es sinónimo de calidad, por lo que te garantizamos contar con la mayor variedad de mercancía así como de productos temporales o de edición limitada que se adaptan a cualquier presupuesto. Echa un vistazo y empieza a comprar hoy mismo.
+			<h1> Nuestra filosofía</h1>
+			<p>
+				La lectura es una de las piedras angulares para la adquisición de conocimiento. Leer, la lectura, es una de las mejores habilidades que podemos adquirir. Ella nos acompañará a lo largo de nuestras vidas y permitirá que adquiramos conocimiento, y que entendamos el mundo y todo lo que nos rodea.
 			</p>
 		</div>
 	</div>
@@ -454,9 +424,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Termina barra descuento  --> 
 
 <!-- Mapa --> 
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.233231530003!2d-102.29467398539583!3d21.887092785539757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee6733bab0cb%3A0x64f5f203073c9e2a!2sCalle%20Gral.%20Ignacio%20Zaragoza%2C%20Zona%20Centro%2C%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1670296660311!5m2!1ses-419!2smx" width="1500" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.233231530003!2d-102.29467398539583!3d21.887092785539757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee6733bab0cb%3A0x64f5f203073c9e2a!2sCalle%20Gral.%20Ignacio%20Zaragoza%2C%20Zona%20Centro%2C%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1670296660311!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <!-- Termina mapa -->
-
-
 </body>
 </html>
