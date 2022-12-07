@@ -1,7 +1,138 @@
 .imgCircular {
-    vertical-align: middle;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
 
+}
+
+.contenedorCards{
+    background-color: #58536A;
+    height: 300px;
+    padding: 30px;
+    display: flex;
+}
+
+#imagen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#card{
+    background-color: #58536A;
+    width: 400px;
+    height: 200px;
+    background-color: #58536A;
+    border:0;
+}
+ .card-text{
+    color: white;
+    text-align: justify;
+ }
+
+ .card-title{
+    color: white;
+    font-size: 25px;
+ }
+
+ .containerTransparente {
+    position: relative;
+    margin: 0 auto;
+}
+
+.containerTransparente img {
+    vertical-align: middle;
+    width: 100%;
+}
+
+.containerTransparente .contentTransparente {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.5);
+    /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0px;
+    justify-content: right;
+}
+
+.contenedorTexto{
+    width: 50%;
+    height: 100%;
+    padding: 40px;
+}
+
+#titImagenTransparente {
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    text-align: justify;
+
+}
+
+#txtImagenTransparente {
+    font-size: 20px;
+    color: white;
+    text-align: justify;
+}
+
+
+@media (max-width:1000px) {
+    .contenedor {
+        max-width: 90%;
+    }
+}
+
+
+@media (max-width:900px) {
+    #card1{
+        flex-direction: column;
+    }
+    #card2{
+        flex-direction: column;
+    }
+}
+
+
+@media (max-width:700px) {
+    #card1,
+    #card2,
+    #card1{
+        flex: 1 1 100%;
+    } 
+}
+
+@media (max-width:700px){
+    .card-body{
+        flex: 1 1 100%;
+    }
+}
+
+@media (max-width:590px) {
+    .contenedor{
+        max-width: 100%;
+        margin: 0;
+    }
+    header {
+        padding: 1rem 0 0 0;
+        justify-content: center;
+        align-items: stretch;
+    }
+    header a.logo {
+        align-self: center;
+        padding: 1rem;
+    }
+    header nav ul {
+        flex-direction: column;
+    }
+    header nav ul li a {
+        margin: 0;
+        border-radius: 0;
+        border-bottom: 1px solid #af0f0f;
+        text-align: center;
+    }
 }
