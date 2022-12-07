@@ -1,3 +1,14 @@
+body{
+    background-color: #58536A;
+}
+
+h3{
+    text-align: center;
+    font-size: 45px;
+    color: white;
+    font-weight: bold;
+}
+
 .imgCircular {
     width: 150px;
     height: 150px;
@@ -68,7 +79,6 @@
 
 #titImagenTransparente {
     font-size: 35px;
-    font-weight: bold;
     color: white;
     text-align: justify;
 
