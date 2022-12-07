@@ -142,6 +142,7 @@ section {
 }
 /*terminan estilos de carrusel de inicio*/
 
+
 /*seccion imagenes hover */
 .zoom {
     transition: transform .2s; 
@@ -296,6 +297,7 @@ h2::after {
 }
 /*terminan estilos de carrusel de productos*/
 
+
 /*inician los estilos de la seccion origenes2*/
 .cuadro{
     background-color: rgb(239, 239, 205);
@@ -408,6 +410,7 @@ h2::after {
 }
 /*terminan los estilos de la seccion origenes*/
 
+
 /*inician los estilos de la parte del cupon20*/
 .descuento{
     position: relative;
@@ -445,4 +448,5 @@ h2::after {
     font-weight: lighter;
 }
 /*terminan los estilos de la parte del cupon20*/
+
 
