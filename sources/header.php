@@ -135,7 +135,7 @@
               <a class="nav-link text-white" href="/sources/Paginas/productos.php">Productos</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="/sources/Paginas/pagar.php">Carrito</a>
+              <a class="nav-link text-white" href="/sources/formularios/contactanos.php">Contactanos</a>
             </li>
           </ul>
           <div class="btn-group">
