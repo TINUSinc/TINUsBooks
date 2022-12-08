@@ -7,12 +7,12 @@
             $producto = $productos[0];
             $target = "../../media/productos/";
             if(!empty($_FILES["imagen"]["name"][0])){
-                foreach($_FILES["imagen"]["full_path"] as $info){
+                foreach($_FILES["imagen"]["name"] as $info){
                     crearImagenProducto($producto["ID_Prod"],$info);
                 }
                 $cont = 0;
                 foreach($_FILES["imagen"]["tmp_name"] as $tmp){
-                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["full_path"][$cont]);
+                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["name"][$cont]);
                     $cont++;
                 }
             }
@@ -22,16 +22,16 @@
             $producto = $productos[0];
             $target = "../../media/productos/";
             if(!empty($_FILES["imagen"]["name"][0])){
-                foreach($_FILES["imagen"]["full_path"] as $info){
+                foreach($_FILES["imagen"]["name"] as $info){
                     crearImagenProducto($producto["ID_Prod"],$info);
                 }
                 $cont = 0;
                 foreach($_FILES["imagen"]["tmp_name"] as $tmp){
-                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["full_path"][$cont]);
+                    move_uploaded_file($tmp,$target.$_FILES["imagen"]["name"][$cont]);
                     $cont++;
                 }
             }
-            if(!empty($_POST["nuevoNombreImagen"]) && !empty($_POST["imagenesSubidas"]) && $_POST["imagenesSubidas"]!=0){
+            if(!empty($_POST["nuevoNombreImagen"]) && isset($_POST["imagenesSubidas"])){
                 $anteriorNombre = $_POST["imagenesSubidas"];
                 $nuevoNombre = $_POST["nuevoNombreImagen"];
                 if(modificarImagen($producto["ID_Prod"],$anteriorNombre,$nuevoNombre)){
@@ -136,11 +136,11 @@
                         <div class='carousel-item active'><img src='/media/productos/No image.jpg' class='d-block w-100'></div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" style="color: gray;" aria-hidden="true"></span>
+                            <span class="carousel-control-prev-icon carousel-diseno" style="color: gray;" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" style="color: gray;" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon carousel-diseno" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
                     </div>  

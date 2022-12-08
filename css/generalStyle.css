@@ -51,8 +51,17 @@ Manny*/
 #btn_captcha,#btn_captcha2 {
     width:fit-content;
     cursor:pointer;
+    margin: 10px;
 }
 
+#linkCarrito{
+    min-width: 10ch;
+}
 
+@media screen and (max-width: 767px) {
+    #linkCarrito{
+        min-width: 10ch;
+    }
+}
 /*Manny
 //--------------------------Fin de css para el captcha ----------------------------------------------*/

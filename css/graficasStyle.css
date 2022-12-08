@@ -1,0 +1,22 @@
+.contenedor{
+    padding: 30px;
+    display: flex;
+}
+
+.grafica1{
+    padding: 20px;
+    background-color: gainsboro;
+    width: 50%;
+    height: auto;
+    text-align: center;
+    align-items: center;
+}
+
+.intento{
+    text-align: center;
+    align-items: center; 
+}
+
+#btnEnviar{
+    font-size: 15px;
+}

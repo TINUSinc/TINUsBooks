@@ -43,23 +43,10 @@
         global $conexion;
         $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
-        $res = $res->fetch_assoc();
-        if(!empty($res)){
-            $id = $res["Bloqueo"];
-        }else{
-            $id=0;
-        }
-        return $id;
-    }
-    function setUsuario($cuentaUsr,$contra){
-        global $conexion;
-        $query = 'MD5('.$contra.')';
-        $cifrado = $conexion->query($query);
-        $query = 'SELECT * FROM usuario WHERE Cuenta_use ="'.$cuentaUsr.'";';
-        $respuestaUsr = $conexion->query($query);
-        $respuestaUsr = $respuestaUsr->fetch_assoc();
-        if($cifrado = $respuestaUsr["contrasena"])
-        return $respuestaUsr;
+        /**Deshabilitar la linea de abajo en el webhost */
+        $res = $res->fetch_column(0);
+        /**La linea de arriba es la que se debe de deshabilitar */
+        return $res;
     }
 
     function getCategorias(){
@@ -89,7 +76,7 @@
          * Se recomienda recuperar los datos mediante un for each
          */
         global $conexion;
-        $query = 'SELECT * FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
+        $query = 'SELECT ProductoID_Prod, cant_Prod FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
         $datos = $conexion->query($query);
         $count = 0;
         $retornar = array();
@@ -100,6 +87,37 @@
         echo $quer;
         print_r($retornar);
         //return $retornar;
+    }
+
+    function getCostoCarrito($idUsr){
+        global $conexion;
+        $carrito = getCarrito($idUsr);
+        $retornar = array();
+        $total = 0;
+        $totalDesc = 0;
+        foreach ($carrito as $producto){
+            $infoProd = getProducto($producto["ProductoID_Prod"]);
+            $total += $infoProd["Precio_Prod"];
+            $totalDesc += ($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01));
+        }
+        $desc = ($totalDesc*100)/$total;
+        $retornar["total"] = $total;
+        $retornar["totalDesc"] = round($totalDesc,2);
+        $retornar["desc"] = $desc;
+        return $retornar;
+    }
+
+    function getTotalProdCarrito($idUsr){
+        //Retorna el total de productos que tiene un usuario en el carrito
+        global $conexion;
+        $query = 'SELECT * FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
+        $datos = $conexion->query($query);
+        $retornar = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar += $fila["cant_Prod"];
+        }
+        
+        return $retornar;
     }
 
     function getCategoria($idCategoria){
@@ -221,6 +239,14 @@
         return $retornar;
     }
 
+    function getDireccion($idUsuario, $alias){
+        global $conexion;
+        $query = 'SELECT * FROM usr_direccion, pais WHERE UsuarioId_Usr='.$idUsuario.' AND Alias_Dir="'.$alias.'" AND usr_direccion.ID_Pais=pais.ID_Pais;';
+        $datos = $conexion->query($query);
+        $retornar = $datos->fetch_assoc();
+        return $retornar;
+    }
+
     function getVentasMes($mes, $año){
         /**
          * Retorna las ventas en el mes y año seleccionado.
@@ -238,7 +264,7 @@
         global $conexion;
         $fechaInicio = date("Y-m-d", mktime(0,0,0,$mes,1,$año));
         $fechaFinal = date("Y-m-d", mktime(0,0,0,($mes+1),0,$año));
-        $query = 'SELECT Precio_Prod, Cant_Prod, Descuento_Prod, Nom_Cat_Prod FROM detalle_compra D, compra C WHERE C.Fecha_Compra>="'.$fechaInicio.'" AND C.Fecha_Compra<="'.$fechaFinal.'" AND C.Id_Compra=D.idCompra_Compra ;';
+        $query = 'SELECT Precio_Prod, Cant_Prod, Descuento_Prod, Nom_Cat_Prod, Desc_Cup FROM detalle_compra D, compra C WHERE C.Fecha_Compra>="'.$fechaInicio.'" AND C.Fecha_Compra<="'.$fechaFinal.'" AND C.Id_Compra=D.idCompra_Compra;';
         $datos = $conexion->query($query);
         $retornar = array();
         $calculo = array();
@@ -246,7 +272,12 @@
         if($datos->num_rows){
             while($fila = $datos->fetch_assoc()){
                 if(!isset($calculo[$fila["Nom_Cat_Prod"]])) $calculo[$fila["Nom_Cat_Prod"]] = 0;
-                $calculo[$fila["Nom_Cat_Prod"]] += ($fila["Precio_Prod"] * $fila["Cant_Prod"])-($fila["Precio_Prod"] * $fila["Cant_Prod"] * $fila["Descuento_Prod"] * 0.01);
+                $total = $fila["Precio_Prod"] * $fila["Cant_Prod"];
+                $desc1 = $total * $fila["Descuento_Prod"] * 0.01;
+                $total = $total-$desc1;
+                $desc2 = $total * $fila["Desc_Cup"] * 0.01;
+                $total = $total - $desc2;
+                $calculo[$fila["Nom_Cat_Prod"]] += $total;
             }
             $query = 'SELECT DISTINCT Nom_Cat_Prod FROM detalle_compra';
             $datos = $conexion->query($query);
@@ -259,4 +290,126 @@
         }
         return 0;
     }  
+
+    function getCostoEnvio(){
+        global $conexion;
+        $query = 'SELECT * FROM costo_envio;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
+    }
+
+    function getCupon($nomCupon){
+        global $conexion;
+        $query = 'SELECT * FROM cupon WHERE Nombre_Descuento="'.$nomCupon.'";';
+        $datos = $conexion->query($query);
+        if($datos->num_rows == 1){
+            $fila = $datos->fetch_assoc();
+            return $fila;
+        }
+        return 0;
+    }
+
+    function getCompras($idUsr){
+        global $conexion;
+        $query = 'SELECT * FROM compra WHERE UsuarioId_Usr="'.$idUsr.'";';
+        $datos = $conexion->query($query);
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
+    }
+
+    function getCompra($idCompra){
+        global $conexion;
+        $idUltimaCompra = 0;
+        $query = 'SELECT * FROM compra WHERE Id_Compra='.$idCompra.';';
+        $datos = $conexion->query($query);
+        $fila = $datos->fetch_assoc();
+        return $fila;
+    }
+
+    function getDetallesCompra($idCompra){
+        global $conexion;
+        $query = 'SELECT * FROM detalle_compra WHERE idCompra_Compra='.$idCompra.';';
+        $datos = $conexion->query($query);
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
+    }
+
+    function getUltimoDetalleCompra($idUsr){
+        global $conexion;
+        $query = 'SELECT MAX(Id_Compra) FROM compra WHERE UsuarioId_Usr='.$idUsr.';';
+        $datos = $conexion->query($query);
+        $idUltimaCompra = $datos->fetch_assoc();
+        $idUltimaCompra = $idUltimaCompra["MAX(Id_Compra)"];
+        $infoUltimaCompra = getCompra($idUltimaCompra);
+        $detallesCompra = getDetallesCompra($idUltimaCompra);
+        $retornar = array();
+        $retornar["infoCompra"] = $infoUltimaCompra;
+        $retornar["detalles"] = $detallesCompra;
+        /*
+        Para la compra obtener su información
+        $retornar["infoCompra"]["Fecha_Compra"]
+        $retornar["infoCompra"]["Costo_Envio"]
+        $retornar["infoCompra"]["Impuesto_Pais"]
+            se pueden obtener toda la informacion de la compra
+        Para cada detalle de compra obtener su informacion
+        foreach($retornar["detalles"] as $detalle){
+            $detalle["Nombre_Prod"]
+            $detalle["Nom_Cat_Prod"]
+            $detalle["Precio_Prod"]
+            $detalle["Cant_Prod"]
+            $detalle["Descuento_Prod"]
+        }
+        */
+        return $retornar;
+    }
+
+    function getProductosMasVendidos($mes, $año){
+        /**
+         * Retorna la cantidad de producto vendido en el mes y año seleccionado.
+         * -Si en el mes no hay ventas, retorna 0
+         * -Si en el mes hay ventas retorna un array con array de la siguiente forma:
+         * $array[numeroDeConsulta]["Nombre_Prod"] indica el nombre del producto
+         * $array[numeroDeConsulta]["SUM(Cant_Prod)"] indica la cantidad vendida del producto
+         * Nota: Estan ordenados del más vendido al menos vendido
+         * se recomienda usar un foreach y limitarlo a la cantidad de productos que se desean mostrar
+         * $cont=0;
+         * foreach($array as $numConsulta){
+         *  $cont++;
+         *  if(cont==10) break; //si se vendieron más de 10 productos solo muestra los primeros 10 con más ventas
+         *  $numConsulta["Nombre_Prod"]; //Indica el nombre del producto
+         *  $numConsulta["SUM(Cant_Prod)"]; //Indica la cantidad vendida en el mes
+         * }
+         * 
+         */
+        global $conexion;
+        $fechaInicio = date("Y-m-d", mktime(0,0,0,$mes,1,$año));
+        $fechaFinal = date("Y-m-d", mktime(0,0,0,($mes+1),0,$año));
+        $query = 'SELECT Nombre_Prod, SUM(Cant_Prod) FROM detalle_compra D, compra C WHERE C.Fecha_Compra>="'.$fechaInicio.'" AND C.Fecha_Compra<="'.$fechaFinal.'" AND C.Id_Compra=D.idCompra_Compra GROUP BY Nombre_Prod ORDER BY SUM(Cant_Prod) DESC;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        $calculo = array();
+        $cont = 0;
+        if($datos->num_rows){
+            while($fila = $datos->fetch_assoc()){
+                $retornar[$cont] = $fila;
+                $cont++;
+            }
+            print_r($retornar);
+        }
+        return 0;
+    }
 ?>

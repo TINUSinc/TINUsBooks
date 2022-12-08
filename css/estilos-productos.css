@@ -9,7 +9,7 @@ h1 {
 }
 
 .descripcion{
-  width: 40ch;
+  width: 34ch;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -37,6 +37,12 @@ h1 {
   margin: 0 10px;
 }
 
+/*.card-img-top{
+  height: 60ch;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60ch 34ch;
+}*/
 /*styles de efecto hover en imagen*/
 
 .imagen{
