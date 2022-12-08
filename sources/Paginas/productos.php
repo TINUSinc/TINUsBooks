@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="/css/estilos-productos.css">
 </head>
 <body>
-<div class="container">
+<div class="container my-5">
   <div class="text-center">
     <h1>Productos</h1>
   </div>
@@ -110,3 +110,6 @@
   
 </body>
 </html>
+<?php
+    include_once("../PHP/footer.php");
+?>

@@ -17,7 +17,7 @@
         <script src="../../js/categorias.js" defer></script>
     </head>
     <body>
-        <div class="container text-center">
+        <div class="container text-center my-4">
             <?php if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]["Admin"] == 1): ?>  
                 <h1 class="h2 mb-3 font-weight-normal">Registro de categorias</h1> 
                 <form style="max-width:300px;margin:auto;" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -56,3 +56,6 @@
         </div>
     </body>
 </html>
+<?php
+    include_once("../PHP/footer.php");
+?>

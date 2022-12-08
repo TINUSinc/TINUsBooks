@@ -168,7 +168,7 @@
                 <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
                 <?php if(isset($_SESSION['usuario'])): ?>
                 <?php if($_SESSION['usuario']['Admin'] == 1): ?>
-                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/formularios/productos.php">Administracion</a></li>
                 <?php endif ?>
                 <?php endif ?>
                 <li><hr class="dropdown-divider"></li>
