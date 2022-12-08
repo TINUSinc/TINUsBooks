@@ -429,3 +429,6 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Termina mapa -->
 </body>
 </html>
+<?php
+    include_once("sources/PHP/footer.php");
+?>
