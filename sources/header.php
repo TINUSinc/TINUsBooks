@@ -203,21 +203,19 @@
                   <input type="password" placeholder="Contraseña" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contra']))echo $_COOKIE['contra'];?>" required>
                   <label for="contra">Contraseña</label>
                 </div>
-                <div class="row algin-items-center">
-                  <div id="captcha_container2">
-                    <div class="form-floating mb-3" id="user-input2">
-                      <input type="text" class="form-control" id="submit_captcha2" placeholder="Captcha code">
-                      <label for="submit_captcha2">Captcha code</label>
-                    </div>
-                    <div onclick="generate2()" id="recharge2">
-                      <i class="fas fa-sync"></i>
-                    </div>
-                    <div id="image_captcha2" selectable="False" class="test"></div>
+                <div id="captcha_container2">
+                  <div class="form-floating mb-3" id="user-input2">
+                    <input type="text" class="form-control" id="submit_captcha2" placeholder="Captcha code">
+                    <label for="submit_captcha2">Captcha code</label>
                   </div>
-                  <div class="row justify-content-center text-center">
-                    <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
-                    <p id="mensaje_captcha2"></p>
+                  <div onclick="generate2()" id="recharge2">
+                    <i class="fas fa-sync"></i>
                   </div>
+                  <div id="image_captcha2" selectable="False" class="test"></div>
+                </div>
+                <div class="row justify-content-center text-center">
+                  <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
+                  <p id="mensaje_captcha2"></p>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-text">
