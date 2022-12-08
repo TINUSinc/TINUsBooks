@@ -384,7 +384,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 </section>
 <!-- Cuadro de texto e imagen  --> 
 <section class="cuadro">
-	<img src="media/indexmedia/lector1.jpg" style="float:left; padding-right: 10px;" width="240" height="240" alt="Foto de Ejemplo"/>
+	<img src="media/indexmedia/lector1.jpg" style="float:left;" alt="Foto de Ejemplo"/>
 	<div id="cuadrotexto">
 		<h3> Nuestros origenes </h3>
 		<p> Nuestro nombre es TINU's Books y somos una tienda online que marca tendencias, ofreciendo productos de primer nivel y un servicio al cliente excepcional que los compradores podrán obtener desde la comodidad de su hogar. Somos un negocio compuesto por personas innovadoras que siempre miran a futuro. Tenemos el impulso y los medios para actualizar y mejorar constantemente la experiencia de tu compra en línea. </p>

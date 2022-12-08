@@ -342,7 +342,6 @@ h2::after {
 
 /*inician los estilos de la seccion origenes2*/
 .cuadro{
-	width: 100%;
     background-color: rgb(239, 239, 205);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: lighter;
@@ -355,9 +354,7 @@ h2::after {
 	height: 100%;
 	grid: imagen;
 }
-
 #cuadrotexto{
-	width: 100%;
     color: rgb(35, 47, 36);
     text-align: justify;
     padding-inline: 30px;
@@ -375,6 +372,9 @@ h2::after {
 }
 #cuadrotexto p{
     padding-top: 50px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 50px;
     
 }
 /*terminan los estilos de la seccion origenes2*/
@@ -519,7 +519,15 @@ h2::after {
 	cursor:default;
 	user-select: none;
 }
-
+#aprovecha{
+	user-select: none;
+}
+#obtener{
+	user-select: none;
+}
+#codigo::selection{
+	background-color: #86bd57;
+}
 
 .descuento h5{
     font-size: 20px;
