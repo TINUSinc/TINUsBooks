@@ -3,13 +3,14 @@
   if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
     agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
   }
+  $producto=getProducto($_GET["id"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Productos</title>
+    <title><?php echo $producto["Nombre_Prod"]?></title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css"
         integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/7491ec4faf.js" crossorigin="anonymous"></script>
@@ -23,13 +24,13 @@
         <div class="card mb-3" style="max-width: 540px;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="..." class="img-fluid rounded-start" alt="...">
+                    <img src="/media/productos/<?php echo $producto["Imagenes"][1]?>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="titulo">Titulo</h5>
-                        <p class="descripcion">Descripcion</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="titulo"><?php echo $producto["Nombre_Prod"]?></h5>
+                        <p class="descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
+                        <p class="card-text"><small class="text-muted">Disponible: <?php echo $producto["Existencias_Prod"]?></small></p>
                         <div class="contenedorIconos">
                             <div class="iconoTexto">
                                 <article class=".articlecirc">
