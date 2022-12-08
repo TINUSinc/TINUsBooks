@@ -38,7 +38,7 @@ section {
   height: calc(100% + 400px);
   background-position: 50% 50%;
   background-size: cover;
-  
+  cursor:default;
 }
 .slide-title {
   font-size: 4rem;
@@ -51,7 +51,8 @@ section {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   font-weight: normal;
-  
+  cursor:default;
+  user-select: none;
 }
 @media (min-width: 45em) {
   .slide-title {
