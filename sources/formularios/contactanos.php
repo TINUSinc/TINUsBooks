@@ -14,41 +14,45 @@
 <section class="formulario">
    	<div class="container contact">
 		<div class="row">
-			<div class="col-sm-12 col-md-4 col-lg-3 contenedorMsj">
-				<div class="contact-info">
-					<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
-					<h2>Contactános</h2>
-					<h4> Tu voz es muy importante </h4>
-				</div>
-			</div>
-			<div class="col-sm-12 col-md-8 col-lg-9 contenedorContacto">
-				<div class="contact-form">
-					<div class="form-group">
-						<div class="form-floating mb-2">      
-							<input type="text" class="form-control" id="fname" placeholder="Ingresa tu nombre" name="fname">
-							<label for="fname">Nombre:</label>
-						</div>
-						<div class="form-floating mb-2">      
-							<input type="text" class="form-control" id="lname" placeholder="Ingresa tu apellido" name="lname">
-							<label for="lname">Apellido:</label>
-						</div>
-						<div class="form-floating mb-2">      
-							<input type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email">
-							<label for="email">Email:</label>
+			<form action="">
+				<div class="row">
+					<div class="col-sm-12 col-md-4 col-lg-3 contenedorMsj">
+						<div class="contact-info">
+							<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
+							<h2>Contactános</h2>
+							<h4> Tu voz es muy importante </h4>
 						</div>
 					</div>
-					<div class="form-group">
-						<div class="form-floating mb-2">      
-							<textarea class="form-control" style="height: 20ch;" placeholder="Comentario:" id="comment"></textarea>
-							<label for="comment">Comentario:</label>
-						</div>
-					<div class="form-group">        
-						<div class="text-center">
-							<button type="submit" class="btn botonP">Enviar</button>
+					<div class="col-sm-12 col-md-8 col-lg-9 contenedorContacto">
+						<div class="contact-form">
+							<div class="form-group">
+								<div class="form-floating mb-2">      
+									<input required type="text" class="form-control" id="fname" placeholder="Ingresa tu nombre" name="fname">
+									<label for="fname">Nombre:</label>
+								</div>
+								<div class="form-floating mb-2">      
+									<input required type="text" class="form-control" id="lname" placeholder="Ingresa tu apellido" name="lname">
+									<label for="lname">Apellido:</label>
+								</div>
+								<div class="form-floating mb-2">      
+									<input required type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email">
+									<label for="email">Email:</label>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="form-floating mb-2">      
+									<textarea required class="form-control" style="height: 20ch;" placeholder="Comentario:" id="comment"></textarea>
+									<label for="comment">Comentario:</label>
+								</div>
+							<div class="form-group">        
+								<div class="text-center">
+									<button type="submit" class="btn botonP">Enviar</button>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+			</form>	
 		</div>
 	</div>
 </section>
