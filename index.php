@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <!-- Controles del carrusel de inicio -->
     <!--<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -10,8 +12,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Oswald:500" rel="stylesheet">
-    <script>!function(e){"undefined"==typeof module?this.charming=e:module.exports=e}(function(e,n){"use strict";n=n||{};var t=n.tagName||"span",o=null!=n.classPrefix?n.classPrefix:"char",r=1,a=function(e){for(var n=e.parentNode,a=e.nodeValue,c=a.length,l=-1;++l<c;){var d=document.createElement(t);o&&(d.className=o+r,r++),d.appendChild(document.createTextNode(a[l])),n.insertBefore(d,e)}n.removeChild(e)};return function c(e){for(var n=[].slice.call(e.childNodes),t=n.length,o=-1;++o<t;)c(n[o]);e.nodeType===Node.TEXT_NODE&&a(e)}(e),e});
-    </script>
+    <script>!function(e){"undefined"==typeof module?this.charming=e:module.exports=e}(function(e,n){"use strict";n=n||{};var t=n.tagName||"span",o=null!=n.classPrefix?n.classPrefix:"char",r=1,a=function(e){for(var n=e.parentNode,a=e.nodeValue,c=a.length,l=-1;++l<c;){var d=document.createElement(t);o&&(d.className=o+r,r++),d.appendChild(document.createTextNode(a[l])),n.insertBefore(d,e)}n.removeChild(e)};return function c(e){for(var n=[].slice.call(e.childNodes),t=n.length,o=-1;++o<t;)c(n[o]);e.nodeType===Node.TEXT_NODE&&a(e)}(e),e});</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/js/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
     
@@ -28,7 +29,7 @@
 </head>
 <body>
 
-<section>
+<section id="swiper1">
   <div class="swiper-container slideshow">
     <div class="swiper-wrapper">
       <div class="swiper-slide slide">
@@ -195,7 +196,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<div class="row">
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -207,7 +208,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -220,7 +221,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>		
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -233,7 +234,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>								
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -250,7 +251,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 				</div>
 				<div class="carousel-item">
 					<div class="row">
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -263,7 +264,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -276,7 +277,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -289,7 +290,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -306,7 +307,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 				</div>
 				<div class="carousel-item">
 					<div class="row">
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="libro.jpg" alt="">
@@ -319,7 +320,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="/examples/images/products/canon.jpg" class="img-fluid" alt="">
@@ -332,7 +333,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="/examples/images/products/pixel.jpg" class="img-fluid" alt="">
@@ -345,7 +346,7 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								</div>						
 							</div>
 						</div>	
-						<div class="col-sm-3">
+						<div class="col-12 col-sm-6 col-md-3">
 							<div class="thumb-wrapper">
 								<div class="img-box">
 									<img src="/examples/images/products/watch.jpg" class="img-fluid" alt="">
@@ -353,7 +354,6 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 								<div class="thumb-content">
 									<h4> Producto </h4>
 									<p class="item-price"><strike>$350.00</strike> <span>$330.00</span></p>
-									
 									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
 								</div>						
 							</div>
@@ -376,11 +376,11 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Termina arrusel de productos  --> 
 <section class="descuento">
     <img class="zoom"src="media/indexmedia/linear1.jpg" alt="">
-    <h2 style="font: size 50px;">Explora</h2>
+    <h2 class="explora">Explora</h2>
 </section>
 <section class="descuento">
     <img class="zoom" src="media/indexmedia/linear2.jpg" alt="">
-    <h2 style="font-size:50px; text-shadow: 2cm">Tus nuevos generos favoritos</h2>
+    <h2 class="generos">Tus nuevos generos favoritos</h2>
 </section>
 <!-- Cuadro de texto e imagen  --> 
 <section class="cuadro">
@@ -395,32 +395,32 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Animacion 3d de origenes  --> 
 <section class="origenes">
     <div class="container">
-	<div class="front side">
-		<div class="content">
-			<h1> Fomentamos la lectura </h1>
-			<p>Los libros son un recurso imprescindible para nuestro proceso formativo, les permiten imaginar, descubrir, viajar y conocer sobre el mundo que los rodea.
-			. Explora todo tipo de generos, disfrutando de una calidad y un precio accesible.</p>
-			<p></p>
+		<div class="front side">
+			<div class="content">
+				<h1> Fomentamos la lectura </h1>
+				<p>Los libros son un recurso imprescindible para nuestro proceso formativo, les permiten imaginar, descubrir, viajar y conocer sobre el mundo que los rodea.
+				 Explora todo tipo de generos, disfrutando de una calidad y un precio accesible.</p>
+				<p></p>
+			</div>
+		</div>
+		<div class="back side">
+			<div class="content">
+				<h1> Nuestra filosofía</h1>
+				<p>
+					La lectura es una de las piedras angulares para la adquisición de conocimiento. Leer, la lectura, es una de las mejores habilidades que podemos adquirir. Ella nos acompañará a lo largo de nuestras vidas y permitirá que adquiramos conocimiento, y que entendamos el mundo y todo lo que nos rodea.
+				</p>
+			</div>
 		</div>
 	</div>
-	<div class="back side">
-		<div class="content">
-			<h1> Nuestra filosofía</h1>
-			<p>
-				La lectura es una de las piedras angulares para la adquisición de conocimiento. Leer, la lectura, es una de las mejores habilidades que podemos adquirir. Ella nos acompañará a lo largo de nuestras vidas y permitirá que adquiramos conocimiento, y que entendamos el mundo y todo lo que nos rodea.
-			</p>
-		</div>
-	</div>
-</div>
 </section>
 <!-- Termina animacion 3d de origenes  --> 
 
 <!-- Barra descuento  --> 
 <section class="descuento">
     <img src="media/indexmedia/descuentofondo.jpg" alt="">
-    <p>- Aprovecha nuestros descuentos -</p>
-    <h2>¡Obten 20% en toda la tienda!</h2>
-    <h5>Código: apertura20</h5>
+    <p id="aprovecha" >- Aprovecha nuestros descuentos -</p>
+    <h2 id="obtener" >¡Obten 20% en toda la tienda!</h2>
+    <h5 id="codigo" >Código: apertura20</h5>
 </section>
 <!-- Termina barra descuento  --> 
 
