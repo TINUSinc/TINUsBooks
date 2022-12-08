@@ -63,9 +63,9 @@ class Slideshow {
         this.DOM = {el: el};
         this.config = {
           slideshow: {
-            delay: 3000,
+            delay: 5000,
             pagination: {
-              duration: 3,
+              duration: 5,
             }
           }
         };
