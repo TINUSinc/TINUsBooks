@@ -84,9 +84,7 @@
             $retornar[$count] = $fila;
             $count++;
         }
-        echo $quer;
-        print_r($retornar);
-        //return $retornar;
+        return $retornar;
     }
 
     function getCostoCarrito($idUsr){
