@@ -49,6 +49,7 @@ function getVentasMes($mes, $año){
 </head>
 
 <body>
+
    <form method="post" action="graficas.php">
     <select name="mes">
         <?php

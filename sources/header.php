@@ -116,7 +116,6 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/captcha.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
-
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body onload="generate(), generate2()">
@@ -137,34 +136,45 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/sources/formularios/contactanos.php">Contactanos</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
+            </li>
           </ul>
-          <div class="btn-group">
-            <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
-                    data-bs-toggle="modal" data-bs-target="#modalIniciar">
-              <?php 
-                if(!isset($_SESSION["usuario"])){
-                  echo "Inciar sesión/Registrarse";
-                }else{
-                  $saludo = "Bienvenido";
-                  $nom = $_SESSION['usuario']['Nombre_Usr']; 
-                  echo "$saludo, $nom";
-                }
-              ?>
-            </button>
-            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-              <span class="visually-hidden">Toggle Dropdown</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start">
-              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
-              <?php if(isset($_SESSION['usuario'])): ?>
-              <?php if($_SESSION['usuario']['Admin'] == 1): ?>
-              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
-              <?php endif ?>
-              <?php endif ?>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
-            </ul>
+          <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
+            <div class="mx-0 mx-md-3 mb-3 mb-md-0">
+              <a class="nav-link text-white text-start text-md-center" href="/sources/Paginas/pagar.php" id="linkCarrito">
+                <i style="display: inline;" class="fa-solid fa-cart-shopping"></i>
+                <p style="display: inline;"><i><small id="carritoCant"><?php if (isset($_SESSION["usuario"])) {echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]);}?></small></i></p>
+              </a>
+            </div>
           </div>
+          <div class="btn-group">
+              <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
+                      data-bs-toggle="modal" data-bs-target="#modalIniciar">
+                <?php 
+                  if(!isset($_SESSION["usuario"])){
+                    echo "Inciar sesión/Registrarse";
+                  }else{
+                    $saludo = "Bienvenido";
+                    $nom = $_SESSION['usuario']['Nombre_Usr']; 
+                    echo "$saludo, $nom";
+                  }
+                ?>
+              </button>
+              <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start">
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
+                <?php if(isset($_SESSION['usuario'])): ?>
+                <?php if($_SESSION['usuario']['Admin'] == 1): ?>
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
+                <?php endif ?>
+                <?php endif ?>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/cerrarSesion.php">Cerrar sesión</a></li>
+              </ul>
+            </div>
         </div>
       </div>
     </nav>
@@ -173,7 +183,7 @@
           swal("Contrasena restaurada", "Se ha desbloqueado su cuenta y se le ha mandado un correo con una contraseña provisional", "success", {
             button: "Aceptar",
           });
-      </script>
+      </scr>
     <?php endif;?>
     <div class="modal fade" id="modalIniciar" tabindex="-1" aria-labelledby="modalIniciar" aria-hidden="true">
       <div class="modal-dialog">
@@ -193,21 +203,19 @@
                   <input type="password" placeholder="Contraseña" id="contra" class="form-control" name="contra" value="<?php if(!empty($_COOKIE['contra']))echo $_COOKIE['contra'];?>" required>
                   <label for="contra">Contraseña</label>
                 </div>
-                <div class="row algin-items-center">
-                  <div id="captcha_container2">
-                    <div class="form-floating mb-3" id="user-input2">
-                      <input type="text" class="form-control" id="submit_captcha2" placeholder="Captcha code">
-                      <label for="submit_captcha2">Captcha code</label>
-                    </div>
-                    <div onclick="generate2()" id="recharge2">
-                      <i class="fas fa-sync"></i>
-                    </div>
-                    <div id="image_captcha2" selectable="False" class="test"></div>
+                <div id="captcha_container2">
+                  <div class="form-floating mb-3" id="user-input2">
+                    <input type="text" class="form-control" id="submit_captcha2" placeholder="Captcha code">
+                    <label for="submit_captcha2">Captcha code</label>
                   </div>
-                  <div class="row justify-content-center text-center">
-                    <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
-                    <p id="mensaje_captcha2"></p>
+                  <div onclick="generate2()" id="recharge2">
+                    <i class="fas fa-sync"></i>
                   </div>
+                  <div id="image_captcha2" selectable="False" class="test"></div>
+                </div>
+                <div class="row justify-content-center text-center">
+                  <div id="btn_captcha2" onclick="printmsg2()" selectable="False" class="btn btn-light">Verificar Captcha</div>
+                  <p id="mensaje_captcha2"></p>
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-text">

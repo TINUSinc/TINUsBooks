@@ -62,6 +62,11 @@ include("../header.php");
                     endif;?>
             </div>
         </div>
+    <?php if(isset($_SESSION["usuario"])): ?>
+        <script>
+            document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
+        </script>
+    <?php endif ?>
     </body>
 
 </html>

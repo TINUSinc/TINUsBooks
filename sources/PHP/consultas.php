@@ -114,6 +114,7 @@
         while($fila = $datos->fetch_assoc()){
             $retornar += $fila["cant_Prod"];
         }
+        
         return $retornar;
     }
 
@@ -372,5 +373,41 @@
         }
         */
         return $retornar;
+    }
+
+    function getProductosMasVendidos($mes, $año){
+        /**
+         * Retorna la cantidad de producto vendido en el mes y año seleccionado.
+         * -Si en el mes no hay ventas, retorna 0
+         * -Si en el mes hay ventas retorna un array con array de la siguiente forma:
+         * $array[numeroDeConsulta]["Nombre_Prod"] indica el nombre del producto
+         * $array[numeroDeConsulta]["SUM(Cant_Prod)"] indica la cantidad vendida del producto
+         * Nota: Estan ordenados del más vendido al menos vendido
+         * se recomienda usar un foreach y limitarlo a la cantidad de productos que se desean mostrar
+         * $cont=0;
+         * foreach($array as $numConsulta){
+         *  $cont++;
+         *  if(cont==10) break; //si se vendieron más de 10 productos solo muestra los primeros 10 con más ventas
+         *  $numConsulta["Nombre_Prod"]; //Indica el nombre del producto
+         *  $numConsulta["SUM(Cant_Prod)"]; //Indica la cantidad vendida en el mes
+         * }
+         * 
+         */
+        global $conexion;
+        $fechaInicio = date("Y-m-d", mktime(0,0,0,$mes,1,$año));
+        $fechaFinal = date("Y-m-d", mktime(0,0,0,($mes+1),0,$año));
+        $query = 'SELECT Nombre_Prod, SUM(Cant_Prod) FROM detalle_compra D, compra C WHERE C.Fecha_Compra>="'.$fechaInicio.'" AND C.Fecha_Compra<="'.$fechaFinal.'" AND C.Id_Compra=D.idCompra_Compra GROUP BY Nombre_Prod ORDER BY SUM(Cant_Prod) DESC;';
+        $datos = $conexion->query($query);
+        $retornar = array();
+        $calculo = array();
+        $cont = 0;
+        if($datos->num_rows){
+            while($fila = $datos->fetch_assoc()){
+                $retornar[$cont] = $fila;
+                $cont++;
+            }
+            print_r($retornar);
+        }
+        return 0;
     }
 ?>

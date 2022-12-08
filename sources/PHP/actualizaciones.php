@@ -173,11 +173,21 @@
             $infoProd = getProducto($producto["ProductoID_Prod"]);
             if($producto["cant_Prod"]>$infoProd["Existencias_Prod"]){
                 if($infoProd["Existencias_Prod"] == 0){
+                    echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Debido a disponibilidad, se eliminó "'.$infoProd["Nombre_Prod"].'" de su carrito
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
                     $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
                 }else{
+                    echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Debido a disponibilidad, se limito la cantidad de "'.$infoProd["Nombre_Prod"].'" en su carrito
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
                     $query = 'UPDATE carrito SET cant_Prod='.$infoProd["Existencias_Prod"].' WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$infoProd["ID_Prod"].';';
                 }
-                
+                try{
+                    $conexion->query($query);
+                }catch(Exception $e){}
             }
         }
     }

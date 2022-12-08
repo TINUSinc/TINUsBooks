@@ -19,10 +19,30 @@
     <h1>Productos</h1>
   </div>
   <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-end text-center">
+      <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="GET">
+        <select class="form-select" name="categoria" id="categoria" tittle="Elige una categoria de la lista" required>
+          <option value="0">Todas las categorías</option>
+          <?php
+              $categorias = getCategorias();
+              foreach($categorias as $categoria){
+                  echo '<option value='.$categoria["ID_cat"].'>'.$categoria["Nom_Cat"].'</option>';
+              }
+          ?>
+        </select>
+        <input type="submit" class="btn btn-light my-2" value="Mostrar">
+      </form>
+    </div>
+    <br>
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-4">
-      <?php 
-        $productos=getProductos();
+      <?php
+        if(isset($_GET["categoria"]) && !empty($_GET["categoria"])){
+          $productos = getProductosCategoria($_GET["categoria"]);
+        }else{
+          $productos=getProductos();
+        }
         $band = false;
+      if(!empty($productos)):
         foreach($productos as $producto):
           if(!$band && $producto["Descuento_Prod"]==0 && rand(1,3) == 3){
             $cantidad = rand(55,80);
@@ -74,10 +94,19 @@
             </div>
           </div>
         <?php endforeach?>
+        <?php else: ?>
+          <div class='alert alert-warning show text-center' style="width: 100%;" role='alert'>
+              No hay productos para esta categoría.
+          </div>
+        <?php endif ?>
     </div>
   </div>
 </div>
-
+<?php if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])): ?>
+  <script>
+    document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
+  </script>
+<?php endif ?>
   
 </body>
 </html>
