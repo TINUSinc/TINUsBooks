@@ -358,6 +358,7 @@ h2::after {
     color: rgb(35, 47, 36);
     text-align: justify;
     padding-inline: 30px;
+	height: 100%;
 	grid: texto;
 }
 @media (max-width: 992px){
