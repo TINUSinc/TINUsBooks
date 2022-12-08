@@ -11,8 +11,10 @@
         <div class="container-fluid">
             <div class="row p-5 pb-2 text-light" style="background-color: #1B1B1B;">
                 <div class="col-xs-12 col-md-6 col-lg-3 text-center">
-                    <img src="/media/tinusbooks.png" alt="TICER" widht="80" height="80">
-                    <p class="h2 titulos" style="color:white;">TINU'S Book Store</p>
+                    <a href="/index.php" style="text-decoration: none;">
+                        <img src="/media/tinusbooks.png" alt="TICER" widht="80" height="80">
+                        <p class="h2 titulos" style="color:white;">TINU'S Book Store</p>
+                    </a>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-3 text-center">
                     <p class="h5 mb-3 titulos" style="color:white;">Conocenos</p>
@@ -28,16 +30,14 @@
                         <a class="text-secondary text-decoration-none" href="/sources/formularios/contactanos.php">Contacto</a>
                     </div>
                 </div>
-                <div class="col-xs-12 col-md-6 col-lg-3 text-center">
-                    <p class="h5 mb-3 titulos" style="color:white;">Redes Sociales</p>
-                    <ul>
-                        <li class="d-flex justify-content-between"></li>
+                <div class="col-xs-12 col-md-6 col-lg-3 ">
+                    <p class="h5 mb-3 text-center titulos" style="color:white;">Redes Sociales</p>
+                    <div class="d-flex flex-row justify-content-center redesSociales">
                             <!--Facebook-->
                             <a href="https://www.facebook.com/profile.php?id=100085368251374&mibextid=ZbWKwL" class="text-reset"><i class="fa-brands fa-facebook-f"></i></a>
                             <!--Instagram-->
                             <a href="https://www.instagram.com/tinus_bookstore/" class="text-reset"><i class="fa-brands fa-instagram"></i></a>
-                        </li>
-                    </ul>
+                    </div>
                 </div>   
             </div>
         </div>
