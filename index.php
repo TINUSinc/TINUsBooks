@@ -1,4 +1,8 @@
-<?php include('sources/header.php') ?>
+<?php include('sources/header.php');
+  if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
+    agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -178,190 +182,77 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 	<div class="row">
 		<div class="col-md-12">
 			<h2>Productos <b>Recomendados</b> </h2>
-			<div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-interval="0">
-			<!-- Carrusel -->
-			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
-			</ol>   
-			<!-- Items del carrusel  -->
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="row">
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+				<!-- Carrusel -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+				</ol>   
+				<!-- Items del carrusel  -->
+				<div class="carousel-inner">
+					<?php 
+						$productos = getProductos();
+						$leng = count($productos);
+						$cont = 0;
+						shuffle($productos);
+						foreach($productos as $producto):
+							if($cont == 8) break;
+							if($cont%4 == 0):
+					?>
+					<div class="carousel-item <?php if($cont==0) echo "active"; ?>">
+						<div class="row">
+							<?php 
+								endif;
+								$cont++; 
+							?>
+							<div class="col-12 col-sm-6 col-md-3">
+								<div class="thumb-wrapper">
+									<div class="img-box">
+										<img src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
+									</div>
+									<div class="thumb-content">
+										<h4> <?php echo $producto["Nombre_Prod"]?> </h4>
+										<p class="item-price"><?php if($producto["Descuento_Prod"]>0):?><strike>$<?php echo $producto["Precio_Prod"]?></strike><?php endif; ?><span>$<?php echo number_format($producto["Precio_Prod"]-($producto["Precio_Prod"]*$producto["Descuento_Prod"]*0.01),2)?></span></p>
+										<?php if(isset($_SESSION["usuario"])){
+											$disponibilidad = "";
+											$texto=" Agregar al carrito";
+											if($producto["Existencias_Prod"] == 0){
+												$disponibilidad = "disabled";
+												$texto = " Sin inventario";
+											}
+											echo '
+												<form method="POST" action="'.$_SERVER["PHP_SELF"].'">
+													<input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
+													<button '.$disponibilidad.' class="btn btn-primary" type="submit"><i class="fas fa-shopping-cart"></i>'.$texto.'</button>
+												</form>
+												';
+											}else{
+											echo '
+												<button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
+											';
+											}
+										?> 
+									</div>						
 								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"> <strike>$400.00</strike> <span>$369.00</span></p>
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
 							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$25.00</strike> <span>$23.99</span></p>
-
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>		
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$899.00</strike> <span>$649.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>								
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$315.00</strike> <span>$250.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
+						<?php if($cont%4 == 0): ?>
 						</div>
 					</div>
+					<?php endif; ?>
+					<?php endforeach; ?>
+					<?php if($cont < 8 && $cont != 4): ?>
+							</div>
+						</div>
+					<?php endif; ?>
 				</div>
-				<div class="carousel-item">
-					<div class="row">
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$289.00</strike> <span>$269.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$1099.00</strike> <span>$869.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$109.00</strike> <span>$99.00</span></p>
-									
-									<a href="#" class="btn btn-primary">Add to Cart</a>
-								</div>						
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$599.00</strike> <span>$569.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>						
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row">
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="libro.jpg" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$369.00</strike> <span>$349.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="/examples/images/products/canon.jpg" class="img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$315.00</strike> <span>$250.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="/examples/images/products/pixel.jpg" class="img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$450.00</strike> <span>$418.00</span></p>
-									
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>	
-						<div class="col-12 col-sm-6 col-md-3">
-							<div class="thumb-wrapper">
-								<div class="img-box">
-									<img src="/examples/images/products/watch.jpg" class="img-fluid" alt="">
-								</div>
-								<div class="thumb-content">
-									<h4> Producto </h4>
-									<p class="item-price"><strike>$350.00</strike> <span>$330.00</span></p>
-									<a href="#" class="btn btn-primary"> Agregar al carrito </a>
-								</div>						
-							</div>
-						</div>
-					</div>
-				</div>
+				<!-- Controles del carrusel -->
+				<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+					<i class="fa fa-angle-left"></i>
+				</a>
+				<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+					<i class="fa fa-angle-right"></i>
+				</a>
 			</div>
-			<!-- Controles del carrusel -->
-			<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-				<i class="fa fa-angle-left"></i>
-			</a>
-			<a class="carousel-control-next" href="#myCarousel" data-slide="next">
-				<i class="fa fa-angle-right"></i>
-			</a>
-		</div>
 		</div>
 	</div>
 </div>
@@ -420,6 +311,11 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Mapa --> 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.233231530003!2d-102.29467398539583!3d21.887092785539757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee6733bab0cb%3A0x64f5f203073c9e2a!2sCalle%20Gral.%20Ignacio%20Zaragoza%2C%20Zona%20Centro%2C%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1670296660311!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <!-- Termina mapa -->
+  <?php if(isset($_SESSION["usuario"])): ?>
+    <script>
+        document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
+    </script>
+  <?php endif ?>
 </body>
 </html>
 <?php

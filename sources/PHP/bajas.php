@@ -34,7 +34,7 @@
     function borrarProdCarrito($idUsr, $idProd){
         global $conexion;
         try{
-            $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.' AND ProdcutoID_Prod='.$idProd.';';
+            $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.' AND ProductoID_Prod='.$idProd.';';
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                             Se elimino el producto del carrito

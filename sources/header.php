@@ -145,7 +145,7 @@
           <?php if(isset($_SESSION['usuario'])): ?>
           <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
             <div class="mx-0 mx-md-3 mb-3 mb-md-0">
-              <a class="nav-link text-white text-start text-md-center" href="/sources/Paginas/pagar.php" id="linkCarrito">
+              <a class="nav-link text-white text-start text-md-center" href="/sources/Paginas/carrito.php" id="linkCarrito">
                 <i style="display: inline;" class="fa-solid fa-cart-shopping"></i>
                 <p style="display: inline;"><i><small id="carritoCant"><?php if (isset($_SESSION["usuario"])) {echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]);}?></small></i></p>
               </a>
