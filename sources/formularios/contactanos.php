@@ -19,13 +19,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactanos</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="/js/validarForms.js"></script>
     <link rel="stylesheet" href="../../css/forms.css">
     
 </head>
 
 <body>
 <section class="formulario">
-   	<div class="container contact">
+	<div class="container contact">
 		<div class="row">
 			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 				<div class="row">
@@ -34,22 +36,24 @@
 							<img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image"/>
 							<h2>Contactános</h2>
 							<h4> Tu voz es muy importante </h4>
-						</div>
-					</div>
-					<div class="col-sm-12 col-md-8 col-lg-9 contenedorContacto">
-						<div class="contact-form">
-							<div class="form-group">
-								<div class="form-floating mb-2">      
-									<input required type="text" class="form-control" id="fname" placeholder="Ingresa tu nombre" name="fname">
-									<label for="fname">Nombre:</label>
-								</div>
-								<div class="form-floating mb-2">      
-									<input required type="text" class="form-control" id="lname" placeholder="Ingresa tu apellido" name="lname">
-									<label for="lname">Apellido:</label>
-								</div>
-								<div class="form-floating mb-2">      
-									<input required type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email">
-									<label for="email">Email:</label>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-8 col-lg-9 contenedorContacto">
+            <div class="contact-form">
+              <div class="form-group">
+                <div class="form-floating mb-2">      
+                  <input type="text" class="form-control" id="fname" placeholder="Ingresa tu nombre" name="fname" onclick="validNameFormContact()">
+                  <label for="fname">Nombre:</label>
+                  <p style="display:none; color:black;" id="textErrfname"> Nombre no valido! Caracteres numericos no validos.</p>
+                </div>
+                <div class="form-floating mb-2">      
+                  <input type="text" class="form-control" id="lname" placeholder="Ingresa tu apellido" name="lname" onclick="validlNameFormContact()">
+                  <label for="lname">Apellido:</label>
+                  <p style="display:none; color:black;" id="textErrlname"> Apellido no valido! Caracteres numericos no validos.</p>
+                </div>
+						<div class="form-floating mb-2">      
+							<input type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email">
+							<label for="email">Email:</label>
 								</div>
 							</div>
 							<div class="form-group">

@@ -116,6 +116,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/captcha.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
+    <script src="/js/validarForms.js"></script>
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body onload="generate(), generate2()">
@@ -261,8 +262,9 @@
                   <label for="contra2" class="col-form-label text-black">Confirme la contraseña</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="text" placeholder="Nombre completo" id="nombre" class="form-control" name="nombre" required>
+                  <input type="text" placeholder="Nombre completo" id="nombre" class="form-control" name="nombre" onclick="validNameForm()" required>
                   <label for="nombre" class="col-form-label text-black">Nombre completo</label>
+                  <p style="display:none; color:black;" id="textErr"> Nombre no valido! Caracteres numericos no validos.</p>
                 </div>
                 <div class="form-floating mb-3">
                   <input type="email" placeholder="Correo electrónico" id="correo" class="form-control" name="correo" required>
