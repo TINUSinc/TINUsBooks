@@ -17,6 +17,14 @@
         echo json_encode(getDireccion($_POST["idUsr"],$_POST["Alias_Dir"]));
     }
 
+    if(isset($_POST["idCupon1"])){
+        echo json_encode(getCuponId($_POST["idCupon1"]));
+    }
+
+    if(isset($_POST["montoCompra1"])){
+        echo json_encode(getCostoEnvioId($_POST["montoCompra1"]));
+    }
+
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de
@@ -306,6 +314,17 @@
         return $retornar;
     }
 
+    function getCostoEnvioId($MontoCompra){
+        global $conexion;
+        $query = 'SELECT * FROM costo_envio WHERE Monto_Compra='.$MontoCompra.';';
+        $datos = $conexion->query($query);
+        if($datos->num_rows == 1){
+            $fila = $datos->fetch_assoc();
+            return $fila;
+        }
+        return 0;
+    }
+
     function getCupon($nomCupon){
         global $conexion;
         $query = 'SELECT * FROM cupon WHERE Nombre_Descuento="'.$nomCupon.'";';
@@ -315,6 +334,29 @@
             return $fila;
         }
         return 0;
+    }
+
+    function getCuponId($idCupon){
+        global $conexion;
+        $query = 'SELECT * FROM cupon WHERE ID_Cupon='.$idCupon.';';
+        $datos = $conexion->query($query);
+        if($datos->num_rows == 1){
+            $fila = $datos->fetch_assoc();
+            return $fila;
+        }
+        return 0;
+    }
+
+    function getCupones(){
+        global $conexion;
+        $query = 'SELECT * FROM cupon;';
+        $datos = $conexion->query($query);
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
     }
 
     function getCompras($idUsr){
