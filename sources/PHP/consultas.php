@@ -99,13 +99,13 @@
         $totalDesc = 0;
         foreach ($carrito as $producto){
             $infoProd = getProducto($producto["ProductoID_Prod"]);
-            $total += $infoProd["Precio_Prod"];
-            $totalDesc += ($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01));
+            $total += $infoProd["Precio_Prod"]*$producto["cant_Prod"];
+            $totalDesc += ($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01))*$producto["cant_Prod"];
         }
-        $desc = ($totalDesc*100)/$total;
-        $retornar["total"] = $total;
+        $desc = 100 - ((round($totalDesc,2)*100)/round($total,2));
+        $retornar["total"] = round($total,2);
         $retornar["totalDesc"] = round($totalDesc,2);
-        $retornar["desc"] = $desc;
+        $retornar["desc"] = round($desc,3);
         return $retornar;
     }
 

@@ -10,7 +10,7 @@ include("../header.php");
         <title>Pagar</title>
     </head> 
     <body> 
-    <?php
+        <?php
             if(isset($_SESSION["usuario"])){
                 revisarCarrito($_SESSION["usuario"]["ID_Usr"]);
             }else{
@@ -30,32 +30,65 @@ include("../header.php");
                     <div class="card">
                         <div class="card-body">
                             <p>Elija un metodo de pago:</p>
-                            <ul>
-                                <li>Bancomer</li>
-                                <li>Banamex</li>
-                                <li>Santander</li>
-                            </ul>
+                            <input type="radio" id="tarjeta" name="tarjeta" value="Tarjeta">
+                            <label for="tarjeta">Tarjeta</label><br>
+                            <input type="radio" id="oxxo" name="tienda" value="Oxxo">
+                            <label for="oxxo">Oxxo</label><br>
+                            <br>
+                            <section class="d-flex justify-content-center">
+                            <form action="">
+                                    <div>
+                                      <input type="text" placeholder="Número de tarjeta">  
+                                      <div class="mb-2">
+                                        <input type="text" placeholder="Fecha Expiracion">  
+                                      </div>
+                                      <div class="mb-2">
+                                        <input type="text" placeholder="CVV"> 
+                                      </div>
+                                      <input type="text" placeholder="Nombre como aparece en la tarjeta">  
+                                    </div>
+                                </form>
+                            </section>
+                                    
+                                
+                           
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
             <div class="row my-4">
                 <div class="col-8">
                     <?php if(isset($_SESSION["usuario"])): 
                         $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
                         if(!empty($carrito)):
                     ?>
-                    <div class="card">
-                    <?php
-                    foreach($carrito as $producto):
-                        $infoProd = getProducto($producto["ProductoID_Prod"]);
-                        
-                    ?>
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $infoProd["Nombre_Prod"];?></h5>
-                            <p class="card-text"><small class="text-muted">Cantidad: <?php echo $producto["cant_Prod"];?></small></p>
-                        </div>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio Unitario</th>
+                                <th scope="col">Descuento</th>
+                                <th scope="col">Precio final</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($carrito as $producto):
+                                $infoProd = getProducto($producto["ProductoID_Prod"]);
+                                
+                            ?>
+                            <tr>
+                                <th scope="col"><?php echo $infoProd["Nombre_Prod"];?></th>
+                                <td style="<?php if($infoProd["Descuento_Prod"]>0){echo "text-decoration: line-through;";}?>">$<?php echo $infoProd["Precio_Prod"];?></td>
+                                <td><?php echo $infoProd["Descuento_Prod"]?>%</td>
+                                <td>$<?php echo number_format($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01),2)?></td>
+                                <td><?php echo $producto["cant_Prod"];?></td>
+                                <td><?php echo ($producto["cant_Prod"]*number_format($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01),2));?></td>
+                            </tr>
+                        </tbody>
+                    </table>
                         <?php endforeach;
                         else:
                         echo "
@@ -66,15 +99,19 @@ include("../header.php");
                             "; 
                         endif;
                     endif;?>
-                    </div>
                 </div>
                 <div class="col-4">
                     <div class="card">
-                        <div class="card-body">
-                        <?php $resumen = getCostoCarrito($_SESSION["usuario"]["ID_Usr"]);?>
+                        <div class="card">
+                            <?php $resumen = getCostoCarrito($_SESSION["usuario"]["ID_Usr"]);?>
                             <h5 class="card-title">Resumen de pedido</h5>
-                            <p class="card-text">total neto: <?php $resumen["total"];?></p>
-     
+                            <div>
+                                <input type="text">
+                                <button class="btn btn-outline-secondary">aplicar</button>
+                            </div>
+                            <p class="card-text">Total parcial: $<?php echo number_format($resumen["total"],2) ;?></p>
+                            <p class="card-text">Descuento: <?php echo number_format($resumen["desc"],3) ;?>%</p>
+                            <p class="card-text">Total: $<?php echo number_format($resumen["totalDesc"],2) ;?></p>
                         </div>
                     </div>
                 </div>
