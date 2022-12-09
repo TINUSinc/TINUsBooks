@@ -1,17 +1,16 @@
 <?php
 include("../header.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pagar</title>
-        <meta name="viewport" content="width=device-width">
-        <link rel="stylesheet" href="../../css/disenopag.css">
-    </head>
-    <body>
-        <?php
+    </head> 
+    <body> 
+    <?php
             if(isset($_SESSION["usuario"])){
                 revisarCarrito($_SESSION["usuario"]["ID_Usr"]);
             }else{
@@ -23,34 +22,41 @@ include("../header.php");
                     "; 
             }
         ?>
-        <?php if(isset($_SESSION["usuario"])): 
-            $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
-            if(!empty($carrito)):
-            ?>
-            
-            <div class="container">
-            <div class="tarjeta">
-                <?php
+        
+        <div class="container">
+            <div class="row">
+                <div>
+                    <h4>Metodos de pago</h4> 
+                    <div class="card">
+                        <div class="card-body">
+                            <p>Elija un metodo de pago:</p>
+                            <ul>
+                                <li>Bancomer</li>
+                                <li>Banamex</li>
+                                <li>Santander</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row my-4">
+                <div class="col-8">
+                    <?php if(isset($_SESSION["usuario"])): 
+                        $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
+                        if(!empty($carrito)):
+                    ?>
+                    <div class="card">
+                    <?php
                     foreach($carrito as $producto):
                         $infoProd = getProducto($producto["ProductoID_Prod"]);
-                        $imgProd = getImagenesProd($producto["ProductoID_Prod"]);
-                        $imgProd = $imgProd[1];
+                        
                     ?>
-                        <div class="card mb-3">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-4 col-md-2 col-lg-2 col-xl-2 col-xxl-1 d-flex justify-content-center">
-                                    <img src="/media/productos/<?php echo $imgProd;?>" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-8 col-md-10 col-lg-10 col-xl-10 col-xxl-11">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $infoProd["Nombre_Prod"];?></h5>
-                                        <p class="card-text"><?php echo $infoProd["Descripcion_Prod"];?></p>
-                                        <p class="card-text"><small class="text-muted">Cantidad: <?php echo $producto["cant_Prod"];?></small></p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo $infoProd["Nombre_Prod"];?></h5>
+                            <p class="card-text"><small class="text-muted">Cantidad: <?php echo $producto["cant_Prod"];?></small></p>
                         </div>
-                    <?php endforeach;
+                        <?php endforeach;
                         else:
                         echo "
                             <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
@@ -60,15 +66,21 @@ include("../header.php");
                             "; 
                         endif;
                     endif;?>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                        <?php $resumen = getCostoCarrito($_SESSION["usuario"]["ID_Usr"]);?>
+                            <h5 class="card-title">Resumen de pedido</h5>
+                            <p class="card-text">total neto: <?php $resumen["total"];?></p>
+     
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    <?php if(isset($_SESSION["usuario"])): ?>
-        <script>
-            document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
-        </script>
-    <?php endif ?>
     </body>
-
 </html>
 <?php
     include_once("../PHP/footer.php");
