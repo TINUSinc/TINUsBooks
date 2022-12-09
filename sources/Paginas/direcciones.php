@@ -12,7 +12,7 @@
     }
   }
   if(isset($_POST["eliminarDir"]) && isset($_SESSION["usuario"])){
-    borrarDireccion($_SESSION["usuario"]["ID_Usr"],$_POST["direccion"]);
+    borrarDireccion($_SESSION["usuario"]["ID_Usr"], $_POST["direccion"]);
   }
 ?>
 <!DOCTYPE html>
