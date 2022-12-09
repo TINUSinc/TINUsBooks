@@ -1,4 +1,5 @@
 
 document.getElementById("tarjeta").addEventListener("click", function(){
-        document.getElementById("pagoTarjeta").style.display = 'relative';
+       var mostrar=document.getElementById("pagoTarjeta");
+       mostrar.style.display="relative";
 });

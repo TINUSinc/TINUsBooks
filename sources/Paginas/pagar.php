@@ -26,6 +26,33 @@ include("../header.php");
         <br><br>
         <div class="container">
             <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                    <div class="card">
+                    <h4 class="card-title text-center mt-3">Direcciones</h4>
+                        <div class="card-body">
+                            <?php
+                                $dir=getDirecciones($_SESSION["usuario"]["ID_Usr"]);
+                                foreach($dir as $direccion):
+                            ?>
+                            <div class="card col-2">
+                                <div class="card-body">
+                                    <?php echo $direccion?>
+                                </div>
+                            </div>
+                            <?php endforeach;?>
+                            <div class="card col-2">
+                                <h5 class="card-title text-center mt-3">Agregar direccion</h5>
+                                <div class="card-body">
+                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                                        <input type="text" class="form-control" placeholder="Calle">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-8">
                     <div class="card">
                         <h4 class="card-title text-center mt-3">Metodos de pago</h4>
@@ -33,7 +60,7 @@ include("../header.php");
                             <div class="row">
                                 <p>Elija un metodo de pago:</p>
                                 <div class="col">
-                                    <input type="radio" id="tarjeta" name="tipoPago" value="Tarjeta">
+                                    <input type="radio" id="tarjeta" name="tipoPago" value="Tarjeta" method="onclick">
                                     <label for="tarjeta">Tarjeta</label><br>
                                 </div>
                                 <div class="col">
