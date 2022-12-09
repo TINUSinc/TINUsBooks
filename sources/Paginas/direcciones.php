@@ -125,3 +125,4 @@
     <?php endif ?>
 </body>
 </html>
+<?php include('../PHP/footer.php')?>
