@@ -41,7 +41,7 @@
                             <label for="descripcion">Descripcion de la categoria</label>
                         </div>
                         <div class="mt-3 d-grid gap-2">
-                            <button class="btn btn-dark btn-lg" name="peticionCategoria">Enviar</button>
+                            <button class="btn btn-dark btn-lg" name="peticionCategoria" id="btnCrear">Crear</button>
                         </div>
                     </div>
                 </form>

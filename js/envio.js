@@ -6,7 +6,7 @@ var btnElim = document.getElementById("elimMonto");
 monto.addEventListener("change", function(){
     var seleccion = monto.options[monto.selectedIndex].value;
     nombre.value = seleccion;
-    if(seleccion != "0"){
+    if(seleccion != "crearCosto"){
         $.post("../PHP/consultas.php",{"montoCompra1":seleccion},"json")
         .done(function(data,textstatus,jqXHR){
             var datos = JSON.parse(data);

@@ -1,7 +1,7 @@
 <?php 
     include('../Administracion/adminNavBar.php');
     if(isset($_POST["crearMonto"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
-        if($_POST["MontoAct"] != 0){
+        if($_POST["Monto"] == "crearCosto"){
             crearCosto_Envio($_POST["MontoAct"], $_POST["Costo"]);
         }else{
             modificarCostoEnvio($_POST["Monto"], $_POST["MontoAct"], $_POST["Costo"]);
@@ -28,7 +28,7 @@
                 <form style="max-width:300px;margin:auto;" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <div class="form-group">
                         <select class="form-select" name="Monto" id="Monto" tittle="Elige un costo de envio" required>
-                            <option value=0>Nuevo Costo de Envio</option>
+                            <option value="crearCosto">Nuevo Costo de Envio</option>
                             <?php
                                 $costosEnvio = getCostoEnvio();
                                 foreach($costosEnvio as $costoEnvio){
