@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
+    
     <!-- Controles del carrusel de inicio -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald:500" rel="stylesheet">
@@ -24,7 +25,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
     
     <link rel="stylesheet" href="css/estilos.css">
-</head>
+
+</head> 
 <body>
 <section id="swiper1">
   <div class="swiper-container slideshow">

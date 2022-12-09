@@ -36,22 +36,21 @@ include("../header.php");
                                     $dir=getDirecciones($_SESSION["usuario"]["ID_Usr"]);
                                     foreach($dir as $direccion):
                                 ?>
-                                <div class="card col-2">
+                                <div class="card col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
                                     <div class="card-body"> 
                                     <p><?php echo $direccion["Alias_Dir"]?></p>
-                                    <p><?php echo $direccion["Num_Ext_Dir"]?>, <?php echo $direccion["Calle_Dir"]?>, 
+                                    <p><?php echo $direccion["Calle_Dir"]?>, <?php echo $direccion["Num_Ext_Dir"]?>, <?php echo $direccion["Num_Int_Dir"]?>,
                                        <?php echo $direccion["CP_Dir"]?>, <?php echo $direccion["Mcpio_Dir"]?>, 
                                        <?php echo $direccion["Edo_Dir"]?>, <?php echo $direccion["Nombre_Pais"]?>
                                     </p>
                                     </div>
                                 </div>
                                 <?php endforeach;?>
-                        
-                                <div class="card col-2">
+                                <div class="card col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-2">
                                     <h5 class="card-title text-center mt-3">Agregar direccion</h5>
                                     <div class="card-body">
                                         <form action="direcciones.php" method="POST">
-                                            <input type="submit" class="form-control" value="nuevaDireccion">
+                                            <input type="submit" class="form-control" value="Nueva Direccion">
                                         </form>
                                     </div>
                                 </div>
@@ -61,6 +60,7 @@ include("../header.php");
                     </div>
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 col-xl-8">
                     <div class="card">
