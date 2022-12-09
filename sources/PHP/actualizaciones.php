@@ -201,5 +201,26 @@
         }
         return $random_string;
     }
+
+    function modificarDireccion($idUsuario, $alias_dir, $numInterior, $numExterior, $calle, $cp, $municipio, $estado, $idPais, $numTelefono ){
+        global $conexion;
+        if(empty($numInterior)) $numInterior = "NULL";
+        $query = 'UPDATE usr_direccion SET Num_Int_Dir='.$numInterior.', Num_Ext_Dir='.$numExterior.', Calle_Dir="'.$calle.
+                '", CP_Dir="'.$cp.'", Mcpio_Dir="'.$municipio.'", Edo_Dir="'.$estado.'", Num_Tel_Dir="'.$numTelefono.'", ID_Pais='.$idPais.
+                ' WHERE UsuarioId_Usr='.$idUsuario.' AND Alias_Dir="'.$alias_dir.'";';
+        try{
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se actualizo la direccion
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Error al actualizar la direccion '.$e.'
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
+        }        
+    }
     
 ?>

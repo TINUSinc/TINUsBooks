@@ -10,6 +10,11 @@
     <title>Pruebas</title>
 </head>
 <body>
-    
+<?php
+                            $paises = getPaises();
+foreach ($paises as $pais):
+    print_r($pais);
+                            endforeach;
+                        ?>
 </body>
 </html>

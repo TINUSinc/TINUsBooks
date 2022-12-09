@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once("conexion.php");
     if(isset($_POST["idProd"])){
         $producto = getProducto($_POST["idProd"]);
@@ -11,6 +11,10 @@
 
     if(isset($_POST["idProdImg"])){
         echo json_encode(getImagenesProd($_POST["idProdImg"]));
+    }
+
+    if(isset($_POST["Alias_Dir"]) && isset($_POST["idUsr"])){
+        echo json_encode(getDireccion($_POST["idUsr"],$_POST["Alias_Dir"]));
     }
 
     function login($cuentaUsr, $Contra_usr){
