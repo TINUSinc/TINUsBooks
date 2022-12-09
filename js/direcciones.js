@@ -20,8 +20,8 @@ direccion.addEventListener("change", function(){
             var datos = JSON.parse(data);
             botonElim.removeAttribute("disabled");
             botonEnviar.innerHTML = "Modificar";
-            alias.setAttribute("disabled","");
             alias.value = datos.Alias_Dir;
+            alias.setAttribute("disabled","");
             calle.value = datos.Calle_Dir;
             numInt.value = datos.Num_Int_Dir;
             numExt.value = datos.Num_Ext_Dir;

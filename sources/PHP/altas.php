@@ -52,7 +52,6 @@
     function crearCupon($Nombre_des, $Porcentaje_des){
         global $conexion;
         $query = 'INSERT INTO cupon (Nombre_Descuento, Porcentaje_Desc) VALUES ("'.$Nombre_des.'",'.$Porcentaje_des.');';
-        echo $query;
         try{
             if($conexion->query($query) === TRUE){
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
