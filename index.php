@@ -1,4 +1,8 @@
-<?php include('sources/header.php') ?>
+<?php include('sources/header.php');
+  if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
+    agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -313,6 +317,11 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Mapa --> 
 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3702.233231530003!2d-102.29467398539583!3d21.887092785539757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8429ee6733bab0cb%3A0x64f5f203073c9e2a!2sCalle%20Gral.%20Ignacio%20Zaragoza%2C%20Zona%20Centro%2C%20Aguascalientes%2C%20Ags.!5e0!3m2!1ses-419!2smx!4v1670296660311!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 <!-- Termina mapa -->
+  <?php if(isset($_SESSION["usuario"])): ?>
+    <script>
+        document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
+    </script>
+  <?php endif ?>
 </body>
 </html>
 <?php
