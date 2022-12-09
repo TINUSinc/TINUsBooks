@@ -16,7 +16,7 @@ function crearEmail($asunto, $mensaje, $destinatario){
     $myMail->Username='al289539@edu.uaa.mx';
     $myMail->Password='Pakwar10';
     $myMail->SMTPSecure='tls';
-    $myMail->setFrom('al289539@edu.uaa.mx','TICER Certifications');
+    $myMail->setFrom('al289539@edu.uaa.mx','TINUS BOOKS');
     $myMail->addAddress($destinatario);
     $myMail->Subject = $asunto;
     $myMail->isHTML();

@@ -6,7 +6,7 @@
                     $_POST["numExt"], $_POST["calle"], $_POST["CP"], $_POST["Mcpio"], 
                     $_POST["Edo"], $_POST["pais"], $_POST["tel"]);
     }else{
-        modificarDireccion($_SESSION["usuario"]["ID_Usr"], $_POST["alias"], $_POST["numInt"], 
+        modificarDireccion($_SESSION["usuario"]["ID_Usr"], $_POST["direccion"], $_POST["numInt"], 
                     $_POST["numExt"], $_POST["calle"], $_POST["CP"], $_POST["Mcpio"], 
                     $_POST["Edo"], $_POST["pais"], $_POST["tel"]);
     }
@@ -125,3 +125,4 @@
     <?php endif ?>
 </body>
 </html>
+<?php include('../PHP/footer.php')?>
