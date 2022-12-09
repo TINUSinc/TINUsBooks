@@ -6,13 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contactanos</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<script src="/js/validarForms.js"></script>
     <link rel="stylesheet" href="../../css/forms.css">
     
 </head>
 
 <body>
 <section class="formulario">
-   	<div class="container contact">
+	<div class="container contact">
 		<div class="row">
 			<div class="col-sm-12 col-md-4 col-lg-3 contenedorMsj">
 				<div class="contact-info">
@@ -25,12 +27,14 @@
 				<div class="contact-form">
 					<div class="form-group">
 						<div class="form-floating mb-2">      
-							<input type="text" class="form-control" id="fname" placeholder="Ingresa tu nombre" name="fname">
+							<input type="text" class="form-control" id="fname" placeholder="Ingresa tu nombre" name="fname" onclick="validNameFormContact()">
 							<label for="fname">Nombre:</label>
+							<p style="display:none; color:black;" id="textErrfname"> Nombre no valido! Caracteres numericos no validos.</p>
 						</div>
 						<div class="form-floating mb-2">      
-							<input type="text" class="form-control" id="lname" placeholder="Ingresa tu apellido" name="lname">
+							<input type="text" class="form-control" id="lname" placeholder="Ingresa tu apellido" name="lname" onclick="validlNameFormContact()">
 							<label for="lname">Apellido:</label>
+							<p style="display:none; color:black;" id="textErrlname"> Apellido no valido! Caracteres numericos no validos.</p>
 						</div>
 						<div class="form-floating mb-2">      
 							<input type="email" class="form-control" id="email" placeholder="Ingresa tu email" name="email">
