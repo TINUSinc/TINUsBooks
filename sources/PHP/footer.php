@@ -11,7 +11,7 @@
         <div class="container-fluid">
             <div class="row p-5 pb-2 text-light" id="footer">
                 <div class="col-xs-12 col-md-6 col-lg-3 text-center">
-                    <a href="/index.php" style="text-decoration: none;">
+                    <a href="/" style="text-decoration: none;">
                         <img src="/media/tinusbooks.png" alt="TICER" widht="80" height="80">
                         <p class="h2 titulos" style="color:white;">TINU'S Book Store</p>
                     </a>
