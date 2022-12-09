@@ -6,16 +6,16 @@ body{
     font-weight: lighter;
 }
 .contact{
-    padding: 5vh;
+    padding: 5%;
 }
 .contenedorMsj{
     background: #adc4b1;
-    padding: 4%;
+    padding: 20px;
     border-top-left-radius: .5rem;
     border-bottom-left-radius: .5rem;
 }
 .contact-info{
-    margin: auto;
+    
     text-align: center;
 }
 .contact-info img{
@@ -26,7 +26,7 @@ body{
 }
 .contenedorContacto{
     background: rgb(134, 158, 142);
-    padding: 3%;
+    padding: 20px;
     border-top-right-radius: .5rem;
     border-bottom-right-radius: .5rem;
 }

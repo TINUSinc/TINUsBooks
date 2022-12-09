@@ -1,4 +1,17 @@
-<?php include('../header.php') ?>
+<?php include('../header.php');
+	if(isset($_POST["Consulta"])){
+		$mensaje = "
+		<h1 style='text-align: center;'>Contacto</h1>
+		<p>
+		Hola ".$_POST["fname"]." ".$_POST["lname"].", gracias por contactarnos.</p>
+		<p>Hemos recibido el siguiente mensaje:</p>
+		<p>".$_POST["comment"]."</p>
+		<p>Le responderemos en breve.</p>
+		<h4>Saludos cordiales, TINUSBOOKS.</h4>
+		";
+		crearEmail("Contacto",$mensaje,$_POST["email"]);
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +27,7 @@
 <section class="formulario">
    	<div class="container contact">
 		<div class="row">
-			<form action="">
+			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 				<div class="row">
 					<div class="col-sm-12 col-md-4 col-lg-3 contenedorMsj">
 						<div class="contact-info">
@@ -41,12 +54,12 @@
 							</div>
 							<div class="form-group">
 								<div class="form-floating mb-2">      
-									<textarea required class="form-control" style="height: 20ch;" placeholder="Comentario:" id="comment"></textarea>
+									<textarea required class="form-control" style="height: 20ch;" placeholder="Comentario:" name="comment" id="comment"></textarea>
 									<label for="comment">Comentario:</label>
 								</div>
 							<div class="form-group">        
 								<div class="text-center">
-									<button type="submit" class="btn botonP">Enviar</button>
+									<button type="submit" class="btn botonP" name="Consulta">Enviar</button>
 								</div>
 							</div>
 						</div>
