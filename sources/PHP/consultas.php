@@ -452,8 +452,9 @@
                 $retornar[$cont] = $fila;
                 $cont++;
             }
-            print_r($retornar);
+            return $retornar;
+        } else{
+            return 0;
         }
-        return 0;
     }
 ?>

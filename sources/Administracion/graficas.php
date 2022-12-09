@@ -14,40 +14,33 @@
 </head>
 
 <body>
-    <div class="container text-center my-4">
-        <h1 class="h2 mb-3 font-weight-normal">Graficas</h1> 
-        <div class="contenedor">
-            <br>
-            <div class="grafica1">
-                <h2>Compras</h2>
-                <form method="post" action="graficas.php">
-                    <select name="mes">
-                        <?php
-            for ($i=1; $i<=12; $i++) {
-                if ($i == date('m'))
-                    echo '<option value="'.$i.'" selected>'.$i.'</option>';
-                else
-                    echo '<option value="'.$i.'">'.$i.'</option>';
-            }
-            ?>
-                    </select>
-
-                    <select name="ano">
-                        <?php
-            for($i=date('o'); $i>=2022; $i--){
-                if ($i == date('o'))
-                    echo '<option value="'.$i.'" selected>'.$i.'</option>';
-                else
-                    echo '<option value="'.$i.'">'.$i.'</option>';
-            }
-            ?>
-
-                    </select>
-                    <br><br>
-                    <p id="btnEnviar"><input type="submit" name="enviar" value="Enviar"></p>
-
-                </form>
+    <div>
+        <form method="post" action="graficas.php">
+            <select name="mes">
                 <?php
+                    for ($i=1; $i<=12; $i++) {
+                        if ($i == date('m'))
+                            echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                        else
+                            echo '<option value="'.$i.'">'.$i.'</option>';
+                    }
+                ?>
+            </select>
+
+            <select name="ano">
+                <?php
+                    for($i=date('o'); $i>=2022; $i--){
+                        if ($i == date('o'))
+                            echo '<option value="'.$i.'" selected>'.$i.'</option>';
+                        else
+                            echo '<option value="'.$i.'">'.$i.'</option>';
+                    }
+                ?>
+            </select>
+            <br><br>
+            <p id="btnEnviar"><input type="submit" name="enviar" value="Enviar"></p>
+        </form>
+        <?php
             if (isset($_POST['enviar'])) {
                 switch ($_POST['mes']) {
                     case 1:
@@ -88,8 +81,15 @@
                         break;
                 }
                 $anio = $_POST['ano'];
-            // echo 'Fecha recibida: '.$_POST['dia'].'/'.$_POST['mes'].'/'.$_POST['ano'];?>
+                ?>
+    </div>
 
+    <div class="container text-center my-4">
+        <h1 class="h2 mb-3 font-weight-normal">Graficas</h1>
+        <div class="contenedor">
+            <br>
+            <div class="grafica1">
+                <h2>Compras</h2>
                 <script type="text/javascript">
                 // Load the Visualization API and the corechart package.
                 google.charts.load('current', {
@@ -144,17 +144,77 @@
                 }
                 </script>
 
-                <?php
-        }
-        ?>
-
-
                 <!--Div that will hold the pie chart-->
                 <div id="chart_div"></div>
             </div>
         </div>
     </div>
+
+    <div class="container text-center my-4">
+        <h1 class="h2 mb-3 font-weight-normal">Graficas</h1>
+        <div class="contenedor">
+            <br>
+            <div class="grafica1">
+                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                <script type="text/javascript">
+                google.charts.load("current", {
+                    packages: ['corechart']
+                });
+                google.charts.setOnLoadCallback(drawChart);
+
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ["Producto", "Cantidad", {
+                            role: "style"
+                        }],
+
+                        <?php
+                            $numConsulta = getProductosMasVendidos($_POST['mes'], $_POST['ano']);
+                            if($numConsulta == 0){
+                                echo "['Sin ventas', 0, 'blue']";
+                            }else{
+                                foreach($numConsulta as $valor) {
+                                    echo "['".$valor["Nombre_Prod"]. "'," .$valor["SUM(Cant_Prod)"]. ", 'blue'],";
+                                }
+                            }
+                        ?>
+                    ]);
+
+                    var view = new google.visualization.DataView(data);
+                    view.setColumns([0, 1,
+                        {
+                            calc: "stringify",
+                            sourceColumn: 1,
+                            type: "string",
+                            role: "annotation"
+                        },
+                        2
+                    ]);
+
+                    var options = {
+                        title: "Density of Precious Metals, in g/cm^3",
+                        width: 600,
+                        height: 400,
+                        bar: {
+                            groupWidth: "95%"
+                        },
+                        legend: {
+                            position: "none"
+                        },
+                    };
+                    var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+                    chart.draw(view, options);
+                }
+                </script>
+                <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+            </div>
+        </div>
+        <?php
+            }
+        ?>
+        
 </body>
+
 </html>
 <?php
     include_once("../PHP/footer.php");
