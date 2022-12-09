@@ -59,7 +59,7 @@
         <script src="../../js/productos.js" defer></script>
     </head>
     <body>
-        <div class="container text-center">
+        <div class="container text-center my-4">
         <?php if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]["Admin"] == 1): ?>  
             <h1 class="h2 mb-3 font-weight-normal">Registro de productos</h1> 
             <div class="row justify-content-center">
@@ -157,3 +157,6 @@
         </div>
     </body>
 </html>
+<?php
+    include_once("../PHP/footer.php");
+?>

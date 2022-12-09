@@ -119,9 +119,11 @@
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 </head>
 <body onload="generate(), generate2()">
-    <nav class="navbar navbar-expand-md sticky-top navbar-dark text-black">
+    <nav class="navbar navbar-expand-md navbar-dark sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/"></a>
+        <a class="navbar-brand" href="/" style="padding: 0; margin: 0;">
+          <img src="/media/TINUS BOOKS_Logo.png" alt="TINU'S BOOKS" width="62">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -134,7 +136,7 @@
               <a class="nav-link text-white" href="/sources/Paginas/productos.php">Productos</a> 
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Contacto</a> 
+              <a class="nav-link text-white" href="/sources/formularios/contactanos.php">Contactanos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
@@ -168,7 +170,7 @@
                 <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
                 <?php if(isset($_SESSION['usuario'])): ?>
                 <?php if($_SESSION['usuario']['Admin'] == 1): ?>
-                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Administracion/pagAdministracion.php">Administracion</a></li>
+                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/formularios/productos.php">Administracion</a></li>
                 <?php endif ?>
                 <?php endif ?>
                 <li><hr class="dropdown-divider"></li>

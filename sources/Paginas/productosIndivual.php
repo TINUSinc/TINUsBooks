@@ -60,3 +60,6 @@
 </body>
 
 </html>
+<?php
+    include_once("../PHP/footer.php");
+?>
