@@ -112,13 +112,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous" defer></script>
-    <script src="https://kit.fontawesome.com/fdab67893f.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/fdab67893f.js" crossorigin="anonymous" defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/js/captcha.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js" defer></script>
     <script src="/js/validarForms.js"></script>
     <link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-</head>
+    <!-- favicon -->
+    <link rel="icon" type="image/x-icon" href="/media/favicon.ico">
+  </head>
 <body onload="generate(), generate2()">
     <nav class="navbar navbar-expand-md navbar-dark sticky-top">
       <div class="container-fluid">
@@ -143,7 +145,6 @@
               <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
             </li>
           </ul>
-          <?php if(isset($_SESSION['usuario'])): ?>
           <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
             <div class="mx-0 mx-md-3 mb-3 mb-md-0">
               <a class="nav-link text-white text-start text-md-center" href="/sources/Paginas/carrito.php" id="linkCarrito">
@@ -152,9 +153,8 @@
               </a>
             </div>
           </div>
-          <?php endif; ?>
           <div class="btn-group">
-              <button type="button" class="btn btn-light <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
+              <button type="button" class="btn btn-secondary <?php if(isset($_SESSION["usuario"])){echo "disabled";}?>" 
                       data-bs-toggle="modal" data-bs-target="#modalIniciar">
                 <?php 
                   if(!isset($_SESSION["usuario"])){
@@ -166,12 +166,11 @@
                   }
                 ?>
               </button>
-              <button type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="visually-hidden">Toggle Dropdown</span>
               </button>
-              <ul class="dropdown-menu dropdown-menu-lg-end dropdown-menu-sm-start">
+              <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-lg-end dropdown-menu-sm-start">
                 <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/PHP/usuarios/perfil.php">Perfil</a></li>
-                <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/Paginas/direcciones.php">Direcciones</a></li>
                 <?php if(isset($_SESSION['usuario'])): ?>
                 <?php if($_SESSION['usuario']['Admin'] == 1): ?>
                 <li><a class="dropdown-item <?php if(!isset($_SESSION["usuario"])){echo "disabled";}?>" href="/sources/formularios/productos.php">Administracion</a></li>
