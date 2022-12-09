@@ -59,5 +59,22 @@
         }
     }
 
+    function borrarDireccion($idUsuario, $alias_dir){
+        global $conexion;
+        try{
+            $query = 'DELETE FROM usr_direccion WHERE UsuarioId_Usr='.$idUsuario.' AND Alias_Dir="'.$alias_dir.'";';
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Se elimino la direccion
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Error al eliminar la direccion
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+        }
+    }
 
 ?>

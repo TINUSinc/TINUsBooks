@@ -28,7 +28,6 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-
 <section id="swiper1">
   <div class="swiper-container slideshow">
     <div class="swiper-wrapper">
