@@ -55,7 +55,7 @@ Manny*/
 }
 
 #linkCarrito{
-    min-width: 10ch;
+    min-width: 6ch;
 }
 
 @media screen and (max-width: 767px) {
@@ -67,4 +67,16 @@ Manny*/
 //--------------------------Fin de css para el captcha ----------------------------------------------*/
 .redesSociales a{
     margin: 10px;
+}
+
+.navbar{
+    background-color: #345457;
+}
+
+footer{
+    background-color: #345457;
+}
+
+#footer{
+    background-color: #345457;
 }

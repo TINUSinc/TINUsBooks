@@ -1,4 +1,4 @@
-<?php 
+<?php
     include_once("conexion.php");
     if(isset($_POST["idProd"])){
         $producto = getProducto($_POST["idProd"]);
@@ -11,6 +11,18 @@
 
     if(isset($_POST["idProdImg"])){
         echo json_encode(getImagenesProd($_POST["idProdImg"]));
+    }
+
+    if(isset($_POST["Alias_Dir"]) && isset($_POST["idUsr"])){
+        echo json_encode(getDireccion($_POST["idUsr"],$_POST["Alias_Dir"]));
+    }
+
+    if(isset($_POST["idCupon1"])){
+        echo json_encode(getCuponId($_POST["idCupon1"]));
+    }
+
+    if(isset($_POST["montoCompra1"])){
+        echo json_encode(getCostoEnvioId($_POST["montoCompra1"]));
     }
 
     function login($cuentaUsr, $Contra_usr){
@@ -95,13 +107,13 @@
         $totalDesc = 0;
         foreach ($carrito as $producto){
             $infoProd = getProducto($producto["ProductoID_Prod"]);
-            $total += $infoProd["Precio_Prod"];
-            $totalDesc += ($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01));
+            $total += $infoProd["Precio_Prod"]*$producto["cant_Prod"];
+            $totalDesc += ($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01))*$producto["cant_Prod"];
         }
-        $desc = ($totalDesc*100)/$total;
-        $retornar["total"] = $total;
+        $desc = 100 - ((round($totalDesc,2)*100)/round($total,2));
+        $retornar["total"] = round($total,2);
         $retornar["totalDesc"] = round($totalDesc,2);
-        $retornar["desc"] = $desc;
+        $retornar["desc"] = round($desc,3);
         return $retornar;
     }
 
@@ -302,6 +314,17 @@
         return $retornar;
     }
 
+    function getCostoEnvioId($MontoCompra){
+        global $conexion;
+        $query = 'SELECT * FROM costo_envio WHERE Monto_Compra='.$MontoCompra.';';
+        $datos = $conexion->query($query);
+        if($datos->num_rows == 1){
+            $fila = $datos->fetch_assoc();
+            return $fila;
+        }
+        return 0;
+    }
+
     function getCupon($nomCupon){
         global $conexion;
         $query = 'SELECT * FROM cupon WHERE Nombre_Descuento="'.$nomCupon.'";';
@@ -311,6 +334,29 @@
             return $fila;
         }
         return 0;
+    }
+
+    function getCuponId($idCupon){
+        global $conexion;
+        $query = 'SELECT * FROM cupon WHERE ID_Cupon='.$idCupon.';';
+        $datos = $conexion->query($query);
+        if($datos->num_rows == 1){
+            $fila = $datos->fetch_assoc();
+            return $fila;
+        }
+        return 0;
+    }
+
+    function getCupones(){
+        global $conexion;
+        $query = 'SELECT * FROM cupon;';
+        $datos = $conexion->query($query);
+        $cont = 0;
+        while($fila = $datos->fetch_assoc()){
+            $retornar[$cont] = $fila;
+            $cont++;
+        }
+        return $retornar;
     }
 
     function getCompras($idUsr){
@@ -406,8 +452,9 @@
                 $retornar[$cont] = $fila;
                 $cont++;
             }
-            print_r($retornar);
+            return $retornar;
+        } else{
+            return 0;
         }
-        return 0;
     }
 ?>
