@@ -144,6 +144,9 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
             </li>
+            <li>
+              <a class="nav-link text-white" href="/sources/Paginas/preguntas.php">Preguntas Frecuentes</a> 
+            </li>
           </ul>
           <?php if(isset($_SESSION['usuario'])): ?>
           <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-end justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">

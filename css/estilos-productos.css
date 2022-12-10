@@ -1,11 +1,17 @@
 /*styles de efecto hover la card*/
 body {
-  background: #232321;
+  background: url(https://i.ibb.co/Vt5T3bf/fondoprod.jpg);
+  background-repeat: repeat;
+  /*background: linear-gradient(70deg, rgba(41, 74, 48, 0.704), rgba(49, 111, 100, 0.646));*/
+
 }
 
 h1 {
   color: #fff;
   padding: 10px 0;
+  font-weight: lighter;
+  font-size: 50px;
+  
 }
 
 .descripcion{
@@ -16,13 +22,14 @@ h1 {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(6, 7, 6, 0.2);
+  background-color: rgba(255, 255, 255, 0.811);
   transition: 0.3s;
   border: none;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgb(172, 18, 18);
+  box-shadow: 0 8px 24px 0 #060605;
 }
 
 .card a {
@@ -47,11 +54,27 @@ h1 {
 
 .imagen{
   cursor: pointer;
-  transition:1.0s;
+  transition:.5s;
   will-change: transform;
+
 }
 
 .imagen:hover{
-  transform: translateX(-30%);
-  filter: brightness(80%);
+  transform: scale(1.05,1.05);
+  filter: brightness(120%);
+  -webkit-filter: brightness(110%);
+}
+
+/*. */
+
+.t-stroke {
+ color: transparent;
+ -moz-text-stroke-width: 2px;
+ -webkit-text-stroke-width: 2px;
+ -moz-text-stroke-color: #000000;
+ -webkit-text-stroke-color: #ffffff;
+}
+
+.t-shadow {
+ text-shadow: 7px 7px #27262679;
 }

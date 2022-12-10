@@ -28,6 +28,9 @@
             <a class="nav-link active" href="/sources/Administracion/costoEnvio.php">Costos Envio</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" href="/sources/Administracion/paises.php">Paises</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" href="/sources/Administracion/graficas.php">Graficas</a>
           </li>
         </ul>

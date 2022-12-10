@@ -34,7 +34,6 @@ if(isset($_SESSION["usuario"]) && isset($_POST["cantidadElim"])){
             $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
             if(!empty($carrito)):
             ?>
-            
         <div class="container">
             <div class="tarjeta">
                 <?php
@@ -70,16 +69,10 @@ if(isset($_SESSION["usuario"]) && isset($_POST["cantidadElim"])){
                             </div>
                         </div>
                     </form>
-                    
                     <?php endforeach; ?>
-                    <div class="container text-center">
-                        <div class="container">
-                            <form action="pagar.php" method="POST">
-                                <input type="submit" value="Pagar" class="btn btn-outline-warning btn-lg">
-                            </form>
-                        </div>
+                    <div class="container text-center my-4">
+                        <a href="pagar.php"><button class="btn btn-outline-warning btn-lg">Pagar</button></a>
                     </div>
-                    <br>
                     <?php else:
                         echo "
                             <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
@@ -90,7 +83,6 @@ if(isset($_SESSION["usuario"]) && isset($_POST["cantidadElim"])){
                         endif;
                     endif;?>
             </div>
-            
         </div>
     <?php if(isset($_SESSION["usuario"])): ?>
         <script>

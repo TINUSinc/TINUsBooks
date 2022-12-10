@@ -7,6 +7,9 @@
             modificarCategoria($_POST["categoria"],$_POST["nombre"],$_POST["descripcion"]);
         }
     }
+    if(isset($_POST["eliminarCategoria"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
+        borrarCategoria($_POST["categoria"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +45,7 @@
                         </div>
                         <div class="mt-3 d-grid gap-2">
                             <button class="btn btn-dark btn-lg" name="peticionCategoria" id="btnCrear">Crear</button>
+                            <button class="btn btn-danger btn-lg" name="eliminarCategoria" id="btnEliminar" disabled>Eliminar</button>
                         </div>
                     </div>
                 </form>
