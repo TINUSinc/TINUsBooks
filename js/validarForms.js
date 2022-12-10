@@ -134,10 +134,10 @@ function validNameForm() {
     });
 }
 
-function validarContrasena() {
+function validPassword() {
     $(document).ready(function () {
         $("#contraConfi").focusout(function () {//Cuando se quita el focus del input...
-            contra1 = document.getElementById("contra").value;
+            contra1 = document.getElementById("contraPrim").value;
             contra2 = document.getElementById("contraConfi").value;
             if(contra1 == contra2) {
                 $("#textErrPS").hide();
@@ -148,7 +148,7 @@ function validarContrasena() {
             }
         });
         $("#contraConfi").keyup(function () {//Cuando se termina de presionar una tecla del keyboard...
-            contra1 = document.getElementById("contra").value;
+            contra1 = document.getElementById("contraPrim").value;
             contra2 = document.getElementById("contraConfi").value;
             if(contra1 == contra2) {
                 $("#textErrPS").hide();
@@ -158,8 +158,8 @@ function validarContrasena() {
                 $("#boton_registro").hide();
             }
         });
-        $("#contra").keyup(function () {//Cuando se quita el focus del input...
-            contra1 = document.getElementById("contra").value;
+        $("#contraPrim").keyup(function () {//Cuando se quita el focus del input...
+            contra1 = document.getElementById("contraPrim").value;
             contra2 = document.getElementById("contraConfi").value;
             if(contra1 == contra2) {
                 $("#textErrPS").hide();
