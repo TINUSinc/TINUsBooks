@@ -1,7 +1,7 @@
 <?php 
     include("../header.php");
     if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
-        agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
+        agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],$_POST["cantidad"]);
     }
     if(isset($_GET["id"]) && !empty($_GET["id"])):
         $producto=getProducto($_GET["id"]);
@@ -21,7 +21,6 @@
 
 <body>
     <div class="container my-4">
-
     <div class="card cardInvidivdual">
             <div class="row g-0">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
@@ -97,15 +96,21 @@
                             echo '
                                 <form method="POST" action="'.$_SERVER["PHP_SELF"].'?id='.$_GET["id"].'">
                                     <div class="row justify-content-center">
-                                    <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
-                                    <button '.$disponibilidad.' style="color: green; width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i>'.$texto.'</button>
+                                        <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
+                                        <div style="width: 230px;" class="form-floating mb-3">
+                                            <input '.$disponibilidad.' required type="number" class="form-control" placeholder=" Cantidad" name="cantidad" min=1 max="'.$producto["Existencias_Prod"].'" id="cantidad">
+                                            <label for="cantidad"> Cantidad</label>
+                                        </div>
+                                        <div class="col-12">
+                                        <button '.$disponibilidad.' style="color: green; width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i>'.$texto.'</button>
+                                        </div>
                                     </div>
                                 </form>
                                 ';
                             }else{
                             echo '
                                 <div class="row justify-content-center">
-                                    <button class="btn btn-light"  style="color: green; width: 200px;" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
+                                    <button class="btn btn-light"  style="color: rgb(29, 49, 36); background-color:  rgba(76, 123, 100, 0.509); width: 200px;" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
                                 </div>
                             ';
                             }

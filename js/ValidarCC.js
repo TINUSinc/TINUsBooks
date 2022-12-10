@@ -20,12 +20,12 @@ const  master_regexp = /^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|
 /*****BOTON PARA GRAFICAR ***********/
 ccField.addEventListener('change', function(e){
   if (visa_regexp.test(ccField.value)&& validacionLuhn(ccField.value)){
-    document.getElementById("basic-addon2").innerHTML = "VISA";
+    document.getElementById("basic-addon2").innerHTML = '<i class="fa-brands fa-lg fa-cc-visa"></i>';
   }
 else if(master_regexp.test(ccField.value) && validacionLuhn(ccField.value)){
-    document.getElementById("basic-addon2").innerHTML = "MASTERCARD";
+    document.getElementById("basic-addon2").innerHTML = '<i class="fa-brands fa-lg fa-cc-mastercard"></i>';
 }else{
-    document.getElementById("basic-addon2").innerHTML = "ERROR";
+    document.getElementById("basic-addon2").innerHTML ='<i class="fa-solid fa-lg fa-triangle-exclamation"></i>';
 }
 })
 function validacionLuhn(arr){

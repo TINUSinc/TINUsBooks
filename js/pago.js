@@ -138,7 +138,7 @@ function cambiarDatosResumen(){
 }
 
 function validarTarjeta(){
-    if(textoTar.innerHTML == "VISA" || textoTar.innerHTML == "MASTERCARD"){
+    if(textoTar.innerHTML == '<i class="fa-brands fa-lg fa-cc-visa"></i>' || textoTar.innerHTML == '<i class="fa-brands fa-lg fa-cc-mastercard"></i>'){
         if(CVVTar.value >= 100 && CVVTar.value <= 999){
             //if(fechaTar.value > date)
             if(NomUsrTar.value != ""){

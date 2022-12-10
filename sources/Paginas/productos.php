@@ -83,7 +83,7 @@
                 }else{
                   echo '
                     <div class="row justify-content-center">
-                      <button class="btn btn-light" style="color: rgb(29, 49, 36); background-color:  rgba(76, 123, 100, 0.509); width: 200px" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
+                      <button class="btn btn-light" style="color: rgb(29, 49, 36); background-color:  rgba(76, 123, 100, 0.509); width: 200px;" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
                     </div>
                   ';
                 }

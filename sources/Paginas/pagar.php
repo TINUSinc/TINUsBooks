@@ -92,7 +92,7 @@ include("../header.php");
                                 <form action="">
                                     <div class=" input-group mb-2">  
                                         <input type="text" class="form-control" placeholder="Numero de tarjeta" id="ccField">
-                                        <span class="input-group-text" id="basic-addon2"></span>
+                                        <span class="input-group-text" id="basic-addon2"><i class="fa-solid fa-credit-card fa-lg"></i></span>
                                     </div>
                                     <div class="mb-2">  
                                         <input type="month" class="form-control" id="start" name="start" min="<?php echo date('Y-m'); ?>" placeholder="Fecha Expiracion">  

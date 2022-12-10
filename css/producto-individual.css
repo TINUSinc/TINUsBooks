@@ -1,6 +1,8 @@
 body {
-    background: #232321;
-  }
+    background: url(https://i.ibb.co/Vt5T3bf/fondoprod.jpg);
+    background-repeat: repeat;
+    /*background: linear-gradient(70deg, rgba(41, 74, 48, 0.704), rgba(49, 111, 100, 0.646));*/
+}
   
 h1 {
 color: #fff;
@@ -60,6 +62,17 @@ font-size: 20px;
     color: black;
 }
 
+.card {
+    box-shadow: 0 4px 8px 0 rgba(6, 7, 6, 0.2);
+    background-color: rgba(255, 255, 255, 0.811);
+    transition: 0.3s;
+    border: none;
+}
+
+.card:hover {
+    box-shadow: 0 8px 24px 0 #060605;
+}
+
 .contenedorIconos{
     display: flex;
 }
@@ -76,4 +89,15 @@ font-size: 20px;
 
 .imagen{
     width: 100%;
+    border-top-left-radius: .4rem;
+    border-bottom-left-radius: .4rem;
+    border-top-right-radius: 0;
+}
+
+@media (max-width: 576px){
+    .imagen{
+        border-top-left-radius: .4rem;
+        border-bottom-left-radius: 0;
+        border-top-right-radius: .4rem;
+    }
 }
