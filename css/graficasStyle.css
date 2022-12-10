@@ -1,11 +1,21 @@
+body{
+    background-color:rgb(239, 239, 205);
+}
+
 .contenedor{
     padding: 30px;
     display: flex;
+    background-color:rgb(239, 239, 205);
+}
+
+.divPrincipal{
+    padding: 30px;
+margin: 0;
 }
 
 .grafica1{
     padding: 20px;
-    background-color: gainsboro;
+    background-color: rgb(239, 239, 205);
     width: 50%;
     height: auto;
     text-align: center;
