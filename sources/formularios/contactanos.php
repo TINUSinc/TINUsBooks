@@ -63,7 +63,7 @@
 								</div>
 							<div class="form-group">        
 								<div class="text-center">
-									<button type="submit" class="btn botonP" name="Consulta">Enviar</button>
+									<button type="submit" class="btn botonP" name="Consulta" id="boton-contacto">Enviar</button>
 								</div>
 							</div>
 						</div>

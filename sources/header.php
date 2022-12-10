@@ -260,8 +260,9 @@
                   <label for="contra" class="col-form-label text-black">Crea una contraseña</label>
                 </div>
                 <div class="form-floating mb-3">
-                  <input type="password" placeholder="Confirme la contraseña" id="contra" class="form-control" name="contra2" required>
+                  <input type="password" placeholder="Confirme la contraseña" id="contraConfi" class="form-control" name="contra2" required>
                   <label for="contra2" class="col-form-label text-black">Confirme la contraseña</label>
+                  <p style="display:none; color:black;" id="textErrPS"> Error! La contrasena no coincide.</p>
                 </div>
                 <div class="form-floating mb-3">
                   <input type="text" placeholder="Nombre completo" id="nombre" class="form-control" name="nombre" onclick="validNameForm()" required>
