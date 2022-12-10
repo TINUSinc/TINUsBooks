@@ -14,7 +14,7 @@ var botonElim = document.getElementById("eliminarDir");
 
 direccion.addEventListener("change", function(){
     var seleccion = direccion.options[direccion.selectedIndex].value;
-    if(seleccion != 0){
+    if(seleccion != "NuevaDir"){
         $.post("../PHP/consultas.php",{"Alias_Dir":seleccion,"idUsr":usr},"json")
         .done(function(data,textstatus,jqXHR){
             var datos = JSON.parse(data);

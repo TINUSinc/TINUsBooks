@@ -1,7 +1,7 @@
 <?php 
   include("../header.php");
   if(isset($_POST["registrarDir"]) && isset($_SESSION["usuario"])){
-    if($_POST["direccion"]==0){
+    if($_POST["direccion"]=="NuevaDir"){
         crearDireccion($_SESSION["usuario"]["ID_Usr"], $_POST["alias"], $_POST["numInt"], 
                     $_POST["numExt"], $_POST["calle"], $_POST["CP"], $_POST["Mcpio"], 
                     $_POST["Edo"], $_POST["pais"], $_POST["tel"]);
@@ -36,7 +36,7 @@
                 <div class="col-md-12">
                     <label for="validationDefault1" class="form-label">Direccion</label>
                     <select class="form-select" id="validationDefault1" name="direccion" required>
-                        <option value="0">Nueva Direccion</option>
+                        <option value="NuevaDir">Nueva Direccion</option>
                         <?php 
                             $direcciones = getDirecciones($_SESSION["usuario"]["ID_Usr"]);
                             foreach($direcciones as $direccion):

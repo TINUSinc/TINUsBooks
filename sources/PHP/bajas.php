@@ -30,6 +30,29 @@
                     </div>';
         }
     }
+    function borrarProductoCategoria($idProducto) {
+        global $conexion;
+        try{
+            $query = 'SELECT Direccion_Img FROM img_producto WHERE ProductoId_Prod='.$idProducto.';';
+            $imagenes = $conexion->query($query);
+            $target = "../../media/productos/";
+            while($fila = $imagenes->fetch_assoc()){
+                if(file_exists(($target.$fila["Direccion_Img"]))){
+                    unlink(($target.$fila["Direccion_Img"]));
+                }
+            }
+            $query = 'DELETE FROM img_producto WHERE ProductoId_Prod='.$idProducto.';';
+            $conexion->query($query);
+            $query = 'DELETE FROM carrito WHERE ProductoID_Prod='.$idProducto.';';
+            $conexion->query($query);
+            $query = 'DELETE FROM producto WHERE ID_Prod='.$idProducto.';';
+            if($conexion->query($query) === TRUE){
+                
+            }
+        }catch(Exception $e){
+            
+        }
+    }
 
     function borrarProdCarrito($idUsr, $idProd){
         global $conexion;
@@ -83,8 +106,10 @@
     function borrarCategoria($idCategoria){
         global $conexion;
         try{
-            $query = 'DELETE FROM producto WHERE CategoriaId_Cat='.$idCategoria.';';
-            $conexion->query($query);
+            $productos = getProductosCategoria($idCategoria);
+            foreach($productos as $producto){
+                borrarProductoCategoria($producto["ID_Prod"]);
+            }
             $query = 'DELETE FROM categoria WHERE ID_Cat='.$idCategoria.';';
             if($conexion->query($query) === TRUE){
                 echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -94,7 +119,7 @@
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            Error al la categoria
+                            Error al eliminar la categoria
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
         }

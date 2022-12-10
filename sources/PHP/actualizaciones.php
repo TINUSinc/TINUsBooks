@@ -259,7 +259,7 @@
         return $random_string;
     }
 
-    function modificarDireccion($idUsuario, $alias_dir, $numInterior, $numExterior, $calle, $cp, $municipio, $estado, $idPais, $numTelefono ){
+    function modificarDireccion($idUsuario, $alias_dir, $numInterior, $numExterior, $calle, $cp, $municipio, $estado, $idPais, $numTelefono){
         global $conexion;
         if(empty($numInterior)) $numInterior = "NULL";
         $query = 'UPDATE usr_direccion SET Num_Int_Dir='.$numInterior.', Num_Ext_Dir='.$numExterior.', Calle_Dir="'.$calle.
