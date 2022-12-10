@@ -21,7 +21,7 @@
         <meta name="viewport" content="width=device-width">
         <script src="../../js/envio.js" defer></script>
     </head>
-    <body>
+    <body style="background-color: rgb(239, 239, 205);">
         <div class="container text-center my-4">
             <?php if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]["Admin"] == 1): ?>  
                 <h1 class="h2 mb-3 font-weight-normal">Registro de costos de envio</h1> 
@@ -61,6 +61,7 @@
                 </div>
             <?php endif ?>
         </div>
+        <br><br><br><br><br><br><br><br>
     </body>
 </html>
 <?php

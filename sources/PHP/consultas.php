@@ -50,6 +50,10 @@
         echo json_encode(crearCompra($_POST["idUsr"],$_POST["alias"],$_POST["cupon"]));
     }
 
+    if(isset($_POST["mes"]) && isset($_POST["ano"]) && isset($_POST["ventas"])){
+        echo json_encode(getVentasMes($_POST["mes"],$_POST["ano"]));
+    }
+
     function login($cuentaUsr, $Contra_usr){
         /**
          * Si el usuario existe retorna un array asociativo de
@@ -365,14 +369,18 @@
             $query = 'SELECT DISTINCT Nom_Cat_Prod FROM detalle_compra';
             $datos = $conexion->query($query);
             while($fila = $datos->fetch_assoc()){
-                $fila["venta"] = $calculo[$fila["Nom_Cat_Prod"]];
+                if(isset($calculo[$fila["Nom_Cat_Prod"]])){
+                    $fila["venta"] = $calculo[$fila["Nom_Cat_Prod"]];
+                }else{
+                    $fila["venta"] = 0;
+                }
                 $retornar[$cont] = $fila;
                 $cont++;
             }
             return $retornar;
         }
         return 0;
-    }  
+    }   
 
     function getCostoEnvio(){
         global $conexion;

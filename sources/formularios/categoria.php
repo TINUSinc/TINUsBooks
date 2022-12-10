@@ -19,7 +19,7 @@
         <meta name="viewport" content="width=device-width">
         <script src="../../js/categorias.js" defer></script>
     </head>
-    <body>
+    <body style="background-color: rgb(239, 239, 205);">
         <div class="container text-center my-4">
             <?php if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]["Admin"] == 1): ?>  
                 <h1 class="h2 mb-3 font-weight-normal">Registro de categorias</h1> 
@@ -57,7 +57,9 @@
                     </div>
                 </div>
             <?php endif ?>
+            <br><br><br><br><br><br><br><br><br><br>
         </div>
+        
     </body>
 </html>
 <?php

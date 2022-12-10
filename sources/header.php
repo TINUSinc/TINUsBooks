@@ -122,7 +122,7 @@
     <link rel="icon" type="image/x-icon" href="/media/favicon.ico">
   </head>
 <body onload="generate(), generate2()">
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-xl navbar-dark sticky-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="/" style="padding: 0; margin: 0;">
           <img src="/media/TINUS BOOKS_Logo.png" alt="TINU'S BOOKS" width="62">
@@ -148,9 +148,13 @@
               <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
             </li>
           </ul>
+          <form class="d-flex mx-0 mb-3 mb-xl-0 mx-xl-2 col-xl-2 c" role="search" method="POST" action="/sources/Paginas/busqueda.php">
+            <input class="form-control me-1" type="search" name="busqueda" placeholder="Buscar" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
           <?php if(isset($_SESSION['usuario'])): ?>
-          <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-end justify-content-xl-end justify-content-xxl-end form-group col-1">
-            <div class="mx-0 mx-md-0 mx-lg-3 mb-3 mb-md-3 mb-lg-0">
+          <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-end justify-content-xxl-end form-group ">
+            <div class="mx-0 mx-md-0 mx-xl-3 mb-3 mb-xl-0">
               <a class="nav-link text-white text-start text-md-center" href="/sources/Paginas/carrito.php" id="linkCarrito">
                 <i style="display: inline;" class="fa-solid fa-cart-shopping"></i>
                 <p style="display: inline;"><i><small id="carritoCant"><?php if (isset($_SESSION["usuario"])) {echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]);}?></small></i></p>
@@ -187,6 +191,7 @@
               </ul>
             </div>
         </div>
+        
       </div>
     </nav>
     <?php if(isset($_POST["restaurar"])):?>

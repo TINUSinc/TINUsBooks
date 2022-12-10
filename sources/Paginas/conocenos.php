@@ -67,7 +67,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Gerardo Femat</h5>
                         <p class="card-text">Soy una persona muy inteligente, me gusta mucho desafiarme en
-                            matemáticas y dar asesorías a mis compañeros que no les funciona el cerebro</p>
+                            matemáticas y dar asesorías a mis compañeros</p>
                         <p class="card-text"><small class="text-muted"><a href="https://www.facebook.com/geraer.jui1"
                                     target="_blank"><i class="fa-brands fa-square-facebook fa-2x"
                                         style="color: white"></i></a><a href="https://www.instagram.com/gefemadel/"
