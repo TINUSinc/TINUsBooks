@@ -22,6 +22,12 @@
             <a class="nav-link active" href="/sources/formularios/categoria.php">Categorias</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" href="/sources/Administracion/cupones.php">Cupones</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/sources/Administracion/costoEnvio.php">Costos Envio</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" href="/sources/Administracion/graficas.php">Graficas</a>
           </li>
         </ul>

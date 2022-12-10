@@ -70,6 +70,44 @@
         }
     }
 
+    function modificarCupon($IdCupon, $NomCupon, $DescuentoCupon){
+        global $conexion;
+        $query = 'UPDATE cupon SET Nombre_Descuento="'.$NomCupon.'", 
+                  Porcentaje_Desc="'.$DescuentoCupon.'" WHERE ID_Cupon='.$IdCupon.';';
+        try{
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se modifico el cupón
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Error al modificar el cupón
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    }
+
+    function modificarCostoEnvio($Monto, $MontoAct, $Costo){
+        global $conexion;
+        $query = 'UPDATE costo_envio SET Monto_Compra="'.$MontoAct.'", 
+                  Costo_Envio="'.$Costo.'" WHERE Monto_Compra='.$Monto.';';
+        try{
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se modifico el costo de envio
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Error al modificar el costo de envio
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    }
+
     function modificarUsuario($cuentaUsr, $nombreUsr,$correo, $contrasena1, $contrasena2, $administrador){
         global $conexion;
         $contraNueva = generarContrasena();
