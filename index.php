@@ -210,10 +210,14 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 							<div class="col-12 col-sm-6 col-md-3">
 								<div class="thumb-wrapper">
 									<div class="img-box">
-										<img src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
+                    <a href="/sources/Paginas/productosIndivual.php?id=<?php echo $producto["ID_Prod"]?>">
+                      <img src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
+                    </a>
 									</div>
 									<div class="thumb-content">
-										<h4> <?php echo $producto["Nombre_Prod"]?> </h4>
+                    <a style="text-decoration: none; color: white;" href="/sources/Paginas/productosIndivual.php?id=<?php echo $producto["ID_Prod"]?>">
+                      <h4> <?php echo $producto["Nombre_Prod"]?> </h4>
+                    </a>
 										<p class="item-price"><?php if($producto["Descuento_Prod"]>0):?><strike>$<?php echo $producto["Precio_Prod"]?></strike><?php endif; ?><span>$<?php echo number_format($producto["Precio_Prod"]-($producto["Precio_Prod"]*$producto["Descuento_Prod"]*0.01),2)?></span></p>
 										<?php if(isset($_SESSION["usuario"])){
 											$disponibilidad = "";

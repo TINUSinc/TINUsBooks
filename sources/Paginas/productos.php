@@ -58,9 +58,12 @@
           <div class="col">
             <div class="card">
             <a href="/sources/Paginas/productosIndivual.php?id=<?php echo $producto["ID_Prod"]?>">
-                <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>"></a>
+                <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
+            </a>
                 <div class="card-body">
-                <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
+                <a style="text-decoration: none; color: black;" href="/sources/Paginas/productosIndivual.php?id=<?php echo $producto["ID_Prod"]?>">
+                  <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
+                </a>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
                 <?php if(isset($_SESSION["usuario"])){
                   $disponibilidad = "";
