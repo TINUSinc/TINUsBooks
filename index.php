@@ -2,6 +2,19 @@
   if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
     agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
   }
+  if(isset($_POST["Suscripcion"])){
+    $mensaje = '
+      <h1 style="text-align: center;">TIINU´S BOOKS</h1>
+      <h5 style="text-align: center;">Bienvendio a nuestro boletín, recibirás las últimas noticias y ofertas de nuestra página</h5>
+      <p style="text-align: center;">Para que inicies tu viaje en la lectura utiliza el sigueinte cupón en tu compra: </p>
+      <h4 style="text-align: center;">Cupón: SUS10</h4>
+      <p style="text-align: center;">-Gracias por tu preferenca, TinusBooks.</p>
+    ';
+    $enviado=0;
+    if(crearEmailNoOutput("Suscripción TINUSBOOKS", $mensaje, $_POST["correoSuscripcion"])){
+      $enviado = 1;
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -307,21 +320,23 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 
 <!-- Barra descuento  --> 
 <section class="newsletter">
-<div class="container7">
-<div class="row7">
-<div class="col-sm-12">
-	<div class="content">
-		<h2> SUSCRIBETE AQUÍ </h2>
-	<div class="input-group">
-         <input type="email" class="form-control" placeholder="Ingresa tu email">
-         <span class="input-group-btn">
-         <button class="btn" type="submit"> Suscribirse </button>
-         </span>
-          </div>
-	</div>
-</div>
-</div>
-</div>
+  <div class="container7">
+    <div class="row7">
+      <div class="col-sm-12">
+        <div class="content">
+          <h2> SUSCRIBETE AQUÍ </h2>
+          <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <div class="input-group">
+              <input required type="email" class="form-control" name="correoSuscripcion" placeholder="Ingresa tu email">
+              <span class="input-group-btn">
+                <button class="btn" name="Suscripcion" type="submit"> Suscribirse </button>
+              </span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 <!-- Termina barra descuento  --> 
 
@@ -332,6 +347,13 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
     <script>
         document.getElementById("carritoCant").innerText = <?php echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]) ?>;
     </script>
+  <?php endif ?>
+  <?php if(isset($_POST["Suscripcion"])): ?>
+    <?php if($enviado): ?>
+      <script>swal("Suscripción", "Te hemos enviado un correo de confirmación","success");</script>
+      <?php else: ?>
+      <script>swal("Suscripción", "Ha ocurrido un error al enviar la confirmación","error");</script>
+    <?php endif ?>
   <?php endif ?>
 </body>
 </html>

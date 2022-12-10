@@ -156,15 +156,16 @@ include("../header.php");
                         $carrito = getCarrito($_SESSION["usuario"]["ID_Usr"]);
                         if(!empty($carrito)):
                     ?>
-                    <table class="table">
-                        <thead class="table-info">
+                    <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead class="table-primary">
                             <tr>
-                                <th scope="col">Producto</th>
-                                <th scope="col">Precio Unitario</th>
-                                <th scope="col">Descuento</th>
-                                <th scope="col">Precio final</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Total</th>
+                                <th class="cabecera" scope="col">Producto</th>
+                                <th class="cabecera" scope="col">Precio Unitario</th>
+                                <th class="cabecera" scope="col">Descuento</th>
+                                <th class="cabecera" scope="col">Precio final</th>
+                                <th class="cabecera" scope="col">Cantidad</th>
+                                <th class="cabecera" scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
@@ -172,8 +173,8 @@ include("../header.php");
                             foreach($carrito as $producto):
                                 $infoProd = getProducto($producto["ProductoID_Prod"]);
                             ?>
-                            <tr class="table align-middle">
-                                <th scope="col" rowspan="2"><?php echo $infoProd["Nombre_Prod"];?></th>
+                            <tr class="align-middle">
+                                <th scope="row" rowspan="2"><?php echo $infoProd["Nombre_Prod"];?></th>
                                 <td  style="<?php if($infoProd["Descuento_Prod"]>0){echo "text-decoration: line-through;";}?>">$<?php echo $infoProd["Precio_Prod"];?></td>
                                 <td ><?php echo $infoProd["Descuento_Prod"]?>%</td>
                                 <td >$<?php echo number_format($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01),2)?></td>
@@ -183,6 +184,7 @@ include("../header.php");
                         </tbody>
                         <?php endforeach; ?>
                     </table>
+                    </div>
                         <?php else:
                         echo "
                             <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>

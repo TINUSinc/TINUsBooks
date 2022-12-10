@@ -71,7 +71,7 @@ if(isset($_SESSION["usuario"]) && isset($_POST["cantidadElim"])){
                     </form>
                     <?php endforeach; ?>
                     <div class="container text-center my-4">
-                        <a href="pagar.php"><button class="btn btn-outline-warning btn-lg">Pagar</button></a>
+                        <a href="pagar.php"><button class="btn btn-outline-warning btn-lg">Proceder al pago</button></a>
                     </div>
                     <?php else:
                         echo "

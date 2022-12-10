@@ -46,4 +46,27 @@ function crearEmail($asunto, $mensaje, $destinatario){
         ";
     } 
 }
+
+function crearEmailNoOutput($asunto, $mensaje, $destinatario){
+    $myMail = new PHPMailer();
+    $myMail->CharSet = 'UTF-8'; 
+    $myMail->Encoding = 'base64';
+    $myMail->isSMTP();
+    $myMail->Host='smtp.office365.com';
+    $myMail->SMTPAuth = true;
+    $myMail->Port=587;
+    $myMail->Username='al289539@edu.uaa.mx';
+    $myMail->Password='Pakwar10';
+    $myMail->SMTPSecure='tls';
+    $myMail->setFrom('al289539@edu.uaa.mx','TINUS BOOKS');
+    $myMail->addAddress($destinatario);
+    $myMail->Subject = $asunto;
+    $myMail->isHTML();
+    $myMail->Body=$mensaje;
+    if($myMail->send()){
+        return 1;
+    }else{
+        return 0;
+    } 
+}
 ?>

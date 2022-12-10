@@ -181,7 +181,7 @@
                 <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title text-center">Gracias por leernos</h5>
-                    <p class="card-text text-center">Como agradecimiento, toma este cupón, gracias por tu preferencia</p>
+                    <p class="card-text text-center">Por tu preferencia, como agradecimiento, toma este cupón</p>
                 </div>
                 </div>
             </div>

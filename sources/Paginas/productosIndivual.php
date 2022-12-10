@@ -1,9 +1,10 @@
 <?php 
-  include("../header.php");
-  if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
-    agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
-  }
-  $producto=getProducto($_GET["id"]);
+    include("../header.php");
+    if(isset($_SESSION["usuario"]) && isset($_POST["Id_Prod"])){
+        agregarCarrito($_SESSION["usuario"]["ID_Usr"],$_POST["Id_Prod"],1);
+    }
+    if(isset($_GET["id"]) && !empty($_GET["id"])):
+        $producto=getProducto($_GET["id"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,6 +127,9 @@
 </body>
 
 </html>
+<?php else: ?>
+    <script type='text/javascript'>window.location = '/sources/Paginas/productos.php'</script>
+<?php endif; ?>
 <?php
     include_once("../PHP/footer.php");
 ?>
