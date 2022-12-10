@@ -11,10 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../css/graficasStyle.css">
     <title>Gráficas</title>
+
 </head>
 
 <body>
-    <div>
+    <div style="background-color: rgb(239, 239, 205);">
+    <div class="container text-center my-4" style=" background-color:rgb(239, 239, 205);">
+    <br>    
+    <h1 class="h2 mb-3 font-weight-normal">Graficas</h1>
         <form method="post" action="graficas.php">
             <select name="mes">
                 <?php
@@ -82,14 +86,11 @@
                 }
                 $anio = $_POST['ano'];
                 ?>
-    </div>
-
-    <div class="container text-center my-4">
-        <h1 class="h2 mb-3 font-weight-normal">Graficas</h1>
+        <h3><?php echo "" .$mes." ".$anio. "" ?></h3>
         <div class="contenedor">
             <br>
-            <div class="grafica1">
-                <h2>Compras</h2>
+            <div class="grafica1" style="background-color:rgb(239, 239, 205);">
+                <h4>Géneros vendidos</h4>
                 <script type="text/javascript">
                 // Load the Visualization API and the corechart package.
                 google.charts.load('current', {
@@ -128,11 +129,11 @@
 
                     // Set chart options
                     var options = {
-                        'title': <?php echo "'" .$mes." ".$anio. "'" ?>,
+                        'title': "",
                         'width': 550,
                         'height': 600,
                         'backgroundColor': {
-                            fill: "gainsboro"
+                            fill: "#EFEFCD"
                         },
                         'pieHole': 0.4
 
@@ -147,14 +148,8 @@
                 <!--Div that will hold the pie chart-->
                 <div id="chart_div"></div>
             </div>
-        </div>
-    </div>
-
-    <div class="container text-center my-4">
-        <h1 class="h2 mb-3 font-weight-normal">Graficas</h1>
-        <div class="contenedor">
-            <br>
-            <div class="grafica1">
+            <div class="grafica1" style="background-color:rgb(239, 239, 205);">
+                <h4>Títulos vendidos</h4>
                 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                 <script type="text/javascript">
                 google.charts.load("current", {
@@ -171,10 +166,10 @@
                         <?php
                             $numConsulta = getProductosMasVendidos($_POST['mes'], $_POST['ano']);
                             if($numConsulta == 0){
-                                echo "['Sin ventas', 0, 'blue']";
+                                echo "['Sin ventas', 0, '#19648C']";
                             }else{
                                 foreach($numConsulta as $valor) {
-                                    echo "['".$valor["Nombre_Prod"]. "'," .$valor["SUM(Cant_Prod)"]. ", 'blue'],";
+                                    echo "['".$valor["Nombre_Prod"]. "'," .$valor["SUM(Cant_Prod)"]. ", '#19648C'],";
                                 }
                             }
                         ?>
@@ -192,7 +187,7 @@
                     ]);
 
                     var options = {
-                        title: "Density of Precious Metals, in g/cm^3",
+                        title: "",
                         width: 600,
                         height: 400,
                         bar: {
@@ -201,6 +196,9 @@
                         legend: {
                             position: "none"
                         },
+                        'backgroundColor': {
+                            fill: "#EFEFCD"
+                        }
                     };
                     var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
                     chart.draw(view, options);
@@ -209,10 +207,10 @@
                 <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
             </div>
         </div>
-        <?php
-            }
-        ?>
-        
+    </div>
+    <?php } ?>
+    </div>
+
 </body>
 
 </html>
