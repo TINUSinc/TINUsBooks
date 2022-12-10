@@ -5,6 +5,11 @@
         echo json_encode($producto);
     }
 
+    if(isset($_POST["idUsrCorreo"])){
+        $usr = getUsuario($_POST["idUsrCorreo"]);
+        echo json_encode($usr["Correo_usr"]);
+    }
+
     if(isset($_POST["idCat"])){
         echo json_encode(getCategoria($_POST["idCat"]));
     }
@@ -23,6 +28,26 @@
 
     if(isset($_POST["montoCompra1"])){
         echo json_encode(getCostoEnvioId($_POST["montoCompra1"]));
+    }
+
+    if(isset($_POST["idPais1"])){
+        echo json_encode(getPais($_POST["idPais1"]));
+    }
+
+    if(isset($_POST["Impuesto1"]) && isset($_POST["idUsr"]) && isset($_POST["nomCupon"])){
+        echo json_encode(getCostoCarritoEnvCup($_POST["idUsr"],$_POST["Impuesto1"],$_POST["nomCupon"]));
+    }
+
+    if(isset($_POST["nombreCupon"])){
+        echo json_encode(getCupon($_POST["nombreCupon"]));
+    }
+
+    if(isset($_POST["idUsrUltimaCompra"])){
+        echo json_encode(getUltimaCompra($_POST["idUsrUltimaCompra"]));
+    }
+
+    if(isset($_POST["idUsr"]) && isset($_POST["alias"]) && isset($_POST["cupon"])){
+        echo json_encode(crearCompra($_POST["idUsr"],$_POST["alias"],$_POST["cupon"]));
     }
 
     function login($cuentaUsr, $Contra_usr){
@@ -113,7 +138,55 @@
         $desc = 100 - ((round($totalDesc,2)*100)/round($total,2));
         $retornar["total"] = round($total,2);
         $retornar["totalDesc"] = round($totalDesc,2);
+        $costos_envio = getCostoEnvio();
+        $costo_envio = array();
+        foreach($costos_envio as $envio){
+            if($retornar["totalDesc"]>=$envio["Monto_Compra"]){
+                $costo_envio["Costo"] = $envio["Costo_Envio"];
+                $costo_envio["Monto"] = $envio["Monto_Compra"];
+            }else{
+                break;
+            }
+        }
+        $retornar["CostoEnv"] = $costo_envio["Costo"];
+        $retornar["totalEnvio"] = $retornar["totalDesc"]+$costo_envio["Costo"];
         $retornar["desc"] = round($desc,3);
+        return $retornar;
+    }
+
+    function getCostoCarritoEnvCup($idUsr, $impuesto, $nomCupon=""){
+        global $conexion;
+        $carrito = getCarrito($idUsr);
+        $retornar = array();
+        $cupon = getCupon($nomCupon);
+        if($cupon != 0){
+            $cupon = $cupon["Porcentaje_Desc"];
+        } 
+        $total = 0;
+        $totalDesc = 0;
+        foreach ($carrito as $producto){
+            $infoProd = getProducto($producto["ProductoID_Prod"]);
+            $total += $infoProd["Precio_Prod"]*$producto["cant_Prod"];
+            $totalDesc += ($infoProd["Precio_Prod"]-($infoProd["Precio_Prod"]*$infoProd["Descuento_Prod"]*0.01))*$producto["cant_Prod"];
+        }
+        $desc = 100 - ((round($totalDesc,2)*100)/round($total,2));
+        $retornar["desc"] = round($desc,3);
+        $retornar["total"] = round($total,2);
+        $retornar["totalDesc"] = round($totalDesc,2);
+        $costos_envio = getCostoEnvio();
+        $costo_envio = array();
+        foreach($costos_envio as $envio){
+            if($retornar["totalDesc"]>=$envio["Monto_Compra"]){
+                $costo_envio["Costo"] = $envio["Costo_Envio"];
+                $costo_envio["Monto"] = $envio["Monto_Compra"];
+            }else{
+                break;
+            }
+        }
+        $retornar["totalEnvio"] = round($retornar["totalDesc"]+$costo_envio["Costo"],2);
+        $retornar["totalImpuesto"] = round($retornar["totalEnvio"] + ($retornar["totalEnvio"]*$impuesto*0.01),2);
+        $retornar["totalCupon"] = round($retornar["totalImpuesto"]-($retornar["totalImpuesto"]*$cupon*0.01),2);
+        $retornar["porcentajeCupon"] = $cupon;
         return $retornar;
     }
 
@@ -347,6 +420,17 @@
         return 0;
     }
 
+    function getPais($idPais){
+        global $conexion;
+        $query = 'SELECT * FROM pais WHERE ID_Pais='.$idPais.';';
+        $datos = $conexion->query($query);
+        if($datos->num_rows == 1){
+            $fila = $datos->fetch_assoc();
+            return $fila;
+        }
+        return 0;
+    }
+
     function getCupones(){
         global $conexion;
         $query = 'SELECT * FROM cupon;';
@@ -385,6 +469,7 @@
         $query = 'SELECT * FROM detalle_compra WHERE idCompra_Compra='.$idCompra.';';
         $datos = $conexion->query($query);
         $cont = 0;
+        $retornar = array();
         while($fila = $datos->fetch_assoc()){
             $retornar[$cont] = $fila;
             $cont++;
@@ -392,7 +477,7 @@
         return $retornar;
     }
 
-    function getUltimoDetalleCompra($idUsr){
+    function getUltimaCompra($idUsr){
         global $conexion;
         $query = 'SELECT MAX(Id_Compra) FROM compra WHERE UsuarioId_Usr='.$idUsr.';';
         $datos = $conexion->query($query);
@@ -455,6 +540,94 @@
             return $retornar;
         } else{
             return 0;
+        }
+    }
+
+    function crearCompra($idUsr, $alias, $cupon){
+        /**
+         * cupon, unicamente se espera el id
+         */
+        global $conexion;
+        $fecha = date("Y-m-d", time());
+        $carrito = getCarrito($idUsr);
+        $direccion = getDireccion($idUsr, $alias);
+        if(!empty($carrito)){
+            $costos_envio = getCostoEnvio();
+            $totalDesc = getCostoCarrito($idUsr);
+            $totalDesc = $totalDesc["totalDesc"];
+            $cupones = getCupon($cupon);
+            $costo_envio= array();
+            $cuponAplicado = array();
+            if(!empty($cupones)){
+                $cuponAplicado = $cupones;
+            }else{
+                $cuponAplicado["ID_Cupon"]="NULL";
+                $cuponAplicado["Porcentaje_Desc"] = 0;
+            }
+            foreach($costos_envio as $envio){
+                if($totalDesc>=$envio["Monto_Compra"]){
+                    $costo_envio["Costo"] = $envio["Costo_Envio"];
+                    $costo_envio["Monto"] = $envio["Monto_Compra"];
+                }
+            }
+            if(empty($direccion["Num_Int_Dir"])) $direccion["Num_Int_Dir"]="NULL";
+            $query = 'INSERT INTO compra (Fecha_Compra, Costo_Envio, 
+                    Impuesto_Pais, Desc_Cup, Estado_Compra, Num_Int_Dir, 
+                    Num_Ext_Dir, Calle_Dir, Mcpio_Dir, Edo_Dir, Num_Tel_Dir, 
+                    UsuarioId_Usr, CuponId_Cupon, Costo_EvioMonto_Compra) 
+                    VALUES ("'.$fecha.'",'.$costo_envio["Costo"].','.$direccion["Impuesto"].','.
+                    $cuponAplicado["Porcentaje_Desc"].',"Pedido",'.
+                    $direccion["Num_Int_Dir"].','.$direccion["Num_Ext_Dir"].',"'.
+                    $direccion["Calle_Dir"].'","'.$direccion["Mcpio_Dir"].'","'.
+                    $direccion["Edo_Dir"].'","'.$direccion["Num_Tel_Dir"].'",'.
+                    $idUsr.','.$cuponAplicado["ID_Cupon"].','.$costo_envio["Monto"].');';
+            try{
+                $conexion->query($query);
+            }catch(Exception $e){
+                return 1;
+            }     
+            $compras = getCompras($idUsr);
+            foreach($compras as $infoCompra){
+                $compra = $infoCompra;
+            }
+            foreach ($carrito as $producto){
+                $infoProd = getProducto($producto["ProductoID_Prod"]);
+                $query = 'INSERT INTO detalle_compra (idCompra_Compra, Nombre_Prod,
+                        Nom_Cat_Prod, Precio_Prod, Cant_Prod, Descuento_Prod) VALUES ('.
+                        $compra["Id_Compra"].',"'.$infoProd["Nombre_Prod"].'","'.
+                        $infoProd["Nom_Cat"].'",'.$infoProd["Precio_Prod"].','.
+                        $producto["cant_Prod"].','.$infoProd["Descuento_Prod"].');';
+                try{
+                    if($conexion->query($query) === TRUE){
+                        modificarCantProdConsultas($infoProd["ID_Prod"],($infoProd["Existencias_Prod"]-$producto["cant_Prod"]));
+                    }
+                }catch(Exception $e){
+                }
+            }
+            borrarCarritoConsultas($idUsr);
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    function borrarCarritoConsultas($idUsr){
+        global $conexion;
+        try{
+            $query = 'DELETE FROM carrito WHERE UsuarioID_Usr='.$idUsr.';';
+            $conexion->query($query);
+        }catch(Exception $e){
+            
+        }
+    }
+
+    function modificarCantProdConsultas($idProd, $nuevaCant){
+        global $conexion;
+        $query = 'UPDATE producto SET Existencias_Prod='.$nuevaCant.' WHERE ID_Prod='.$idProd.';';
+        try{
+            $conexion->query($query);
+        }catch(Exception $e){
+            
         }
     }
 ?>

@@ -5,6 +5,10 @@ require 'PHPMailer/src/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+if(isset($_POST["asunto"]) && isset($_POST["mensaje"]) && isset($_POST["destinatario"])){
+    crearEmail($_POST["asunto"],$_POST["mensaje"],$_POST["destinatario"]);
+}
+
 function crearEmail($asunto, $mensaje, $destinatario){
     $myMail = new PHPMailer();
     $myMail->CharSet = 'UTF-8'; 

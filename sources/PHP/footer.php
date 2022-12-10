@@ -29,6 +29,9 @@
                     <div class="mb-2">
                         <a class="text-white-50 text-decoration-none" href="/sources/formularios/contactanos.php">Contacto</a>
                     </div>
+                    <div class="mb-2">
+                        <a class="text-white-50 text-decoration-none" href="/sources/Paginas/perguntas.php">Preguntas frecuentes</a>
+                    </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-3 ">
                     <p class="h4 mb-3 text-center titulos" style="color:white;">Redes Sociales</p>
@@ -39,6 +42,9 @@
                             <a href="https://www.instagram.com/tinus_bookstore/" target="_blank" class="text-reset"><i class="fa-brands fa-instagram"></i></a>
                     </div>
                 </div>   
+            </div>
+            <div class="row text-center">
+                <h5 style="color:white;">TINU´S BOOKS ©<?php echo date('Y') ?></h5>
             </div>
         </div>
     </footer>

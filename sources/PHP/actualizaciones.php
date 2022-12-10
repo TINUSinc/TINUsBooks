@@ -89,6 +89,25 @@
         }
     }
 
+    function modificarPais($IdPais, $NomPais, $Impuesto){
+        global $conexion;
+        $query = 'UPDATE pais SET Nombre_Pais="'.$NomPais.'", 
+                  Impuesto="'.$Impuesto.'" WHERE ID_Pais='.$IdPais.';';
+        try{
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Se modifico el pais
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    Error al modificar el pais
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>';
+        }
+    }
+
     function modificarCostoEnvio($Monto, $MontoAct, $Costo){
         global $conexion;
         $query = 'UPDATE costo_envio SET Monto_Compra="'.$MontoAct.'", 

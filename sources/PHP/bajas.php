@@ -59,6 +59,7 @@
         }
     }
 
+
     function borrarCupon($idCupon){
         global $conexion;
         try{
@@ -73,7 +74,47 @@
             }
         }catch(Exception $e){
             echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        Error al eliminar el cupón '.$e.'
+                        Error al eliminar el cupón
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+        }
+    }
+
+    function borrarCategoria($idCategoria){
+        global $conexion;
+        try{
+            $query = 'DELETE FROM producto WHERE CategoriaId_Cat='.$idCategoria.';';
+            $conexion->query($query);
+            $query = 'DELETE FROM categoria WHERE ID_Cat='.$idCategoria.';';
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Se elimino la categoria y todos los productos que pertenecian a ella.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error al la categoria
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+        }
+    }
+
+    function borrarPais($idPais){
+        global $conexion;
+        try{
+            $query = 'DELETE FROM usr_direccion WHERE ID_Pais='.$idPais.';';
+            $conexion->query($query);
+            $query = 'DELETE FROM pais WHERE ID_Pais='.$idPais.';';
+            if($conexion->query($query) === TRUE){
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                            Se elimino el pais junto a todas las direcciones
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>';
+            }
+        }catch(Exception $e){
+            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Error al eliminar el pais
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
         }

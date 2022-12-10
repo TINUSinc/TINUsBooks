@@ -1,7 +1,7 @@
 <?php
     include_once("conexion.php");
     //Funciones a las que se manden los parametros de las altas
-
+    
     function crearUsuario($cuentaUsr, $correoUsr, $Contra_usr1, $Contra_usr2, $Nombre_usr){
         global $conexion;
         $query = 'INSERT INTO usuario (Cuenta_usr, Correo_usr, 
@@ -224,94 +224,5 @@
         }        
     }
 
-    function crearCompra($idUsr, $direccion, $cupon){
-        /**
-         * Se espera recibir los datos de la siguiente forma:
-         * idUsr como el id del usuario
-         * productos como un array asociativo que tenga la sig estructura:
-         * direccion como un array asociativo con los campos de la direccion
-         *      direccion[Num_Int_Dir]
-         *      direccion[Num_Ext_Dir]
-         *      direccion[Calle_Dir]
-         *      direccion[CP_dir]
-         *      direccion[Mcpio_Dir]
-         *      direccon[Edo_Dir]
-         *      direccion[Num_Tel_Dir]
-         *      direccon[Nombre_Pais]
-         *      direccon[Impuesto]
-         * cupon, unicamente se espera el id
-         */
-        global $conexion;
-        $fecha = date("Y-m-d", time());
-        $carrito = getCarrito($idUsr);
-        if(!empty($carrito)){
-            $costos_envio = getCostoEnvio();
-            $totalDesc = getCostoCarrito($idUsr);
-            $totalDesc = $totalDesc["totalDesc"];
-            $cupones = getCupon($cupon);
-            $costo_envio= array();
-            $cuponAplicado = array();
-            if(!empty($cupones)){
-                $cuponAplicado = $cupones;
-            }else{
-                $cuponAplicado["ID_Cupon"]="NULL";
-                $cuponAplicado["Porcentaje_Desc"] = 0;
-            }
-            foreach($costos_envio as $envio){
-                if($totalDesc>=$envio["Monto_Compra"]){
-                    $costo_envio["Costo"] = $envio["Costo_Envio"];
-                    $costo_envio["Monto"] = $envio["Monto_Compra"];
-                }
-            }
-            if(empty($direccion["Num_Int_Dir"])) $direccion["Num_Int_Dir"]="NULL";
-            $query = 'INSERT INTO compra (Fecha_Compra, Costo_Envio, 
-                    Impuesto_Pais, Desc_Cup, Estado_Compra, Num_Int_Dir, 
-                    Num_Ext_Dir, Calle_Dir, Mcpio_Dir, Edo_Dir, Num_Tel_Dir, 
-                    UsuarioId_Usr, CuponId_Cupon, Costo_EvioMonto_Compra) 
-                    VALUES ("'.$fecha.'",'.$costo_envio["Costo"].','.$direccion["Impuesto"].','.
-                    $cuponAplicado["Porcentaje_Desc"].',"Pedido",'.
-                    $direccion["Num_Int_Dir"].','.$direccion["Num_Ext_Dir"].',"'.
-                    $direccion["Calle_Dir"].'","'.$direccion["Mcpio_Dir"].'","'.
-                    $direccion["Edo_Dir"].'","'.$direccion["Num_Tel_Dir"].'",'.
-                    $idUsr.','.$cuponAplicado["ID_Cupon"].','.$costo_envio["Monto"].');';
-            try{
-                if($conexion->query($query) === TRUE){
-                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                            Se realizo la compra
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>';
-                }
-            }catch(Exception $e){
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Error al realizar la compra
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
-            }     
-            $compras = getCompras($idUsr);
-            foreach($compras as $infoCompra){
-                $compra = $infoCompra;
-            }
-            foreach ($carrito as $producto){
-                $infoProd = getProducto($producto["ProductoID_Prod"]);
-                $query = 'INSERT INTO detalle_compra (idCompra_Compra, Nombre_Prod,
-                        Nom_Cat_Prod, Precio_Prod, Cant_Prod, Descuento_Prod) VALUES ('.
-                        $compra["Id_Compra"].',"'.$infoProd["Nombre_Prod"].'","'.
-                        $infoProd["Nom_Cat"].'",'.$infoProd["Precio_Prod"].','.
-                        $producto["cant_Prod"].','.$infoProd["Descuento_Prod"].');';
-                try{
-                    if($conexion->query($query) === TRUE){
-                        modificarCantProd($infoProd["ID_Prod"],($infoProd["Existencias_Prod"]-$producto["cant_Prod"]));
-                    }
-                }catch(Exception $e){
-                    echo $e;
-                }
-            }
-            borrarCarrito($idUsr);
-        }else{
-            echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    Se deben agregar productos al carrito.
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                  </div>';
-        }
-    }
+    
 ?>

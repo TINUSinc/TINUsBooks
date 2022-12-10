@@ -23,6 +23,10 @@ h3{
     display: flex;
     flex-wrap: wrap;
 }
+.contenedorCupon{
+    background-color: #58536A;
+    width: 100%;
+}
 
 #imagen{
     display: flex;

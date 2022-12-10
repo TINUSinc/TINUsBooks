@@ -13,10 +13,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/estilos-productos.css">
 </head>
-<body>
+<body></body>
 <div class="container my-5">
   <div class="text-center">
-    <h1>Productos</h1>
+
+  <div class="bg-1">
+   <h1 class="t-stroke t-shadow"> Nuestros productos </h1>
+  </div>
+
   </div>
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 justify-content-end text-center">
@@ -30,7 +34,7 @@
               }
           ?>
         </select>
-        <input type="submit" class="btn btn-light my-2" value="Mostrar">
+        <input type="submit" class="btn btn-outline-light my-2" value="Mostrar">
       </form>
     </div>
     <br>
@@ -40,6 +44,7 @@
           $productos = getProductosCategoria($_GET["categoria"]);
         }else{
           $productos=getProductos();
+          $_GET["categoria"] = 0;
         }
         $band = false;
       if(!empty($productos)):
@@ -52,8 +57,9 @@
       ?>
           <div class="col">
             <div class="card">
-              <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>">
-              <div class="card-body">
+            <a href="/sources/Paginas/productosIndivual.php?id=<?php echo $producto["ID_Prod"]?>">
+                <img class="card-img-top imagen" src="/media/productos/<?php echo $producto["Imagenes"][1]?>" alt="<?php echo $producto["Imagenes"][1]?>"></a>
+                <div class="card-body">
                 <h5 class="card-title"><?php echo $producto["Nombre_Prod"]?></h5>
                 <p class="card-text descripcion"><?php echo $producto["Descripcion_Prod"]?></p>
                 <?php if(isset($_SESSION["usuario"])){
@@ -64,17 +70,17 @@
                     $texto = " Sin inventario";
                   }
                   echo '
-                      <form method="POST" action="'.$_SERVER["PHP_SELF"].'">
+                      <form method="POST" action="'.$_SERVER["PHP_SELF"].'?categoria='.$_GET["categoria"].'">
                         <div class="row justify-content-center">
                           <input type="hidden" name="Id_Prod" value="'.$producto["ID_Prod"].'">
-                          <button '.$disponibilidad.' style="color: rgb(172, 18, 18); width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i>'.$texto.'</button>
+                          <button '.$disponibilidad.' style="color: green; width: 200px;" class="btn btn-light" type="submit"><i class="fas fa-shopping-cart"></i>'.$texto.'</button>
                         </div>
                       </form>
                       ';
                 }else{
                   echo '
                     <div class="row justify-content-center">
-                      <button class="btn btn-light" style="color: rgb(172, 18, 18); width: 200px" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
+                      <button class="btn btn-light" style="color: rgb(29, 49, 36); background-color:  rgba(76, 123, 100, 0.509); width: 200px" type="button" data-bs-toggle="modal" data-bs-target="#modalIniciar"><i class="fas fa-shopping-cart"></i> Inicie sesión</button>
                     </div>
                   ';
                 }

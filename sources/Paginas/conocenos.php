@@ -83,21 +83,18 @@
         <div class="card mb-3" id="card">
             <div class="row g-0">
                 <div class="col-md-4" id="imagen">
-                    <img class="imgCircular" src="../../media/nosotros/Sandra.jpeg" alt="Sandra Prieto">
+                    <img class="imgCircular" src="../../media/nosotros/Jacqueline.jpeg" alt="persona">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Sandra Olimpia</h5>
-                        <p class="card-text">Tengo 20 años, me gusta ver series, películas y animes, además
-                            de escuchar
-                            música. Me gustan mucho los animales, sobre todo los perritos y mi color
-                            favorito es el
-                            morado</p>
+                        <h5 class="card-title">Jacqueline Renovato</h5>
+                        <p class="card-text">Tengo 19 años, mi color favorito es el rosa y mi banda favorita
+                            es Big Time Rush. Me gusta escuchar música y ver películas</p>
                         <p class="card-text"><small class="text-muted"><a
-                                    href="https://www.facebook.com/profile.php?id=100008825409891" target="_blank"><i
-                                        class="fa-brands fa-square-facebook fa-2x" style="color: white"></i></a><a
-                                    href="https://www.instagram.com/sandyolimpia02/" target="_blank"><i
-                                        style="padding-left:5px;color:white;"
+                                    href="https://www.facebook.com/maricelajacqueline.renovatoramirez/"
+                                    target="_blank"><i class="fa-brands fa-square-facebook fa-2x"
+                                        style="color: white"></i></a><a href="https://www.instagram.com/jacky.rrmz/"
+                                    target="_blank"><i style="padding-left:5px;color:white;"
                                         class="fa-brands fa-square-instagram fa-2x"
                                         style="color: white"></i></a></small></p>
                         <hr>
@@ -105,6 +102,7 @@
                 </div>
             </div>
         </div>
+       
         <div class="card mb-3" id="card">
             <div class="row g-0">
                 <div class="col-md-4" id="imagen">
@@ -130,18 +128,21 @@
         <div class="card mb-3" id="card">
             <div class="row g-0">
                 <div class="col-md-4" id="imagen">
-                    <img class="imgCircular" src="../../media/nosotros/Jacqueline.jpeg" alt="persona">
+                    <img class="imgCircular" src="../../media/nosotros/Sandra.jpeg" alt="Sandra Prieto">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">Jacqueline Renovato</h5>
-                        <p class="card-text">Tengo 19 años, mi color favorito es el rosa y mi banda favorita
-                            es Big Time Rush. Me gusta escuchar música y ver películas</p>
+                        <h5 class="card-title">Sandra Olimpia</h5>
+                        <p class="card-text">Tengo 20 años, me gusta ver series, películas y animes, además
+                            de escuchar
+                            música. Me gustan mucho los animales, sobre todo los perritos, mi color
+                            favorito es el
+                            morado y me gusta el de la derecha 👉</p>
                         <p class="card-text"><small class="text-muted"><a
-                                    href="https://www.facebook.com/maricelajacqueline.renovatoramirez/"
-                                    target="_blank"><i class="fa-brands fa-square-facebook fa-2x"
-                                        style="color: white"></i></a><a href="https://www.instagram.com/jacky.rrmz/"
-                                    target="_blank"><i style="padding-left:5px;color:white;"
+                                    href="https://www.facebook.com/profile.php?id=100008825409891" target="_blank"><i
+                                        class="fa-brands fa-square-facebook fa-2x" style="color: white"></i></a><a
+                                    href="https://www.instagram.com/sandyolimpia02/" target="_blank"><i
+                                        style="padding-left:5px;color:white;"
                                         class="fa-brands fa-square-instagram fa-2x"
                                         style="color: white"></i></a></small></p>
                         <hr>
@@ -149,7 +150,7 @@
                 </div>
             </div>
         </div>
-
+<br>
         <div class="card mb-3" id="card">
             <div class="row g-0">
                 <div class="col-md-4" id="imagen">
@@ -159,7 +160,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Franciso Mendez</h5>
                         <p class="card-text">Tengo 20 años, me gusta hacer streams y programar es uno de mis
-                            pasatiempos favoritos</p>
+                            pasatiempos favoritos. Me gusta mucho dormir y la de la izquierda 👈</p>
                         <p class="card-text"><small class="text-muted"><a
                                     href="https://www.facebook.com/franciscodejesus.mendezlara" target="_blank"><i
                                         class="fa-brands fa-square-facebook fa-2x" style="color: white"></i></a><a
@@ -172,7 +173,19 @@
                 </div>
             </div>
         </div>
-
+        <div class="card mb-3 contenedorCupon">
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="/media/cupon3.png" class="img-fluid rounded-start" alt="cuponcito :3">
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Gracias por leernos</h5>
+                    <p class="card-text text-center">Como agradecimiento, toma este cupón, gracias por tu preferencia</p>
+                </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 
