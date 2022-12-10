@@ -302,11 +302,22 @@ const slideshow = new Slideshow(document.querySelector('.slideshow'));
 <!-- Termina animacion 3d de origenes  --> 
 
 <!-- Barra descuento  --> 
-<section class="descuento">
-    <img src="media/indexmedia/descuentofondo.jpg" alt="">
-    <p id="aprovecha" >- Aprovecha nuestros descuentos -</p>
-    <h2 id="obtener" >¡Obten 20% en toda la tienda!</h2>
-    <h5 id="codigo" >Código: apertura20</h5>
+<section class="newsletter">
+<div class="container7">
+<div class="row7">
+<div class="col-sm-12">
+	<div class="content">
+		<h2> SUSCRIBETE AQUÍ </h2>
+	<div class="input-group">
+         <input type="email" class="form-control" placeholder="Ingresa tu email">
+         <span class="input-group-btn">
+         <button class="btn" type="submit"> Suscribirse </button>
+         </span>
+          </div>
+	</div>
+</div>
+</div>
+</div>
 </section>
 <!-- Termina barra descuento  --> 
 
