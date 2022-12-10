@@ -30,7 +30,7 @@
                         <a class="text-white-50 text-decoration-none" href="/sources/formularios/contactanos.php">Contacto</a>
                     </div>
                     <div class="mb-2">
-                        <a class="text-white-50 text-decoration-none" href="/sources/Paginas/perguntas.php">Preguntas frecuentes</a>
+                        <a class="text-white-50 text-decoration-none" href="/sources/Paginas/preguntas.php">Preguntas frecuentes</a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-6 col-lg-3 ">
