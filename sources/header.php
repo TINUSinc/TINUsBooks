@@ -131,7 +131,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-xl-0">
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="/">Inicio</a>
             </li>
@@ -148,13 +148,13 @@
               <a class="nav-link text-white" href="/sources/Paginas/conocenos.php">Acerca De</a> 
             </li>
           </ul>
-          <form class="d-flex mx-0 mb-3 mb-xl-0 mx-xl-2 col-xl-2 c" role="search" method="POST" action="/sources/Paginas/busqueda.php">
+          <form class="d-flex mx-0 mb-3 mb-xl-0 mx-xl-2 col-6 col-xl-2" role="search" method="POST" action="/sources/Paginas/busqueda.php">
             <input class="form-control me-1" type="search" name="busqueda" placeholder="Buscar" aria-label="Search">
             <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
           </form>
           <?php if(isset($_SESSION['usuario'])): ?>
           <div class="d-flex justify-content-start justify-content-sm-start justify-content-md-start justify-content-lg-start justify-content-xl-end justify-content-xxl-end form-group ">
-            <div class="mx-0 mx-md-0 mx-xl-3 mb-3 mb-xl-0">
+            <div class="mx-0 mb-3 mx-xl-3 mb-xl-0"> 
               <a class="nav-link text-white text-start text-md-center" href="/sources/Paginas/carrito.php" id="linkCarrito">
                 <i style="display: inline;" class="fa-solid fa-cart-shopping"></i>
                 <p style="display: inline;"><i><small id="carritoCant"><?php if (isset($_SESSION["usuario"])) {echo getTotalProdCarrito($_SESSION["usuario"]["ID_Usr"]);}?></small></i></p>

@@ -13,7 +13,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/estilos-productos.css">
 </head>
-<body></body>
+<body>
 <div class="container my-5">
   <div class="text-center">
 
