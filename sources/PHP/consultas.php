@@ -84,8 +84,12 @@
         global $conexion;
         $query = 'SELECT * FROM usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
-        $retornar = $res->fetch_assoc();
-        return $retornar["Bloqueo"];
+        if(!empty($res)){
+            $retornar = $res->fetch_assoc();
+            return $retornar["Bloqueo"];
+        }else{
+            return 0;
+        }
     }
 
     function getCategorias(){
