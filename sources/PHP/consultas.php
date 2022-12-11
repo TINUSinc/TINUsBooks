@@ -45,7 +45,7 @@
     if(isset($_POST["idUsrUltimaCompra"])){
         echo json_encode(getUltimaCompra($_POST["idUsrUltimaCompra"]));
     }
-
+    //Relacion carrito
     if(isset($_POST["idUsr"]) && isset($_POST["alias"]) && isset($_POST["cupon"])){
         echo json_encode(crearCompra($_POST["idUsr"],$_POST["alias"],$_POST["cupon"]));
     }
