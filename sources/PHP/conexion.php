@@ -16,10 +16,10 @@
 
 <?php 
     //Usar esta configuracion para el localhost personal
-    $servidor='localhost:33065';
+    $servidor='localhost';
     $cuenta='root';
     $password='';
-    $bd="tinutest";
+    $bd="tinusbooks";
     $conexion = new mysqli($servidor,$cuenta,$password,$bd);
     if($conexion->connect_errno):
 ?>

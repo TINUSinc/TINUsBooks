@@ -82,7 +82,7 @@
     }
     function getBloquear($usr){
         global $conexion;
-        $query = 'SELECT Bloqueo FROM Usuario WHERE Cuenta_Usr="'.$usr.'";';
+        $query = 'SELECT Bloqueo FROM usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
         /**Deshabilitar la linea de abajo en el webhost */
         $res = $res->fetch_column(0);
