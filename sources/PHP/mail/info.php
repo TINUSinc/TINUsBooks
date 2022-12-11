@@ -27,21 +27,17 @@ function crearEmail($asunto, $mensaje, $destinatario){
     $myMail->Body=$mensaje;
     if($myMail->send()){ 
         echo "
-        <div class='container'>
-            <div class='alert alert-success alert-dismissible fade show text-center' role='alert'>
-                Se ha enviado el correo.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>
+        <div class='alert alert-success alert-dismissible fade show text-center' role='alert'>
+            Se ha enviado el correo.
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>
         ";
     }else{
         $error = $myMail->ErrorInfo;
         echo "
-        <div class='container'>
-            <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
-                Ha ocurrido un error, intentelo después.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>
+        <div class='alert alert-warning alert-dismissible fade show text-center' role='alert'>
+            Ha ocurrido un error, intentelo después.
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
         </div>
         ";
     } 
