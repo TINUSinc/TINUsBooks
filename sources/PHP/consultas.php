@@ -84,7 +84,7 @@
         global $conexion;
         $query = 'SELECT * FROM usuario WHERE Cuenta_Usr="'.$usr.'";';
         $res = $conexion->query($query);
-        if(!empty($res)){
+        if(!empty($res->num_rows)){
             $retornar = $res->fetch_assoc();
             return $retornar["Bloqueo"];
         }else{
