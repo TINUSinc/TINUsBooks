@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="/css/perfil.css">
     <title>Perfil</title> 
 </head>
-<body>
+<body style="background-color: rgb(239, 239, 205);">
         <br>
         <?php if(isset($_SESSION["usuario"])): ?>
         <div class="container mb-4 contenedorFormulario"> 
@@ -83,6 +83,7 @@
                 </div>
             </div>
         <?php endif ?>
+        <br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
 <?php

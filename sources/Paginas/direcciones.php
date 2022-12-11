@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../../css/direccionesStyle.css">
     <script src="../../js/direcciones.js" defer></script>
 </head>
-<body>
+<body style="background-color: rgb(239, 239, 205);">
     <?php if(isset($_SESSION["usuario"])): ?>
         <div class="container my-4 contenedorFormulario">
             <center>
@@ -138,6 +138,7 @@
             </div>
         </div>
     <?php endif ?>
+    <br><br><br><br><br><br><br><br>
 </body>
 </html>
 <?php include('../PHP/footer.php')?>
