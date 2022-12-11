@@ -12,7 +12,7 @@ include("../header.php");
         <script src="/js/ValidarCC.js" defer></script>
         <link rel="stylesheet" href="/css/pago.css">
     </head> 
-    <body> 
+    <body style="background-color: rgb(239, 239, 205);"> 
         <?php
             if(isset($_SESSION["usuario"])){
                 revisarCarrito($_SESSION["usuario"]["ID_Usr"]);
