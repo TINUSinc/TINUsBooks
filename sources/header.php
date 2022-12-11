@@ -199,7 +199,7 @@
           swal("Contrasena restaurada", "Se ha desbloqueado su cuenta y se le ha mandado un correo con una contraseña provisional", "success", {
             button: "Aceptar",
           });
-      </scr>
+      </script>
     <?php endif;?>
     <div class="modal fade" id="modalIniciar" tabindex="-1" aria-labelledby="modalIniciar" aria-hidden="true">
       <div class="modal-dialog">
